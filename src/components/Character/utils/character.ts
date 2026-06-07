@@ -27,7 +27,7 @@ const setCharacter = (
           blobUrl,
           async (gltf) => {
             character = gltf.scene;
-            await renderer.compileAsync(character, camera, scene);
+            renderer.compileAsync(character, camera, scene).catch(() => undefined);
             character.traverse((child: any) => {
               if (child.isMesh) {
                 const mesh = child as THREE.Mesh;
@@ -41,6 +41,7 @@ const setCharacter = (
             setAllTimeline();
             character!.getObjectByName("footR")!.position.y = 3.36;
             character!.getObjectByName("footL")!.position.y = 3.36;
+            URL.revokeObjectURL(blobUrl);
             dracoLoader.dispose();
           },
           undefined,

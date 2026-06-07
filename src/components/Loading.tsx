@@ -21,27 +21,47 @@ const Loading = ({ percent }: { percent: number }) => {
         : ["Creative Front-End Developer", "Responsive UI Builder"],
   };
 
-  if (percent >= 100) {
-    setTimeout(() => {
+  useEffect(() => {
+    if (percent < 100 || loaded) return;
+
+    const loadedTimer = window.setTimeout(() => {
       setLoaded(true);
-      setTimeout(() => {
-        setIsLoaded(true);
-      }, 1000);
-    }, 600);
-  }
+    }, 120);
+
+    const revealTimer = window.setTimeout(() => {
+      setIsLoaded(true);
+    }, 260);
+
+    return () => {
+      window.clearTimeout(loadedTimer);
+      window.clearTimeout(revealTimer);
+    };
+  }, [percent, loaded]);
 
   useEffect(() => {
+    if (!isLoaded) return;
+
+    let cancelled = false;
+    let timer = 0;
+
     import("./utils/initialFX").then((module) => {
-      if (isLoaded) {
-        setClicked(true);
-        setTimeout(() => {
-          if (module.initialFX) {
-            module.initialFX();
-          }
-          setIsLoading(false);
-        }, 900);
-      }
+      if (cancelled) return;
+
+      setClicked(true);
+      timer = window.setTimeout(() => {
+        if (module.initialFX) {
+          module.initialFX();
+        }
+        setIsLoading(false);
+      }, 250);
     });
+
+    return () => {
+      cancelled = true;
+      if (timer) {
+        window.clearTimeout(timer);
+      }
+    };
   }, [isLoaded]);
 
   function handleMouseMove(e: React.MouseEvent<HTMLElement>) {
@@ -114,24 +134,18 @@ export const setProgress = (setLoading: (value: number) => void) => {
   let percent: number = 0;
 
   let interval = setInterval(() => {
-    if (percent <= 50) {
-      let rand = Math.round(Math.random() * 5);
-      percent = percent + rand;
+    if (percent < 80) {
+      const rand = 4 + Math.round(Math.random() * 8);
+      percent = Math.min(percent + rand, 80);
       setLoading(percent);
     } else {
       clearInterval(interval);
-      interval = setInterval(() => {
-        percent = percent + Math.round(Math.random());
-        setLoading(percent);
-        if (percent > 91) {
-          clearInterval(interval);
-        }
-      }, 2000);
     }
-  }, 100);
+  }, 120);
 
   function clear() {
     clearInterval(interval);
+    percent = 100;
     setLoading(100);
   }
 
@@ -140,13 +154,13 @@ export const setProgress = (setLoading: (value: number) => void) => {
       clearInterval(interval);
       interval = setInterval(() => {
         if (percent < 100) {
-          percent++;
+          percent = Math.min(percent + 4, 100);
           setLoading(percent);
         } else {
           resolve(percent);
           clearInterval(interval);
         }
-      }, 2);
+      }, 16);
     });
   }
   return { loaded, percent, clear };

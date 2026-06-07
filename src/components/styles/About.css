@@ -16,23 +16,30 @@
   max-width: calc(100% - 15px);
 }
 .about-me h3 {
-  font-size: 25px;
+  font-size: 18px;
   text-transform: uppercase;
-  letter-spacing: 7px;
+  letter-spacing: 4px;
   font-weight: 400;
   color: var(--accentColor);
 }
 
 .about-me p {
-  font-size: 33px;
+  font-size: 22px;
   font-weight: 600;
-  line-height: 36px;
+  line-height: 1.35;
   letter-spacing: 1px;
 }
 
 @media only screen and (min-width: 600px) {
   .about-section {
     justify-content: center;
+  }
+  .about-me h3 {
+    font-size: 22px;
+    letter-spacing: 6px;
+  }
+  .about-me p {
+    font-size: 28px;
   }
 }
 @media only screen and (min-width: 768px) {
@@ -43,6 +50,14 @@
   }
   .about-section {
     opacity: 1;
+  }
+  .about-me h3 {
+    font-size: 25px;
+    letter-spacing: 7px;
+  }
+  .about-me p {
+    font-size: 33px;
+    line-height: 36px;
   }
 }
 @media only screen and (min-width: 1025px) {

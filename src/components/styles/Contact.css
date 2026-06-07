@@ -194,12 +194,36 @@
 }
 
 @media only screen and (max-width: 900px) {
+  .contact-section {
+    margin-top: 120px;
+    padding-bottom: 70px;
+  }
   .contact-split-layout {
     flex-direction: column;
-    padding: 20px;
+    padding: 0;
+  }
+  .contact-form-side {
+    padding: 28px 20px;
+    border-radius: 20px;
+  }
+  .contact-title {
+    font-size: 32px;
+    letter-spacing: -0.5px;
+  }
+  .contact-subtitle {
+    font-size: 15px;
+    margin-bottom: 24px;
   }
   .form-row {
     flex-direction: column;
+    gap: 16px;
+  }
+  .contact-form {
+    gap: 16px;
+  }
+  .submit-btn {
+    width: 100%;
+    padding: 16px;
   }
   .contact-3d-side {
     min-height: 350px;
@@ -207,5 +231,10 @@
   .contact-footer {
     flex-direction: column;
     gap: 20px;
+    text-align: center;
+  }
+  .social-icons-footer {
+    justify-content: center;
+    flex-wrap: wrap;
   }
 }

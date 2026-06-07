@@ -53,6 +53,8 @@
   font-weight: 700;
   font-size: 14px;
   letter-spacing: 0.2px;
+  text-decoration: none;
+  color: #fff;
 }
 .navbar-lang-switch {
   position: absolute;
@@ -76,6 +78,23 @@
 .navbar-lang-switch button.active,
 .navbar-lang-switch button:hover {
   color: #fff;
+}
+@media only screen and (max-width: 499px) {
+  .header {
+    padding: 18px 0 0;
+    align-items: flex-start;
+  }
+  .header ul {
+    max-width: 110px;
+    padding-top: 38px;
+  }
+  .header ul li {
+    text-align: right;
+  }
+  .navbar-lang-switch {
+    top: 14px;
+    right: 0;
+  }
 }
 @media only screen and (min-width: 500px) {
   .header {

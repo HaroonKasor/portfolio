@@ -161,6 +161,7 @@
   z-index: 9;
   top: 12%;
   left: 0;
+  max-width: min(70vw, 260px);
 }
 .landing-intro h2 {
   margin: 0;
@@ -190,6 +191,68 @@
   bottom: 40px;
   top: inherit;
   z-index: 9;
+}
+
+@media screen and (max-width: 767px) {
+  .landing-section {
+    min-height: 100svh;
+    height: auto;
+  }
+  .landing-container {
+    min-height: 100svh;
+  }
+  .landing-circle1,
+  .landing-circle2 {
+    width: 210px;
+    height: 210px;
+    filter: blur(45px);
+  }
+  .character-model {
+    height: 58vh;
+    min-height: 420px;
+    bottom: 10px;
+  }
+  .character-hover {
+    width: 220px;
+    height: 220px;
+  }
+  .landing-intro {
+    top: 15%;
+    left: 0;
+    max-width: 220px;
+  }
+  .landing-intro h2 {
+    font-size: 18px;
+    letter-spacing: 1px;
+  }
+  .landing-intro h1 {
+    font-size: 24px;
+    line-height: 24px;
+    letter-spacing: 1px;
+  }
+  .landing-info {
+    left: 0;
+    right: auto;
+    bottom: 96px;
+    transform: none;
+    max-width: min(82vw, 320px);
+  }
+  .landing-info h3 {
+    font-size: 18px;
+    letter-spacing: 1px;
+  }
+  .landing-info h2 {
+    margin-top: -8px;
+    margin-left: 0;
+    font-size: 26px;
+    line-height: 1.05;
+    letter-spacing: 1px;
+  }
+  h2.landing-info-h2 {
+    width: 100%;
+    margin-left: 0;
+    font-size: 32px;
+  }
 }
 .landing-info h3 {
   font-size: 22px;
