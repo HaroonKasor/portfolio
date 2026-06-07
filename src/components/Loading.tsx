@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import "./styles/Loading.css";
 import { useLoading } from "../context/LoadingProvider";
 import { useLanguage } from "../context/LanguageProvider";
+import { initialFX } from "./utils/initialFX";
 
 import Marquee from "react-fast-marquee";
 
@@ -48,36 +49,17 @@ const Loading = ({ percent }: { percent: number }) => {
   useEffect(() => {
     if (!isLoaded) return;
 
-    let cancelled = false;
-    let timer = 0;
-
-    import("./utils/initialFX").then((module) => {
-      if (cancelled) return;
-
-      setClicked(true);
-      timer = window.setTimeout(() => {
-        try {
-          if (module.initialFX) {
-            module.initialFX();
-          }
-        } finally {
-          setIsLoading(false);
-        }
-      }, 250);
-    }).catch(() => {
-      if (cancelled) return;
-
-      setClicked(true);
-      timer = window.setTimeout(() => {
+    setClicked(true);
+    const timer = window.setTimeout(() => {
+      try {
+        initialFX();
+      } finally {
         setIsLoading(false);
-      }, 250);
-    });
+      }
+    }, 250);
 
     return () => {
-      cancelled = true;
-      if (timer) {
-        window.clearTimeout(timer);
-      }
+      window.clearTimeout(timer);
     };
   }, [isLoaded]);
 
