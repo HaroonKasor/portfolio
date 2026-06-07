@@ -24,22 +24,26 @@ const Loading = ({ percent }: { percent: number }) => {
   useEffect(() => {
     if (percent < 100 || loaded) return;
 
-    let revealTimer = 0;
-
     const loadedTimer = window.setTimeout(() => {
       setLoaded(true);
-      revealTimer = window.setTimeout(() => {
-        setIsLoaded(true);
-      }, 140);
     }, 120);
 
     return () => {
       window.clearTimeout(loadedTimer);
-      if (revealTimer) {
-        window.clearTimeout(revealTimer);
-      }
     };
   }, [percent, loaded]);
+
+  useEffect(() => {
+    if (!loaded || isLoaded) return;
+
+    const revealTimer = window.setTimeout(() => {
+      setIsLoaded(true);
+    }, 140);
+
+    return () => {
+      window.clearTimeout(revealTimer);
+    };
+  }, [loaded, isLoaded]);
 
   useEffect(() => {
     if (!isLoaded) return;
@@ -52,9 +56,19 @@ const Loading = ({ percent }: { percent: number }) => {
 
       setClicked(true);
       timer = window.setTimeout(() => {
-        if (module.initialFX) {
-          module.initialFX();
+        try {
+          if (module.initialFX) {
+            module.initialFX();
+          }
+        } finally {
+          setIsLoading(false);
         }
+      }, 250);
+    }).catch(() => {
+      if (cancelled) return;
+
+      setClicked(true);
+      timer = window.setTimeout(() => {
         setIsLoading(false);
       }, 250);
     });
