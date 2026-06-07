@@ -24,17 +24,20 @@ const Loading = ({ percent }: { percent: number }) => {
   useEffect(() => {
     if (percent < 100 || loaded) return;
 
+    let revealTimer = 0;
+
     const loadedTimer = window.setTimeout(() => {
       setLoaded(true);
+      revealTimer = window.setTimeout(() => {
+        setIsLoaded(true);
+      }, 140);
     }, 120);
-
-    const revealTimer = window.setTimeout(() => {
-      setIsLoaded(true);
-    }, 260);
 
     return () => {
       window.clearTimeout(loadedTimer);
-      window.clearTimeout(revealTimer);
+      if (revealTimer) {
+        window.clearTimeout(revealTimer);
+      }
     };
   }, [percent, loaded]);
 
