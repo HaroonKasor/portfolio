@@ -1,80 +1,62 @@
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { ScrollSmoother } from "gsap-trial/ScrollSmoother";
-import { SplitText } from "gsap-trial/SplitText";
 
-interface ParaElement extends HTMLElement {
-  anim?: gsap.core.Animation;
-  split?: SplitText;
+interface AnimatedElement extends HTMLElement {
+  anim?: gsap.core.Tween;
 }
 
-gsap.registerPlugin(ScrollTrigger, ScrollSmoother, SplitText);
+gsap.registerPlugin(ScrollTrigger);
 
 export default function setSplitText() {
   ScrollTrigger.config({ ignoreMobileResize: true });
   if (window.innerWidth < 900) return;
-  const paras: NodeListOf<ParaElement> = document.querySelectorAll(".para");
-  const titles: NodeListOf<ParaElement> = document.querySelectorAll(".title");
 
-  const TriggerStart = window.innerWidth <= 1024 ? "top 60%" : "20% 60%";
-  const ToggleAction = "play pause resume reverse";
+  const paras: NodeListOf<AnimatedElement> = document.querySelectorAll(".para");
+  const titles: NodeListOf<AnimatedElement> =
+    document.querySelectorAll(".title");
 
-  paras.forEach((para: ParaElement) => {
+  const triggerStart = window.innerWidth <= 1024 ? "top 60%" : "20% 60%";
+  const toggleAction = "play pause resume reverse";
+
+  paras.forEach((para) => {
     para.classList.add("visible");
-    if (para.anim) {
-      para.anim.progress(1).kill();
-      para.split?.revert();
-    }
-
-    para.split = new SplitText(para, {
-      type: "lines,words",
-      linesClass: "split-line",
-    });
+    para.anim?.progress(1).kill();
 
     para.anim = gsap.fromTo(
-      para.split.words,
-      { autoAlpha: 0, y: 80 },
+      para,
+      { autoAlpha: 0, y: 40 },
       {
         autoAlpha: 1,
         scrollTrigger: {
           trigger: para.parentElement?.parentElement,
-          toggleActions: ToggleAction,
-          start: TriggerStart,
+          toggleActions: toggleAction,
+          start: triggerStart,
         },
         duration: 1,
         ease: "power3.out",
         y: 0,
-        stagger: 0.02,
       }
     );
   });
-  titles.forEach((title: ParaElement) => {
-    if (title.anim) {
-      title.anim.progress(1).kill();
-      title.split?.revert();
-    }
-    title.split = new SplitText(title, {
-      type: "chars,lines",
-      linesClass: "split-line",
-    });
+
+  titles.forEach((title) => {
+    title.anim?.progress(1).kill();
+
     title.anim = gsap.fromTo(
-      title.split.chars,
-      { autoAlpha: 0, y: 80, rotate: 10 },
+      title,
+      { autoAlpha: 0, y: 40, rotate: 4 },
       {
         autoAlpha: 1,
         scrollTrigger: {
           trigger: title.parentElement?.parentElement,
-          toggleActions: ToggleAction,
-          start: TriggerStart,
+          toggleActions: toggleAction,
+          start: triggerStart,
         },
         duration: 0.8,
         ease: "power2.inOut",
         y: 0,
         rotate: 0,
-        stagger: 0.03,
       }
     );
   });
-
-  ScrollTrigger.addEventListener("refresh", () => setSplitText());
 }
