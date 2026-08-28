@@ -27,7 +27,12 @@ export type Repo = {
   url: string;
 };
 
-export type SkillChip = { name: string; slug: string };
+export type SkillChip = {
+  name: string;
+  slug: string;
+  /** Explicit lettermark for brands simple-icons has no entry for. */
+  mark?: string;
+};
 
 export type ExperienceItem = {
   /** message key under `experience.items` */

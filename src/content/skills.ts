@@ -10,9 +10,11 @@ export const techChips: SkillChip[] = [
   { name: 'Java', slug: 'openjdk' },
   { name: 'Spring Boot', slug: 'springboot' },
   { name: 'MySQL', slug: 'mysql' },
-  { name: 'SQL Server', slug: 'sqlserver' },
+  // simple-icons ships no SQL Server or Playwright mark, so both carry an
+  // explicit lettermark rather than the derived initials ("SS" / "PL").
+  { name: 'SQL Server', slug: 'sqlserver', mark: 'SQL' },
   { name: 'Docker', slug: 'docker' },
-  { name: 'Playwright', slug: 'playwright' },
+  { name: 'Playwright', slug: 'playwright', mark: 'PW' },
   { name: 'Figma', slug: 'figma' },
   { name: 'GitLab', slug: 'gitlab' },
 ];
