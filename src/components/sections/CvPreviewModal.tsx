@@ -12,7 +12,7 @@ const FILES = {
 type CvLocale = keyof typeof FILES;
 
 const FOCUSABLE =
-  'a[href], button:not([disabled]), iframe, [tabindex]:not([tabindex="-1"])';
+  'a[href], button:not([disabled]), [tabindex]:not([tabindex="-1"])';
 
 /**
  * Only nodes that are actually rendered can hold focus. The header's
@@ -69,12 +69,26 @@ function CvDialog({ onClose }: { onClose: () => void }) {
       if (e.key !== "Tab") return;
       const nodes = visibleFocusable(panelRef.current);
       if (nodes.length === 0) return;
+
       const first = nodes[0];
       const last = nodes[nodes.length - 1];
-      if (e.shiftKey && document.activeElement === first) {
-        e.preventDefault();
-        last.focus();
-      } else if (!e.shiftKey && document.activeElement === last) {
+      const active = document.activeElement as HTMLElement | null;
+      const index = active ? nodes.indexOf(active) : -1;
+
+      // Focus can sit *inside* the PDF iframe, where activeElement is the
+      // <iframe> itself but comparing against `last` is not enough: once the
+      // embedded document takes over, Tab walks the PDF's own controls and
+      // then leaves the dialog entirely. Driving the wrap from the index (and
+      // treating "not in the list" as outside) keeps the cycle closed.
+      if (e.shiftKey) {
+        if (index <= 0) {
+          e.preventDefault();
+          last.focus();
+        }
+        return;
+      }
+
+      if (index === -1 || index >= nodes.length - 1) {
         e.preventDefault();
         first.focus();
       }
@@ -169,10 +183,15 @@ function CvDialog({ onClose }: { onClose: () => void }) {
           </button>
         </div>
 
+        {/* tabIndex -1: the PDF viewer is its own browsing context, so once Tab
+            moves inside it the trap's keydown listener stops firing and focus
+            leaves the dialog on the following Tab. The document stays reachable
+            via "Open in new tab" / "Download". */}
         <iframe
           key={src}
           src={src}
           title={t("title")}
+          tabIndex={-1}
           className="bg-bg min-h-0 flex-1 w-full border-0"
         />
 
