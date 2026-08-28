@@ -1,7 +1,7 @@
 import * as icons from "simple-icons";
 import { useTranslations } from "next-intl";
 import { Container } from "@/components/ui/Container";
-import { SectionHead } from "@/components/ui/SectionHead";
+import { DetailLabel } from "@/components/detail/DetailLabel";
 import type { Locale } from "@/i18n/routing";
 import type { Project } from "@/content/types";
 
@@ -50,13 +50,9 @@ export function TechStackGrid({
   return (
     <section id="tech" className="mt-24 md:mt-32">
       <Container>
-        <SectionHead
-          index={t("tech.index")}
-          label={t("tech.label")}
-          title={t("tech.title")}
-        />
+        <DetailLabel index={t("tech.index")} label={t("tech.label")} />
 
-        <ul className="mt-10 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4">
+        <ul className="mt-8 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4">
           {project.stack.map((tech) => (
             <li
               key={tech.name}
