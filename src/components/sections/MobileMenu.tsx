@@ -149,8 +149,8 @@ export function MobileMenu({
       </nav>
 
       <div className="text-muted flex flex-col gap-1 px-5 pb-8 text-sm">
-        <a href={`mailto:${tc("email")}`} className="hover:text-accent">
-          {tc("email")}
+        <a href={`mailto:${tc("emailValue")}`} className="hover:text-accent">
+          {tc("emailValue")}
         </a>
         <span>{tc("phoneValue")}</span>
         <span>{tc("locationValue")}</span>
