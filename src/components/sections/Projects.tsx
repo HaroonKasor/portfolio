@@ -1,6 +1,6 @@
 import { getLocale, getTranslations } from "next-intl/server";
 import { Container } from "@/components/ui/Container";
-import { SectionHead, SectionBody } from "@/components/ui/SectionHead";
+import { SectionHead } from "@/components/ui/SectionHead";
 import { ProjectCard } from "@/components/ui/ProjectCard";
 import { projects } from "@/content/projects";
 import type { Locale } from "@/i18n/routing";
@@ -16,16 +16,16 @@ export async function Projects() {
       <Container>
         <SectionHead index={t("index")} label={t("label")} title={t("title")} />
 
-        <SectionBody className="mt-10">
-          <div className="flex flex-col gap-5">
+        {/* Figma: the bento grid spans the full 1280px container, not the 300px-offset body column. */}
+        <div className="mt-12 flex flex-col gap-6">
             {/* Row 1: large card fills, second card is a fixed 420px column. */}
-            <div className="grid gap-5 lg:grid-cols-[1fr_420px]">
+            <div className="grid gap-6 lg:grid-cols-[1fr_420px]">
               {lead && <ProjectCard project={lead} locale={locale} featured />}
               {second && <ProjectCard project={second} locale={locale} />}
             </div>
 
             {/* Row 2: three equal cards. */}
-            <div className="grid gap-5 lg:grid-cols-3">
+            <div className="grid gap-6 lg:grid-cols-3">
               {rest.map((project) => (
                 <ProjectCard
                   key={project.slug}
@@ -34,8 +34,7 @@ export async function Projects() {
                 />
               ))}
             </div>
-          </div>
-        </SectionBody>
+        </div>
       </Container>
     </section>
   );
