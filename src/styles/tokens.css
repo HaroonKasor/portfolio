@@ -1,0 +1,42 @@
+/* STUB (Agent A owns this file) — token definitions per DESIGN_BRIEF.md */
+:root {
+  --color-bg: #faf9f6;
+  --color-surface: #ffffff;
+  --color-line: #e3e0db;
+  --color-text: #0f2a4a;
+  --color-muted: #6b6b73;
+  --color-accent: #1c70e6;
+  --color-accent-soft: #e3f0ff;
+  --color-inverse: #121214;
+  --color-on-inverse: #ffffff;
+  --color-footer: #121214;
+  --color-danger: #e5484d;
+  --color-terminal: #12141c;
+  --color-terminal-line: #2a2f3d;
+  --color-term-path: #4ade80;
+  --color-glitch-a: #1c70e6;
+  --color-glitch-b: #ff4d9d;
+  --gradient-hero: linear-gradient(100deg, #fde8f0 0%, #ebe8ff 50%, #e3f7f2 100%);
+  --gradient-band: linear-gradient(105deg, #1766e0, #2a9ef2);
+  --shadow-card: 0 2px 8px rgba(0, 0, 0, 0.04);
+  --shadow-float: 0 24px 56px -12px rgba(26, 38, 102, 0.1);
+  --shadow-accent: 0 8px 24px rgba(28, 112, 230, 0.3);
+}
+
+html[data-theme="dark"] {
+  --color-bg: #0b0e17;
+  --color-surface: #131826;
+  --color-line: #29303f;
+  --color-text: #f2f3f7;
+  --color-muted: #9ea8bd;
+  --color-accent: #5994ff;
+  --color-accent-soft: #1f335c;
+  --color-inverse: #f2f3f7;
+  --color-on-inverse: #0b0e17;
+  --color-footer: #080a12;
+  --color-danger: #ff6369;
+  --color-terminal: #080a12;
+  --color-terminal-line: #29303f;
+  --gradient-hero: linear-gradient(100deg, #291433 0%, #0f1433 50%, #0a2429 100%);
+  --gradient-band: linear-gradient(105deg, #1247b3, #1f73d9);
+}

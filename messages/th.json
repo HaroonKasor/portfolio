@@ -1,0 +1,69 @@
+{
+  "common": {
+    "toggleTheme": "สลับธีม",
+    "toggleLanguage": "เปลี่ยนภาษา",
+    "backToTop": "กลับขึ้นด้านบน",
+    "siteName": "ฮารูน กาซอร์",
+    "role": "Full-stack Developer",
+    "tagline": "Junior Developer @ Learn Tech · Next.js, React, Spring Boot · Bangkok"
+  },
+  "nav": {
+    "about": "เกี่ยวกับ",
+    "experience": "ประสบการณ์",
+    "work": "ผลงาน",
+    "contact": "ติดต่อ",
+    "cv": "ดู CV"
+  },
+  "footer": {
+    "copyright": "© 2026 HAROON KASOR",
+    "location": "BANGKOK, THAILAND"
+  },
+  "detail": {
+    "back": "กลับไปหน้าผลงาน",
+    "role": "บทบาท",
+    "period": "ระยะเวลา",
+    "stack": "เทคโนโลยี",
+    "type": "ประเภท",
+    "overview": {
+      "index": "01",
+      "label": "ภาพรวม",
+      "problem": "ปัญหา",
+      "solution": "สิ่งที่ทำ",
+      "result": "ผลลัพธ์",
+      "title": "ภาพรวม"
+    },
+    "features": {
+      "index": "02",
+      "label": "ฟีเจอร์หลัก",
+      "title": "ฟีเจอร์หลัก"
+    },
+    "tech": {
+      "index": "03",
+      "label": "เทคโนโลยีที่ใช้",
+      "title": "เทคโนโลยีที่ใช้"
+    },
+    "next": "โปรเจกต์ถัดไป",
+    "internal": "ระบบภายในของลูกค้า",
+    "liveDemo": "ดูตัวอย่างจริง",
+    "github": "GitHub",
+    "screenshotSlot": "screenshot slot"
+  },
+  "notFound": {
+    "eyebrow": "ERROR 404 · PAGE NOT FOUND",
+    "title": "หน้านี้ไม่มีอยู่จริง\n(หรือยังไม่ได้ push ขึ้นมา)",
+    "body": "ลิงก์อาจพิมพ์ผิดหรือหน้าถูกย้ายไปแล้ว เลือกปลายทางจาก terminal หรือกดปุ่มด้านล่าง",
+    "backHome": "กลับหน้าแรก",
+    "viewWork": "ดูผลงาน",
+    "terminalFile": "error.log",
+    "cmdOpen": "open /projcts",
+    "errorLine": "bash: /projcts: No such file or directory",
+    "cmdLs": "ls ~",
+    "rows": {
+      "home": "หน้าแรก",
+      "work": "ผลงาน",
+      "experience": "ประสบการณ์",
+      "contact": "ติดต่อ"
+    },
+    "cmdCd": "cd ~/projects"
+  }
+}
