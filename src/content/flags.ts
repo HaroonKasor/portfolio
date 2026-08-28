@@ -1,2 +1,2 @@
-/* STUB (Agent A owns the real file) — content feature flags. */
-export const SHOW_TESTIMONIAL = false;
+/* Feature flags — re-exported from profile so there is one source of truth. */
+export { SHOW_TESTIMONIAL } from "@/content/profile";
