@@ -176,9 +176,10 @@ test.describe("CV dialog dismissal", () => {
     await page.goto("/");
     const dialog = await openCv(page, isMobile);
 
-    await dialog
-      .getByRole("button", { name: /resume — haroon kasor/i })
-      .click();
+    // The close button is icon-only, so per the brief it carries an aria-label
+    // naming its action ("Close" / "ปิด"). It previously reused the dialog
+    // title, which named the dialog rather than the button.
+    await dialog.getByRole("button", { name: /^(close|ปิด)$/i }).click();
     await expect(dialog).toBeHidden();
   });
 
