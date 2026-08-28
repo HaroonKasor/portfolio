@@ -162,25 +162,34 @@
       "label": "OVERVIEW",
       "problem": "Problem",
       "solution": "What I did",
-      "result": "Result"
+      "result": "Result",
+      "title": "Overview"
     },
     "features": {
       "index": "02",
-      "label": "KEY FEATURES"
+      "label": "KEY FEATURES",
+      "title": "Key features"
     },
     "tech": {
       "index": "03",
-      "label": "TECH STACK"
+      "label": "TECH STACK",
+      "title": "Tech stack"
     },
     "next": "Next project",
     "internal": "Internal client system",
     "liveDemo": "Live demo",
-    "github": "GitHub"
+    "github": "GitHub",
+    "screenshotSlot": "screenshot slot"
   },
   "common": {
     "themeToggle": "Toggle theme",
     "langToggle": "Switch language",
     "backToTop": "Back to top",
-    "skipToContent": "Skip to content"
+    "skipToContent": "Skip to content",
+    "toggleTheme": "Toggle theme",
+    "toggleLanguage": "Switch language",
+    "siteName": "Haroon Kasor",
+    "role": "Full-stack Developer",
+    "tagline": "Junior Developer @ Learn Tech · Next.js, React, Spring Boot · Bangkok"
   }
 }
