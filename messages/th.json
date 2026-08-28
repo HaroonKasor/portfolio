@@ -162,25 +162,34 @@
       "label": "ภาพรวม",
       "problem": "ปัญหา",
       "solution": "สิ่งที่ทำ",
-      "result": "ผลลัพธ์"
+      "result": "ผลลัพธ์",
+      "title": "ภาพรวม"
     },
     "features": {
       "index": "02",
-      "label": "ฟีเจอร์หลัก"
+      "label": "ฟีเจอร์หลัก",
+      "title": "ฟีเจอร์หลัก"
     },
     "tech": {
       "index": "03",
-      "label": "เทคโนโลยีที่ใช้"
+      "label": "เทคโนโลยีที่ใช้",
+      "title": "เทคโนโลยีที่ใช้"
     },
     "next": "โปรเจกต์ถัดไป",
     "internal": "ระบบภายในของลูกค้า",
     "liveDemo": "ดูเว็บจริง",
-    "github": "GitHub"
+    "github": "GitHub",
+    "screenshotSlot": "screenshot slot"
   },
   "common": {
     "themeToggle": "สลับธีม",
     "langToggle": "เปลี่ยนภาษา",
     "backToTop": "กลับขึ้นด้านบน",
-    "skipToContent": "ข้ามไปยังเนื้อหา"
+    "skipToContent": "ข้ามไปยังเนื้อหา",
+    "toggleTheme": "สลับธีม",
+    "toggleLanguage": "เปลี่ยนภาษา",
+    "siteName": "ฮารูน กาซอร์",
+    "role": "Full-stack Developer",
+    "tagline": "Junior Developer @ Learn Tech · Next.js, React, Spring Boot · Bangkok"
   }
 }
