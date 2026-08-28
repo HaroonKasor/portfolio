@@ -70,7 +70,10 @@ export default async function LocaleLayout({
       suppressHydrationWarning
       className={`${outfit.variable} ${prompt.variable} h-full`}
     >
-      <body className="bg-bg text-text flex min-h-full flex-col font-sans">
+      <body
+        suppressHydrationWarning
+        className="bg-bg text-text flex min-h-full flex-col font-sans"
+      >
         <ThemeProviders>
           <NextIntlClientProvider>
             <a
