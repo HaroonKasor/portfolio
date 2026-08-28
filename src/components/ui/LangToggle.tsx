@@ -49,7 +49,7 @@ export function LangToggle({ className }: LangToggleProps) {
           className={cn(
             'inline-flex h-9 min-w-11 items-center justify-center rounded-full px-3 text-xs font-semibold uppercase transition-colors',
             locale === active
-              ? 'bg-accent text-white'
+              ? 'bg-accent text-on-accent'
               : 'text-muted hover:text-accent',
           )}
         >

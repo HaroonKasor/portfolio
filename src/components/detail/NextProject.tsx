@@ -31,7 +31,7 @@ export function NextProject({
           </div>
           <span
             aria-hidden="true"
-            className="inline-flex h-14 w-14 shrink-0 items-center justify-center rounded-full border border-line text-text transition-colors group-hover:border-accent group-hover:bg-accent group-hover:text-white"
+            className="inline-flex h-14 w-14 shrink-0 items-center justify-center rounded-full border border-line text-text transition-colors group-hover:border-accent group-hover:bg-accent group-hover:text-on-accent"
           >
             <ArrowRight className="h-5 w-5" />
           </span>

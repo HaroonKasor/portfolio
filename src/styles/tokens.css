@@ -12,6 +12,9 @@
   --token-muted: #6b6b73;
   --token-accent: #1565d8;
   --token-accent-soft: #e3f0ff;
+  --token-on-accent: #ffffff;
+  /* Small text on --accent-soft needs more punch than --accent alone. */
+  --token-accent-strong: #1257bd;
   --token-inverse: #121214;
   --token-on-inverse: #ffffff;
   --token-footer: #121214;
@@ -50,6 +53,8 @@ html[data-theme='dark'] {
   --token-muted: #9ea8bd;
   --token-accent: #5994ff;
   --token-accent-soft: #1f335c;
+  --token-on-accent: #0b0e17;
+  --token-accent-strong: #9cc3ff;
   --token-inverse: #f2f3f7;
   --token-on-inverse: #0b0e17;
   --token-footer: #080a12;
@@ -78,6 +83,8 @@ html[data-theme='dark'] {
   --color-muted: var(--token-muted);
   --color-accent: var(--token-accent);
   --color-accent-soft: var(--token-accent-soft);
+  --color-on-accent: var(--token-on-accent);
+  --color-accent-strong: var(--token-accent-strong);
   --color-inverse: var(--token-inverse);
   --color-on-inverse: var(--token-on-inverse);
   --color-footer: var(--token-footer);

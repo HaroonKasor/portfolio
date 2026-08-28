@@ -50,7 +50,7 @@ export default function RootNotFound() {
           <div className="mt-8 flex flex-wrap gap-3">
             <Link
               href="/"
-              className="bg-accent inline-flex min-h-11 items-center rounded-full px-6 text-sm font-medium text-white"
+              className="bg-accent text-on-accent inline-flex min-h-11 items-center rounded-full px-6 text-sm font-medium"
             >
               Back home
             </Link>

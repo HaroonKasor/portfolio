@@ -33,7 +33,7 @@ const sizes: Record<ButtonSize, string> = {
 
 const variants: Record<ButtonVariant, string> = {
   accent:
-    'bg-accent text-white shadow-accent hover:brightness-110 focus-visible:outline-accent',
+    'bg-accent text-on-accent shadow-accent hover:brightness-110 focus-visible:outline-accent',
   ghost:
     'border border-line bg-transparent text-text hover:bg-accent-soft hover:border-accent focus-visible:outline-accent',
   dark: 'bg-inverse text-on-inverse hover:opacity-90 focus-visible:outline-accent',
