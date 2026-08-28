@@ -104,7 +104,9 @@ describe("Button variants and sizes", () => {
     render(<Button variant="accent">Accent</Button>);
     const button = screen.getByRole("button", { name: "Accent" });
     expect(button.className).toContain("bg-accent");
-    expect(button.className).toContain("text-white");
+    // Token, not a literal colour: white on the accent fill is only 2.96:1 in
+    // dark mode, so the foreground flips per theme via --token-on-accent.
+    expect(button.className).toContain("text-on-accent");
   });
 
   it("applies ghost variant classes", () => {

@@ -63,7 +63,7 @@ export function TechChip({ name, slug, mark, className }: TechChipProps) {
         </svg>
       ) : (
         <span
-          className="bg-accent-soft text-accent flex h-5 min-w-5 shrink-0 items-center justify-center rounded-sm px-1 text-[10px] leading-none font-semibold"
+          className="bg-accent-soft text-accent-strong flex h-5 min-w-5 shrink-0 items-center justify-center rounded-sm px-1 text-[10px] leading-none font-semibold"
           aria-hidden
         >
           {mark ?? lettermark(name)}

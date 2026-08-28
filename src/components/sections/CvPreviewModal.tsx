@@ -167,7 +167,7 @@ function CvDialog({ onClose }: { onClose: () => void }) {
           <a
             href={src}
             download
-            className="bg-accent hidden min-h-11 items-center gap-2 rounded-full px-4 text-sm font-medium text-white transition-opacity hover:opacity-90 sm:inline-flex"
+            className="bg-accent hidden min-h-11 items-center gap-2 rounded-full px-4 text-sm font-medium text-on-accent transition-opacity hover:opacity-90 sm:inline-flex"
           >
             <Download className="h-4 w-4" aria-hidden="true" />
             {t("download")}
@@ -212,7 +212,7 @@ function CvDialog({ onClose }: { onClose: () => void }) {
             <a
               href={src}
               download
-              className="bg-accent inline-flex min-h-11 w-full items-center justify-center gap-2 rounded-full text-sm font-medium text-white"
+              className="bg-accent inline-flex min-h-11 w-full items-center justify-center gap-2 rounded-full text-sm font-medium text-on-accent"
             >
               <Download className="h-4 w-4" aria-hidden="true" />
               {t("download")}
