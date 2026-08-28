@@ -1,0 +1,83 @@
+/* STUB (Agent A owns the real file) — minimal token set so Agent B's build passes. */
+
+:root {
+  --color-bg: #faf9f6;
+  --color-surface: #ffffff;
+  --color-line: #e3e0db;
+  --color-text: #0f2a4a;
+  --color-muted: #6b6b73;
+  --color-accent: #1c70e6;
+  --color-accent-soft: #e3f0ff;
+  --color-inverse: #121214;
+  --color-on-inverse: #ffffff;
+  --color-footer: #121214;
+
+  --gradient-hero: linear-gradient(100deg, #fde8f0 0%, #ebe8ff 50%, #e3f7f2 100%);
+  --gradient-band: linear-gradient(105deg, #1766e0, #2a9ef2);
+
+  /* Warm yellow used for the "current" entry in the Experience band. */
+  --color-band-accent: #ffd966;
+  /* Terminal syntax colours (kept token-only so components never hardcode hex). */
+  --color-term-string: #3fa66a;
+  --color-term-key: #0f2a4a;
+  /* "Available" status dot on the hero tag pill. */
+  --color-status: #22c07a;
+
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 16px;
+  --radius-xl: 20px;
+  --radius-2xl: 24px;
+  --radius-full: 999px;
+
+  --shadow-card: 0 2px 8px rgba(0, 0, 0, 0.04);
+  --shadow-float: 0 24px 56px -12px rgba(26, 38, 102, 0.1);
+  --shadow-accent: 0 8px 24px rgba(28, 112, 230, 0.3);
+}
+
+html[data-theme="dark"] {
+  --color-bg: #0b0e17;
+  --color-surface: #131826;
+  --color-line: #29303f;
+  --color-text: #f2f3f7;
+  --color-muted: #9ea8bd;
+  --color-accent: #5994ff;
+  --color-accent-soft: #1f335c;
+  --color-inverse: #f2f3f7;
+  --color-on-inverse: #0b0e17;
+  --color-footer: #080a12;
+
+  --gradient-hero: linear-gradient(100deg, #291433 0%, #0f1433 50%, #0a2429 100%);
+  --gradient-band: linear-gradient(105deg, #1247b3, #1f73d9);
+
+  --color-term-string: #6fd39b;
+  --color-term-key: #f2f3f7;
+  --color-status: #34d98c;
+}
+
+@theme inline {
+  --color-bg: var(--color-bg);
+  --color-surface: var(--color-surface);
+  --color-line: var(--color-line);
+  --color-text: var(--color-text);
+  --color-muted: var(--color-muted);
+  --color-accent: var(--color-accent);
+  --color-accent-soft: var(--color-accent-soft);
+  --color-inverse: var(--color-inverse);
+  --color-on-inverse: var(--color-on-inverse);
+  --color-footer: var(--color-footer);
+  --color-band-accent: var(--color-band-accent);
+  --color-term-string: var(--color-term-string);
+  --color-term-key: var(--color-term-key);
+  --color-status: var(--color-status);
+
+  --radius-sm: var(--radius-sm);
+  --radius-md: var(--radius-md);
+  --radius-lg: var(--radius-lg);
+  --radius-xl: var(--radius-xl);
+  --radius-2xl: var(--radius-2xl);
+
+  --shadow-card: var(--shadow-card);
+  --shadow-float: var(--shadow-float);
+  --shadow-accent: var(--shadow-accent);
+}

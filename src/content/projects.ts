@@ -1,0 +1,100 @@
+/* STUB (Agent A owns the real file) — the 5 cards from the brief, with only the
+   fields the Home page reads filled out in detail. Detail-page fields are minimal. */
+import type { Project } from "./types";
+
+const empty = { en: "", th: "" };
+const emptyOverview = { problem: empty, solution: empty, result: empty };
+
+export const projects: Project[] = [
+  {
+    slug: "goskillup-lms",
+    index: "01",
+    title: { en: "GoSkillUp LMS Platform", th: "GoSkillUp LMS Platform" },
+    summary: {
+      en: "Final-year project: an end-to-end LMS with course management, enrollment, quizzes, certificates and reporting; SCORM/xAPI support; Docker deployment.",
+      th: "โปรเจกต์จบ ระบบ LMS ครบวงจร จัดการคอร์ส ลงทะเบียน แบบทดสอบ ใบประกาศ รายงาน รองรับ SCORM/xAPI และ deploy ด้วย Docker",
+    },
+    badge: "NEXT.JS",
+    tags: ["Next.js", "Prisma", "Tailwind", "Docker"],
+    cover: { from: "#3B47FF", to: "#262EBF" },
+    role: empty,
+    period: empty,
+    kind: empty,
+    stack: [],
+    overview: emptyOverview,
+    features: [],
+  },
+  {
+    slug: "learntech-lms",
+    index: "02",
+    title: { en: "Learn Tech LMS", th: "LMS ของ Learn Tech" },
+    summary: {
+      en: "My main responsibility: audit logging with export, PDPA soft-delete/restore, social learning and admin reporting.",
+      th: "งานหลักที่รับผิดชอบ audit log พร้อม export, soft delete/กู้คืนตาม PDPA, social learning และรายงานแอดมิน",
+    },
+    badge: "REACT",
+    tags: ["React", "Spring Boot", "MySQL"],
+    cover: { from: "#FF9E6B", to: "#E65233" },
+    role: empty,
+    period: empty,
+    kind: empty,
+    stack: [],
+    links: { internal: true },
+    overview: emptyOverview,
+    features: [],
+  },
+  {
+    slug: "membership-booking",
+    index: "03",
+    title: { en: "Membership & Course Booking", th: "ระบบสมาชิกและจองคอร์สอบรม" },
+    summary: {
+      en: "Course booking for a client with VIP membership, discount coupons and automatic invoicing.",
+      th: "ระบบจองคอร์สสำหรับลูกค้า พร้อมสมาชิก VIP คูปองส่วนลด และออกใบแจ้งหนี้อัตโนมัติ",
+    },
+    badge: "NEXT.JS",
+    tags: ["Next.js", "SQL Server"],
+    cover: { from: "#33BF99", to: "#0D7366" },
+    role: empty,
+    period: empty,
+    kind: empty,
+    stack: [],
+    overview: emptyOverview,
+    features: [],
+  },
+  {
+    slug: "gov-elearning",
+    index: "04",
+    title: { en: "Government E-learning Platform", th: "E-learning ภาครัฐ" },
+    summary: {
+      en: "Bootstrapped backend and frontend from scratch, documented 129 API endpoints and wrote API test scripts.",
+      th: "วางโครง backend + frontend ตั้งแต่ต้น เขียนเอกสาร API 129 endpoints และสคริปต์ทดสอบ API",
+    },
+    badge: "SPRING BOOT",
+    tags: ["Spring Boot", "API Docs"],
+    cover: { from: "#8C73FF", to: "#4D33B3" },
+    role: empty,
+    period: empty,
+    kind: empty,
+    stack: [],
+    overview: emptyOverview,
+    features: [],
+  },
+  {
+    slug: "vr-science-games",
+    index: "05",
+    title: { en: "VR Science Games ×13", th: "เกม VR วิทยาศาสตร์ ×13" },
+    summary: {
+      en: "Connected 13 VR games to the backend to record gameplay results and produced game builds for delivery.",
+      th: "เชื่อมต่อเกม VR 13 เกมกับ backend เพื่อบันทึกผลการเล่น และ build ตัวเกมส่งมอบ",
+    },
+    badge: "VR",
+    tags: ["VR", "Integration"],
+    cover: { from: "#FF80A6", to: "#BF3373" },
+    role: empty,
+    period: empty,
+    kind: empty,
+    stack: [],
+    overview: emptyOverview,
+    features: [],
+  },
+];
