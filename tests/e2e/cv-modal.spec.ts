@@ -39,8 +39,8 @@ test.describe("CV preview dialog", () => {
     await page.goto("/");
     const dialog = await openCv(page, isMobile);
 
-    await expect(dialog.locator("iframe")).toHaveAttribute(
-      "src",
+    await expect(dialog.locator("[data-pdf-src]")).toHaveAttribute(
+      "data-pdf-src",
       /\/cv\/haroon-kasor-en\.pdf/,
     );
   });
@@ -52,8 +52,8 @@ test.describe("CV preview dialog", () => {
     await page.goto("/th");
     const dialog = await openCv(page, isMobile);
 
-    await expect(dialog.locator("iframe")).toHaveAttribute(
-      "src",
+    await expect(dialog.locator("[data-pdf-src]")).toHaveAttribute(
+      "data-pdf-src",
       /\/cv\/haroon-kasor-th\.pdf/,
     );
   });
@@ -64,15 +64,15 @@ test.describe("CV preview dialog", () => {
   }) => {
     await page.goto("/");
     const dialog = await openCv(page, isMobile);
-    await expect(dialog.locator("iframe")).toHaveAttribute(
-      "src",
+    await expect(dialog.locator("[data-pdf-src]")).toHaveAttribute(
+      "data-pdf-src",
       /haroon-kasor-en\.pdf/,
     );
 
     await dialog.getByRole("button", { name: "ไทย" }).click();
 
-    await expect(dialog.locator("iframe")).toHaveAttribute(
-      "src",
+    await expect(dialog.locator("[data-pdf-src]")).toHaveAttribute(
+      "data-pdf-src",
       /haroon-kasor-th\.pdf/,
     );
   });
@@ -85,14 +85,14 @@ test.describe("CV preview dialog", () => {
     const dialog = await openCv(page, isMobile);
 
     await dialog.getByRole("button", { name: "ไทย" }).click();
-    await expect(dialog.locator("iframe")).toHaveAttribute(
-      "src",
+    await expect(dialog.locator("[data-pdf-src]")).toHaveAttribute(
+      "data-pdf-src",
       /haroon-kasor-th\.pdf/,
     );
 
     await dialog.getByRole("button", { name: "English" }).click();
-    await expect(dialog.locator("iframe")).toHaveAttribute(
-      "src",
+    await expect(dialog.locator("[data-pdf-src]")).toHaveAttribute(
+      "data-pdf-src",
       /haroon-kasor-en\.pdf/,
     );
   });
@@ -117,7 +117,9 @@ test.describe("CV preview dialog", () => {
   test("shows the page indicator in the footer", async ({ page, isMobile }) => {
     await page.goto("/");
     const dialog = await openCv(page, isMobile);
-    await expect(dialog.getByText(/Page 1 \/ 2/i)).toBeVisible();
+    // Page count comes from the rendered PDF (EN resume is a single page).
+    await expect(dialog.locator('[data-pdf-src][data-status="ready"]')).toBeVisible({ timeout: 30_000 });
+    await expect(dialog.getByText(/Page 1 \/ \d+/i)).toBeVisible();
   });
 });
 

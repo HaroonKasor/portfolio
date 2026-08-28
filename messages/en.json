@@ -150,7 +150,13 @@
     "openNewTab": "Open in new tab",
     "download": "Download PDF",
     "page": "Page {current} / {total}",
-    "close": "Close"
+    "close": "Close",
+    "meta": "Updated Aug 2026 · PDF {size}",
+    "loading": "Loading resume…",
+    "sizes": {
+      "en": "84 KB",
+      "th": "214 KB"
+    }
   },
   "detail": {
     "back": "Back to work",
