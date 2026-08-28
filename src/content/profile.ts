@@ -12,5 +12,5 @@ export const profile = {
   },
 } as const;
 
-/** Testimonial section stays hidden until real quotes exist. */
-export const SHOW_TESTIMONIAL = false;
+/** Testimonials live in ./testimonials.ts — the section shows itself once that list is non-empty. */
+export { SHOW_TESTIMONIAL } from "./testimonials";
