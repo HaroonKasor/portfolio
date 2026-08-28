@@ -10,3 +10,6 @@ export const routing = defineRouting({
   defaultLocale,
   localePrefix: 'as-needed',
 });
+
+/** Alias kept for components that import `Locale`. */
+export type Locale = AppLocale;

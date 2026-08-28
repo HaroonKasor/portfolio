@@ -75,3 +75,5 @@ export async function getRepos(): Promise<Repo[]> {
     return fallbackRepos;
   }
 }
+
+export const GITHUB_URL = "https://github.com/HaroonKasor";

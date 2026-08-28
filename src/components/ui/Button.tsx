@@ -18,6 +18,9 @@ export type ButtonProps = {
   type?: 'button' | 'submit';
   disabled?: boolean;
   'aria-label'?: string;
+  /** Only used when `href` is external; defaults are applied automatically. */
+  target?: string;
+  rel?: string;
 };
 
 const base =
@@ -48,6 +51,8 @@ export function Button({
   type = 'button',
   disabled,
   'aria-label': ariaLabel,
+  target,
+  rel,
 }: ButtonProps) {
   const classes = cn(base, sizes[size], variants[variant], className);
 
@@ -69,8 +74,8 @@ export function Button({
           className={classes}
           aria-label={ariaLabel}
           {...(href.startsWith('http')
-            ? { target: '_blank', rel: 'noopener noreferrer' }
-            : {})}
+            ? { target: target ?? '_blank', rel: rel ?? 'noopener noreferrer' }
+            : { target, rel })}
         >
           {content}
         </a>
