@@ -3,6 +3,7 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import { useLocale, useTranslations } from "next-intl";
 import { Download, ExternalLink, X } from "lucide-react";
+import { PdfViewer } from "./PdfViewer";
 
 const FILES = {
   th: "/cv/haroon-kasor-th.pdf",
@@ -46,6 +47,12 @@ function CvDialog({ onClose }: { onClose: () => void }) {
   const t = useTranslations("cv");
   const locale = useLocale();
   const [doc, setDoc] = useState<CvLocale>(locale === "th" ? "th" : "en");
+  const [pages, setPages] = useState(0);
+  const [page, setPage] = useState(1);
+  const handlePages = useCallback((n: number) => {
+    setPages(n);
+    setPage(1);
+  }, []);
   const panelRef = useRef<HTMLDivElement>(null);
   const openerRef = useRef<HTMLElement | null>(null);
 
@@ -117,7 +124,7 @@ function CvDialog({ onClose }: { onClose: () => void }) {
       className={[
         "min-h-11 rounded-full px-4 text-sm font-medium transition-colors",
         doc === value
-          ? "bg-accent-soft text-accent"
+          ? "bg-inverse text-on-inverse"
           : "text-muted hover:text-text",
       ].join(" ")}
     >
@@ -183,21 +190,21 @@ function CvDialog({ onClose }: { onClose: () => void }) {
           </button>
         </div>
 
-        {/* tabIndex -1: the PDF viewer is its own browsing context, so once Tab
-            moves inside it the trap's keydown listener stops firing and focus
-            leaves the dialog on the following Tab. The document stays reachable
-            via "Open in new tab" / "Download". */}
-        <iframe
+        <PdfViewer
           key={src}
           src={src}
           title={t("title")}
-          tabIndex={-1}
-          className="bg-bg min-h-0 flex-1 w-full border-0"
+          loadingLabel={t("loading")}
+          onPages={handlePages}
+          onPageChange={setPage}
         />
 
         <div className="border-line flex flex-col gap-3 border-t px-5 py-4 sm:flex-row sm:items-center sm:px-6">
-          <span className="text-muted text-xs">
-            {t("page", { current: 1, total: 2 })}
+          <span className="text-text text-sm font-medium">
+            {t("page", { current: page, total: pages || 1 })}
+          </span>
+          <span className="text-muted text-xs sm:ml-auto">
+            {t("meta", { size: t(`sizes.${doc}`) })}
           </span>
           {/* Mobile: the two actions become full-width buttons in the footer. */}
           <div className="flex flex-col gap-2 sm:hidden">

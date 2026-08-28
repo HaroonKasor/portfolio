@@ -150,7 +150,13 @@
     "openNewTab": "เปิดในแท็บใหม่",
     "download": "ดาวน์โหลด PDF",
     "page": "หน้า {current} / {total}",
-    "close": "ปิด"
+    "close": "ปิด",
+    "meta": "อัปเดตล่าสุด ส.ค. 2026 · PDF {size}",
+    "loading": "กำลังโหลดเรซูเม่…",
+    "sizes": {
+      "en": "84 KB",
+      "th": "214 KB"
+    }
   },
   "detail": {
     "back": "กลับไปหน้าผลงาน",
