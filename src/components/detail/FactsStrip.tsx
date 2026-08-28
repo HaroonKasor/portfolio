@@ -21,13 +21,13 @@ export function FactsStrip({
 
   return (
     <Container>
-      <dl className="grid grid-cols-1 gap-px overflow-hidden rounded-2xl border border-line bg-line sm:grid-cols-2 lg:grid-cols-4">
+      <dl className="border-line grid grid-cols-1 gap-6 border-t pt-8 sm:grid-cols-2 lg:grid-cols-4">
         {facts.map((fact) => (
-          <div key={fact.label} className="bg-surface px-6 py-5">
-            <dt className="text-[11px] font-semibold tracking-[0.18em] text-muted uppercase">
+          <div key={fact.label}>
+            <dt className="text-muted text-[11px] font-semibold tracking-[0.18em] uppercase">
               {fact.label}
             </dt>
-            <dd className="mt-2 text-base font-medium text-text">{fact.value}</dd>
+            <dd className="text-text mt-2 text-[15px] font-medium">{fact.value}</dd>
           </div>
         ))}
       </dl>

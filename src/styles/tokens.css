@@ -25,6 +25,7 @@
   --token-status: #21b866;
   /* String literals inside the terminal cards. */
   --token-term-string: #1a7f4b;
+  --token-term-keyword: #8b3fd9;
 
   /* 404 error terminal. */
   --token-terminal: #ffffff;
@@ -63,6 +64,7 @@ html[data-theme='dark'] {
   --token-band-accent: #ffd966;
   --token-status: #34d07a;
   --token-term-string: #73d9a0;
+  --token-term-keyword: #c9a3ff;
 
   --token-terminal: #0f1420;
   --token-terminal-line: #29303f;
@@ -91,6 +93,7 @@ html[data-theme='dark'] {
   --color-band-accent: var(--token-band-accent);
   --color-status: var(--token-status);
   --color-term-string: var(--token-term-string);
+  --color-term-keyword: var(--token-term-keyword);
   --color-terminal: var(--token-terminal);
   --color-terminal-line: var(--token-terminal-line);
   --color-danger: var(--token-danger);

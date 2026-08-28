@@ -1,6 +1,6 @@
 import { useTranslations } from "next-intl";
 import { Container } from "@/components/ui/Container";
-import { SectionHead } from "@/components/ui/SectionHead";
+import { DetailLabel } from "@/components/detail/DetailLabel";
 import type { Locale } from "@/i18n/routing";
 import type { Project } from "@/content/types";
 
@@ -22,13 +22,9 @@ export function OverviewCards({
   return (
     <section id="overview" className="mt-24 md:mt-32">
       <Container>
-        <SectionHead
-          index={t("overview.index")}
-          label={t("overview.label")}
-          title={t("overview.title")}
-        />
+        <DetailLabel index={t("overview.index")} label={t("overview.label")} />
 
-        <div className="mt-10 grid grid-cols-1 gap-5 md:grid-cols-3">
+        <div className="mt-8 grid grid-cols-1 gap-5 md:grid-cols-3">
           {cards.map((card, i) => (
             <article
               key={card.key}

@@ -1,5 +1,4 @@
 import Image from "next/image";
-import { useTranslations } from "next-intl";
 import { Container } from "@/components/ui/Container";
 
 export type ProjectCoverProps = {
@@ -20,9 +19,7 @@ export function ProjectCover({
   url,
   alt,
   image,
-  caption,
 }: ProjectCoverProps) {
-  const t = useTranslations("detail");
 
   return (
     <Container className="mt-12 md:mt-16">
@@ -61,9 +58,6 @@ export function ProjectCover({
             )}
           </div>
         </div>
-        <figcaption className="mt-3 font-mono text-xs text-muted">
-          {caption ?? t("screenshotSlot")}
-        </figcaption>
       </figure>
     </Container>
   );

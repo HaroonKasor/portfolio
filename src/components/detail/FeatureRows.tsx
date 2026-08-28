@@ -1,6 +1,6 @@
 import { useTranslations } from "next-intl";
 import { Container } from "@/components/ui/Container";
-import { SectionHead } from "@/components/ui/SectionHead";
+import { DetailLabel } from "@/components/detail/DetailLabel";
 import type { Locale } from "@/i18n/routing";
 import type { Project } from "@/content/types";
 
@@ -18,12 +18,11 @@ function ShotSlot({
     <div
       role="img"
       aria-label={label}
-      className="flex aspect-[720/440] w-full items-center justify-center overflow-hidden rounded-2xl border border-line shadow-[var(--shadow-card)]"
-      style={{ backgroundImage: `linear-gradient(135deg, ${from}, ${to})` }}
+      className="bg-accent-soft flex aspect-[720/440] w-full items-center justify-center overflow-hidden rounded-2xl"
+      data-cover-from={from}
+      data-cover-to={to}
     >
-      <span className="rounded-full bg-black/20 px-4 py-1.5 font-mono text-xs tracking-wide text-white/90">
-        {label}
-      </span>
+      <span className="text-muted text-sm font-medium">{label}</span>
     </div>
   );
 }
@@ -40,11 +39,7 @@ export function FeatureRows({
   return (
     <section id="features" className="mt-24 md:mt-32">
       <Container>
-        <SectionHead
-          index={t("features.index")}
-          label={t("features.label")}
-          title={t("features.title")}
-        />
+        <DetailLabel index={t("features.index")} label={t("features.label")} />
 
         <div className="mt-12 flex flex-col gap-16 md:gap-24">
           {project.features.map((feature, i) => {
