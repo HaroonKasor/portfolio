@@ -44,7 +44,7 @@ export async function TerminalCard() {
 
         {/* Figma renders the snippet in the site font (Outfit), not a monospace face. */}
         <pre className="text-text overflow-x-auto px-6 py-6 font-sans text-[14px] leading-[2.15] font-medium sm:text-[15px]">
-          <code>
+          <code className="font-sans">
             {LINES.map((line, i) =>
               line.kind === "plain" ? (
                 <span key={i} className="block">
