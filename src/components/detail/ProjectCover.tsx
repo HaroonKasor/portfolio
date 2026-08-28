@@ -53,15 +53,11 @@ export function ProjectCover({
               <div
                 role="img"
                 aria-label={alt}
-                className="flex h-full w-full items-center justify-center"
+                className="h-full w-full"
                 style={{
                   backgroundImage: `linear-gradient(135deg, ${from}, ${to})`,
                 }}
-              >
-                <span className="rounded-full bg-black/20 px-4 py-1.5 font-mono text-xs tracking-wide text-white/90">
-                  {caption ?? t("screenshotSlot")}
-                </span>
-              </div>
+              />
             )}
           </div>
         </div>

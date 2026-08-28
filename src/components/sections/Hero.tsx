@@ -10,7 +10,7 @@ export async function Hero() {
   const t = await getTranslations("hero");
 
   return (
-    <section className="relative pt-10 pb-32 lg:pt-16 lg:pb-44">
+    <section className="relative overflow-x-clip pt-10 pb-32 lg:pt-16 lg:pb-44">
       {/* The gradient starts behind the navbar, so it is pinned to the top of
           the page rather than to this section's own box. */}
       <div

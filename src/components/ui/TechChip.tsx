@@ -2,7 +2,14 @@ import * as simpleIcons from 'simple-icons';
 
 import { cn } from '@/lib/utils';
 
-export type TechChipProps = { name: string; slug: string; className?: string };
+export type TechChipProps = {
+  name: string;
+  slug: string;
+  /** Explicit lettermark, for brands simple-icons has no entry for
+   * (e.g. SQL Server) or where the derived initials read badly. */
+  mark?: string;
+  className?: string;
+};
 
 type SimpleIcon = { title: string; slug: string; path: string; hex: string };
 
@@ -34,7 +41,7 @@ function lettermark(name: string): string {
   return name.replace(/[^\p{L}\p{N}]/gu, '').slice(0, 2).toUpperCase();
 }
 
-export function TechChip({ name, slug, className }: TechChipProps) {
+export function TechChip({ name, slug, mark, className }: TechChipProps) {
   const icon = getIcon(slug);
   const adaptive = ADAPTIVE.has(slug);
 
@@ -56,10 +63,10 @@ export function TechChip({ name, slug, className }: TechChipProps) {
         </svg>
       ) : (
         <span
-          className="bg-accent-soft text-accent flex h-4 w-4 shrink-0 items-center justify-center rounded-sm text-[8px] leading-none font-bold"
+          className="bg-accent-soft text-accent flex h-5 min-w-5 shrink-0 items-center justify-center rounded-sm px-1 text-[10px] leading-none font-semibold"
           aria-hidden
         >
-          {lettermark(name)}
+          {mark ?? lettermark(name)}
         </span>
       )}
       {name}

@@ -85,24 +85,24 @@ export function ErrorTerminal() {
     <div className="overflow-hidden rounded-2xl border border-terminal-line bg-terminal shadow-[var(--shadow-float)]">
       <div className="flex items-center gap-3 border-b border-terminal-line px-4 py-3">
         <div aria-hidden="true" className="flex shrink-0 gap-1.5">
-          <span className="h-2.5 w-2.5 rounded-full bg-white/20" />
-          <span className="h-2.5 w-2.5 rounded-full bg-white/20" />
-          <span className="h-2.5 w-2.5 rounded-full bg-white/20" />
+          <span className="h-2.5 w-2.5 rounded-full bg-terminal-line" />
+          <span className="h-2.5 w-2.5 rounded-full bg-terminal-line" />
+          <span className="h-2.5 w-2.5 rounded-full bg-terminal-line" />
         </div>
-        <span className="font-mono text-xs text-white/50">{t("terminalFile")}</span>
+        <span className="font-mono text-xs text-muted">{t("terminalFile")}</span>
       </div>
 
       <div className="p-5 font-mono text-[13px] leading-relaxed md:p-6 md:text-sm">
-        <p className="text-white/80">
-          <span aria-hidden="true" className="mr-2 text-white/40">
+        <p className="text-text">
+          <span aria-hidden="true" className="mr-2 text-muted">
             $
           </span>
           {t("cmdOpen")}
         </p>
         <p className="mt-1 text-danger">{t("errorLine")}</p>
 
-        <p className="mt-4 text-white/80">
-          <span aria-hidden="true" className="mr-2 text-white/40">
+        <p className="mt-4 text-text">
+          <span aria-hidden="true" className="mr-2 text-muted">
             $
           </span>
           {t("cmdLs")}
@@ -116,14 +116,14 @@ export function ErrorTerminal() {
                 className="-mx-2 flex items-center gap-4 rounded-md px-2 py-1.5 transition-colors hover:bg-accent-soft"
               >
                 <span className="w-32 shrink-0 text-term-path">{row.path}</span>
-                <span className="text-white/60">{t(`rows.${row.key}`)}</span>
+                <span className="text-muted">{t(`rows.${row.key}`)}</span>
               </Link>
             </li>
           ))}
         </ul>
 
-        <p className="mt-4 text-white/80">
-          <span aria-hidden="true" className="mr-2 text-white/40">
+        <p className="mt-4 text-text">
+          <span aria-hidden="true" className="mr-2 text-muted">
             $
           </span>
           {lastLine}

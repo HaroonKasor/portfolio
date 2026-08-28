@@ -3,7 +3,7 @@ import { Container } from "@/components/ui/Container";
 import { SectionHead } from "@/components/ui/SectionHead";
 import { TechChip } from "@/components/ui/TechChip";
 
-const CHIPS: { name: string; slug: string }[] = [
+const CHIPS: { name: string; slug: string; mark?: string }[] = [
   { name: "Next.js", slug: "nextdotjs" },
   { name: "React", slug: "react" },
   { name: "TypeScript", slug: "typescript" },
@@ -11,9 +11,11 @@ const CHIPS: { name: string; slug: string }[] = [
   { name: "Java", slug: "openjdk" },
   { name: "Spring Boot", slug: "springboot" },
   { name: "MySQL", slug: "mysql" },
-  { name: "SQL Server", slug: "" },
+  // simple-icons has no SQL Server mark; "SS" reads wrong, so set it explicitly.
+  { name: "SQL Server", slug: "", mark: "SQL" },
   { name: "Docker", slug: "docker" },
-  { name: "Playwright", slug: "playwright" },
+  // No simple-icons entry either — "PW" is the deliberate lettermark.
+  { name: "Playwright", slug: "playwright", mark: "PW" },
   { name: "Figma", slug: "figma" },
   { name: "GitLab", slug: "gitlab" },
 ];
@@ -37,7 +39,12 @@ export async function About() {
 
             <div className="mt-10 flex flex-wrap gap-2">
               {CHIPS.map((chip) => (
-                <TechChip key={chip.name} name={chip.name} slug={chip.slug} />
+                <TechChip
+                  key={chip.name}
+                  name={chip.name}
+                  slug={chip.slug}
+                  mark={chip.mark}
+                />
               ))}
             </div>
 
