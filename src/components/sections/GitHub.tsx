@@ -1,6 +1,6 @@
 import { getTranslations } from "next-intl/server";
 import { Container } from "@/components/ui/Container";
-import { SectionHead, SectionBody } from "@/components/ui/SectionHead";
+import { SectionHead } from "@/components/ui/SectionHead";
 import { RepoCard } from "@/components/ui/RepoCard";
 import { getRepos, GITHUB_URL } from "@/lib/github";
 
@@ -13,9 +13,9 @@ export async function GitHub() {
       <Container>
         <SectionHead index={t("index")} label={t("label")} title={t("title")} />
 
-        <SectionBody className="mt-10">
-          <div>
-            <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-4">
+        {/* Figma: repo cards span the full container width. */}
+        <div className="mt-12">
+            <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-4">
               {repos.map((repo) => (
                 <RepoCard key={repo.name} repo={repo} />
               ))}
@@ -29,8 +29,7 @@ export async function GitHub() {
             >
               {t("viewAll")}
             </a>
-          </div>
-        </SectionBody>
+        </div>
       </Container>
     </section>
   );
