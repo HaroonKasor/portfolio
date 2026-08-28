@@ -48,3 +48,6 @@ next-env.d.ts
 
 # playwright json report
 /e2e-results.json
+
+# omc artifacts
+/.omc
