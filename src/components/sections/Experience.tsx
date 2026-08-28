@@ -37,13 +37,13 @@ export async function Experience() {
                     aria-hidden="true"
                     className={[
                       "inline-block h-2.5 w-2.5 shrink-0 rounded-full",
-                      i === 0 ? "bg-band-accent" : "bg-white/50",
+                      "bg-band-accent",
                     ].join(" ")}
                   />
                   <span
                     className={[
                       "text-sm font-semibold tracking-[0.12em]",
-                      i === 0 ? "text-band-accent" : "text-white/70",
+                      i === 0 ? "text-band-accent" : "text-white/85",
                     ].join(" ")}
                   >
                     {t(`items.${item.key}.date`)}
