@@ -36,7 +36,7 @@ export async function Hero() {
                 {t("headline.line3")}
                 <span
                   aria-hidden="true"
-                  className="absolute -bottom-1 left-0 h-[6px] w-full rounded-full bg-[image:var(--gradient-band)] lg:h-2"
+                  className="absolute -bottom-0.5 left-0 h-1 w-full rounded-full bg-[image:linear-gradient(90deg,var(--color-accent)_0%,var(--color-accent)_35%,transparent_100%)] lg:-bottom-1 lg:h-1.5"
                 />
               </span>
             </h1>
