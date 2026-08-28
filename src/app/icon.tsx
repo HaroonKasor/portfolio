@@ -1,4 +1,5 @@
 import { ImageResponse } from "next/og";
+import { OG_COLORS } from "@/lib/og";
 
 export const size = { width: 32, height: 32 };
 export const contentType = "image/png";
@@ -14,8 +15,8 @@ export default function Icon() {
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
-          background: "#0F2A4A",
-          color: "#FFFFFF",
+          background: OG_COLORS.text,
+          color: OG_COLORS.surface,
           fontSize: 15,
           fontWeight: 700,
           letterSpacing: -0.5,

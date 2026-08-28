@@ -24,7 +24,7 @@ No backend, no DB, no CMS. Static content in `src/content/*.ts`. GitHub repos fe
 | --color-line | #E3E0DB | #29303F |
 | --color-text | #0F2A4A | #F2F3F7 |
 | --color-muted | #6B6B73 | #9EA8BD |
-| --color-accent | #1C70E6 | #5994FF |
+| --color-accent | #1565D8 (was #1C70E6; darkened to pass WCAG AA 4.5:1 on bg/surface) | #5994FF |
 | --color-accent-soft | #E3F0FF | #1F335C |
 | --color-inverse | #121214 | #F2F3F7 |
 | --color-on-inverse | #FFFFFF | #0B0E17 |
