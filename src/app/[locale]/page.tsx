@@ -1,5 +1,8 @@
 import type { Metadata } from "next";
+import { hasLocale } from "next-intl";
 import { getTranslations, setRequestLocale } from "next-intl/server";
+import { routing } from "@/i18n/routing";
+import { buildMetadata } from "@/lib/seo";
 import { Navbar } from "@/components/sections/Navbar";
 import { Hero } from "@/components/sections/Hero";
 import { Stats } from "@/components/sections/Stats";
@@ -18,35 +21,25 @@ export async function generateMetadata({
   params,
 }: PageProps): Promise<Metadata> {
   const { locale } = await params;
+  if (!hasLocale(routing.locales, locale)) return {};
+
   const t = await getTranslations({ locale, namespace: "meta" });
 
-  return {
+  // Canonical, hreflang alternates and metadataBase all come from buildMetadata;
+  // the OG image itself is picked up from the file-based opengraph-image route.
+  return buildMetadata(locale, {
     title: t("title"),
     description: t("description"),
-    openGraph: {
-      title: t("title"),
-      description: t("description"),
-      locale,
-      type: "website",
-    },
-  };
+    useTemplate: false,
+  });
 }
 
 export default async function HomePage({ params }: PageProps) {
   const { locale } = await params;
   setRequestLocale(locale);
 
-  const t = await getTranslations("common");
-
   return (
     <>
-      <a
-        href="#content"
-        className="bg-accent sr-only rounded-full px-4 py-2 text-sm font-medium text-white focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-[70]"
-      >
-        {t("skipToContent")}
-      </a>
-
       <Navbar />
 
       <main id="content">

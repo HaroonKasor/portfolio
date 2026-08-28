@@ -13,7 +13,7 @@ export default function LocaleNotFound() {
     <>
       <div className="gradient-hero flex flex-1 flex-col">
         <Navbar />
-        <main className="flex-1 pb-20 md:pb-28">
+        <main id="content" className="flex-1 pb-20 md:pb-28">
           <Container>
             <div className="grid grid-cols-1 items-center gap-12 pt-8 lg:grid-cols-2 lg:gap-16 lg:pt-16">
               <div>

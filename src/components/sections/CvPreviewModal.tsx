@@ -14,6 +14,20 @@ type CvLocale = keyof typeof FILES;
 const FOCUSABLE =
   'a[href], button:not([disabled]), iframe, [tabindex]:not([tabindex="-1"])';
 
+/**
+ * Only nodes that are actually rendered can hold focus. The header's
+ * "Open in new tab"/"Download" actions are `hidden sm:inline-flex` and their
+ * footer twins are `sm:hidden`, so half the matches are invisible at any
+ * viewport; trapping against those makes Tab wrap to a dead element and the
+ * focus escape the dialog.
+ */
+function visibleFocusable(root: HTMLElement | null): HTMLElement[] {
+  if (!root) return [];
+  return [...root.querySelectorAll<HTMLElement>(FOCUSABLE)].filter(
+    (el) => el.offsetParent !== null || el.getClientRects().length > 0,
+  );
+}
+
 export function CvPreviewModal({
   open,
   onClose,
@@ -40,8 +54,7 @@ function CvDialog({ onClose }: { onClose: () => void }) {
   // Remember the trigger so focus can be returned when the dialog closes.
   useEffect(() => {
     openerRef.current = document.activeElement as HTMLElement | null;
-    const panel = panelRef.current;
-    panel?.querySelector<HTMLElement>(FOCUSABLE)?.focus();
+    visibleFocusable(panelRef.current)[0]?.focus();
     return () => openerRef.current?.focus?.();
   }, []);
 
@@ -54,8 +67,8 @@ function CvDialog({ onClose }: { onClose: () => void }) {
         return;
       }
       if (e.key !== "Tab") return;
-      const nodes = panelRef.current?.querySelectorAll<HTMLElement>(FOCUSABLE);
-      if (!nodes || nodes.length === 0) return;
+      const nodes = visibleFocusable(panelRef.current);
+      if (nodes.length === 0) return;
       const first = nodes[0];
       const last = nodes[nodes.length - 1];
       if (e.shiftKey && document.activeElement === first) {
@@ -148,7 +161,7 @@ function CvDialog({ onClose }: { onClose: () => void }) {
 
           <button
             type="button"
-            aria-label={t("title")}
+            aria-label={t("close")}
             onClick={handleClose}
             className="border-line text-text hover:text-accent hover:border-accent inline-flex h-11 w-11 items-center justify-center rounded-full border transition-colors"
           >
@@ -164,7 +177,9 @@ function CvDialog({ onClose }: { onClose: () => void }) {
         />
 
         <div className="border-line flex flex-col gap-3 border-t px-5 py-4 sm:flex-row sm:items-center sm:px-6">
-          <span className="text-muted text-xs">{t("page")}</span>
+          <span className="text-muted text-xs">
+            {t("page", { current: 1, total: 2 })}
+          </span>
           {/* Mobile: the two actions become full-width buttons in the footer. */}
           <div className="flex flex-col gap-2 sm:hidden">
             <button

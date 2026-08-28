@@ -61,7 +61,7 @@ export default async function ProjectDetailPage({
   return (
     <>
       <Navbar />
-      <main className="flex-1 pb-8">
+      <main id="content" className="flex-1 pb-8">
         <ProjectHeader project={project} locale={typedLocale} />
         <FactsStrip project={project} locale={typedLocale} />
         <ProjectCover

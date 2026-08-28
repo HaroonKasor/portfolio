@@ -10,7 +10,7 @@
   --token-line: #e3e0db;
   --token-text: #0f2a4a;
   --token-muted: #6b6b73;
-  --token-accent: #1c70e6;
+  --token-accent: #1565d8;
   --token-accent-soft: #e3f0ff;
   --token-inverse: #121214;
   --token-on-inverse: #ffffff;
@@ -23,12 +23,21 @@
   /* String literals inside the terminal cards. */
   --token-term-string: #1a7f4b;
 
+  /* 404 error terminal. */
+  --token-terminal: #ffffff;
+  --token-terminal-line: #e3e0db;
+  --token-danger: #d93a46;
+  --token-term-path: #1a7f4b;
+  /* Glitch ghost copies are the same hues in both themes. */
+  --token-glitch-a: #5994ff;
+  --token-glitch-b: #ff6b9e;
+
   --gradient-hero: linear-gradient(100deg, #fde8f0 0%, #ebe8ff 50%, #e3f7f2 100%);
   --gradient-band: linear-gradient(105deg, #1766e0, #2a9ef2);
 
   --shadow-card: 0 2px 8px rgba(0, 0, 0, 0.04);
   --shadow-float: 0 24px 56px -12px rgba(26, 38, 102, 0.1);
-  --shadow-accent: 0 8px 24px rgba(28, 112, 230, 0.3);
+  --shadow-accent: 0 8px 24px rgba(21, 101, 216, 0.3);
 
   --container-max: 1440px;
 }
@@ -50,6 +59,13 @@ html[data-theme='dark'] {
   --token-status: #34d07a;
   --token-term-string: #73d9a0;
 
+  --token-terminal: #0f1420;
+  --token-terminal-line: #29303f;
+  --token-danger: #ff6b75;
+  --token-term-path: #73d9a0;
+  --token-glitch-a: #5994ff;
+  --token-glitch-b: #ff6b9e;
+
   --gradient-hero: linear-gradient(100deg, #291433 0%, #0f1433 50%, #0a2429 100%);
   --gradient-band: linear-gradient(105deg, #1247b3, #1f73d9);
 }
@@ -68,6 +84,12 @@ html[data-theme='dark'] {
   --color-band-accent: var(--token-band-accent);
   --color-status: var(--token-status);
   --color-term-string: var(--token-term-string);
+  --color-terminal: var(--token-terminal);
+  --color-terminal-line: var(--token-terminal-line);
+  --color-danger: var(--token-danger);
+  --color-term-path: var(--token-term-path);
+  --color-glitch-a: var(--token-glitch-a);
+  --color-glitch-b: var(--token-glitch-b);
 
   --radius-sm: 6px;
   --radius-md: 10px;
@@ -78,7 +100,7 @@ html[data-theme='dark'] {
 
   --shadow-card: 0 2px 8px rgba(0, 0, 0, 0.04);
   --shadow-float: 0 24px 56px -12px rgba(26, 38, 102, 0.1);
-  --shadow-accent: 0 8px 24px rgba(28, 112, 230, 0.3);
+  --shadow-accent: 0 8px 24px rgba(21, 101, 216, 0.3);
 
   --font-sans: var(--font-outfit), var(--font-prompt), ui-sans-serif, system-ui, sans-serif;
   --font-mono: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;

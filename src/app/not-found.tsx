@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import "./globals.css";
 
+// metadataBase is inherited from the root layout.
 export const metadata: Metadata = {
   title: "Page not found — Haroon Kasor",
   robots: { index: false, follow: true },
