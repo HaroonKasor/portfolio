@@ -1,6 +1,6 @@
 import { getTranslations } from "next-intl/server";
 import { Container } from "@/components/ui/Container";
-import { SectionHead } from "@/components/ui/SectionHead";
+import { SectionHead, SectionBody } from "@/components/ui/SectionHead";
 import { RepoCard } from "@/components/ui/RepoCard";
 import { getRepos, GITHUB_URL } from "@/lib/github";
 
@@ -11,9 +11,9 @@ export async function GitHub() {
   return (
     <section id="github" className="scroll-mt-24 py-16 lg:py-24">
       <Container>
-        <div className="grid gap-10 lg:grid-cols-[300px_1fr] lg:gap-16">
-          <SectionHead index={t("index")} label={t("label")} title={t("title")} />
+        <SectionHead index={t("index")} label={t("label")} title={t("title")} />
 
+        <SectionBody className="mt-10">
           <div>
             <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-4">
               {repos.map((repo) => (
@@ -30,7 +30,7 @@ export async function GitHub() {
               {t("viewAll")}
             </a>
           </div>
-        </div>
+        </SectionBody>
       </Container>
     </section>
   );

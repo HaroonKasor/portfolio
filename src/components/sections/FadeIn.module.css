@@ -1,0 +1,23 @@
+/* The resting state is fully visible; the keyframe only rewinds to hidden for
+ * the duration of the entrance. An element that never animates (no JS needed,
+ * reduced motion, older engines) therefore still renders opaque. */
+.fadeIn {
+  animation: fade-in 0.5s ease-out both;
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .fadeIn {
+    animation: none;
+  }
+}

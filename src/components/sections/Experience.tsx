@@ -1,11 +1,6 @@
 import { getTranslations } from "next-intl/server";
 import { Container } from "@/components/ui/Container";
-
-const ITEMS = [
-  { key: "learntech", current: true },
-  { key: "goskillup", current: false },
-  { key: "degree", current: false },
-] as const;
+import { experience } from "@/content/experience";
 
 export async function Experience() {
   const t = await getTranslations("experience");
@@ -16,18 +11,20 @@ export async function Experience() {
       className="scroll-mt-24 bg-[image:var(--gradient-band)] py-16 lg:py-24"
     >
       <Container>
-        <div className="grid gap-10 lg:grid-cols-[300px_1fr] lg:gap-16">
-          <div className="flex flex-col gap-3">
-            <span className="text-xs font-semibold tracking-[0.18em] text-white/70">
-              {t("index")} — {t("label")}
-            </span>
-            <h2 className="text-[32px] leading-tight font-semibold text-white lg:text-[56px]">
-              {t("title")}
-            </h2>
-          </div>
+        {/* Same geometry as SectionHead, in the band's white-on-gradient palette. */}
+        <div className="flex flex-col gap-3 lg:grid lg:grid-cols-[300px_1fr] lg:items-start lg:gap-16">
+          <span className="text-xs font-semibold tracking-[0.18em] text-white/70 lg:pt-4">
+            {t("index")} — {t("label")}
+          </span>
+          <h2 className="max-w-[932px] text-[32px] leading-tight font-semibold text-white lg:text-[56px]">
+            {t("title")}
+          </h2>
+        </div>
 
-          <ol className="flex flex-col">
-            {ITEMS.map((item, i) => (
+        <div className="mt-10 lg:grid lg:grid-cols-[300px_1fr] lg:gap-16">
+          <div aria-hidden="true" className="hidden lg:block" />
+          <ol className="flex min-w-0 flex-col">
+            {experience.map((item, i) => (
               <li
                 key={item.key}
                 className={[
@@ -40,13 +37,13 @@ export async function Experience() {
                     aria-hidden="true"
                     className={[
                       "inline-block h-2.5 w-2.5 shrink-0 rounded-full",
-                      item.current ? "bg-band-accent" : "bg-white/50",
+                      i === 0 ? "bg-band-accent" : "bg-white/50",
                     ].join(" ")}
                   />
                   <span
                     className={[
                       "text-sm font-semibold tracking-[0.12em]",
-                      item.current ? "text-band-accent" : "text-white/70",
+                      i === 0 ? "text-band-accent" : "text-white/70",
                     ].join(" ")}
                   >
                     {t(`items.${item.key}.date`)}
