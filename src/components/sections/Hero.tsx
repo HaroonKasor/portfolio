@@ -30,10 +30,10 @@ export async function Hero() {
             </span>
 
             <h1 className="mt-7 text-[56px] leading-[1.02] tracking-tight lg:text-[96px]">
-              <span className="text-text block font-bold">{t("line1")}</span>
-              <span className="text-text block font-normal">{t("line2")}</span>
+              <span className="text-text block font-bold">{t("headline.line1")}</span>
+              <span className="text-text block font-normal">{t("headline.line2")}</span>
               <span className="text-accent relative inline-block font-bold">
-                {t("line3")}
+                {t("headline.line3")}
                 <span
                   aria-hidden="true"
                   className="absolute -bottom-1 left-0 h-[6px] w-full rounded-full bg-[image:var(--gradient-band)] lg:h-2"

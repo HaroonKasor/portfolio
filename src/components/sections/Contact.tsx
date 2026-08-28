@@ -5,7 +5,7 @@ import { CopyEmailButton } from "./CopyEmailButton";
 
 export async function Contact() {
   const t = await getTranslations("contact");
-  const email = t("email");
+  const email = t("emailValue");
 
   return (
     <section id="contact" className="scroll-mt-24 py-16 lg:py-24">

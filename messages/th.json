@@ -87,8 +87,7 @@
   "projects": {
     "index": "03",
     "label": "ผลงาน",
-    "title": "งานที่ผมลงมือทำจริง",
-    "viewAll": "ดูผลงานทั้งหมด →"
+    "title": "งานที่ผมลงมือทำจริง"
   },
   "github": {
     "index": "04",
@@ -115,7 +114,8 @@
     "email": "EMAIL",
     "githubValue": "github.com/HaroonKasor",
     "phoneValue": "062-496-9217",
-    "locationValue": "กรุงเทพฯ ประเทศไทย"
+    "locationValue": "กรุงเทพฯ ประเทศไทย",
+    "emailValue": "haroonkasor.dev@gmail.com"
   },
   "meta": {
     "title": "ฮารูน กาซอร์ — Full-stack Developer",
@@ -149,7 +149,8 @@
     "english": "English",
     "openNewTab": "เปิดในแท็บใหม่",
     "download": "ดาวน์โหลด PDF",
-    "page": "หน้า {current} / {total}"
+    "page": "หน้า {current} / {total}",
+    "close": "ปิด"
   },
   "detail": {
     "back": "กลับไปหน้าผลงาน",
@@ -179,15 +180,13 @@
     "internal": "ระบบภายในของลูกค้า",
     "liveDemo": "ดูเว็บจริง",
     "github": "GitHub",
-    "screenshotSlot": "screenshot slot"
+    "screenshotSlot": "ภาพหน้าจอเร็วๆ นี้"
   },
   "common": {
     "themeToggle": "สลับธีม",
     "langToggle": "เปลี่ยนภาษา",
     "backToTop": "กลับขึ้นด้านบน",
     "skipToContent": "ข้ามไปยังเนื้อหา",
-    "toggleTheme": "สลับธีม",
-    "toggleLanguage": "เปลี่ยนภาษา",
     "siteName": "ฮารูน กาซอร์",
     "role": "Full-stack Developer",
     "tagline": "Junior Developer @ Learn Tech · Next.js, React, Spring Boot · Bangkok"
