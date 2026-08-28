@@ -25,9 +25,10 @@ export async function GitHub() {
               href={GITHUB_URL}
               target="_blank"
               rel="noopener noreferrer"
-              className="text-accent focus-visible:outline-accent mt-8 inline-flex text-sm font-medium hover:underline focus-visible:outline-2 focus-visible:outline-offset-2"
+              className="text-text focus-visible:outline-accent group mt-8 inline-flex items-center gap-2 text-[15px] font-medium hover:text-accent focus-visible:outline-2 focus-visible:outline-offset-2"
             >
               {t("viewAll")}
+              <span aria-hidden="true" className="text-accent transition-transform group-hover:translate-x-0.5">→</span>
             </a>
         </div>
       </Container>
