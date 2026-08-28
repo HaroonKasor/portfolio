@@ -1,0 +1,22 @@
+.cursor {
+  display: inline-block;
+  margin-left: 1px;
+  color: var(--color-accent);
+  animation: blink 1.1s step-end infinite;
+}
+
+@keyframes blink {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cursor {
+    animation: none;
+  }
+}

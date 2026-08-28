@@ -1,0 +1,69 @@
+{
+  "common": {
+    "toggleTheme": "Toggle theme",
+    "toggleLanguage": "Switch language",
+    "backToTop": "Back to top",
+    "siteName": "Haroon Kasor",
+    "role": "Full-stack Developer",
+    "tagline": "Junior Developer @ Learn Tech · Next.js, React, Spring Boot · Bangkok"
+  },
+  "nav": {
+    "about": "About",
+    "experience": "Experience",
+    "work": "Work",
+    "contact": "Contact",
+    "cv": "View CV"
+  },
+  "footer": {
+    "copyright": "© 2026 HAROON KASOR",
+    "location": "BANGKOK, THAILAND"
+  },
+  "detail": {
+    "back": "Back to work",
+    "role": "ROLE",
+    "period": "PERIOD",
+    "stack": "STACK",
+    "type": "TYPE",
+    "overview": {
+      "index": "01",
+      "label": "OVERVIEW",
+      "problem": "Problem",
+      "solution": "What I did",
+      "result": "Result",
+      "title": "Overview"
+    },
+    "features": {
+      "index": "02",
+      "label": "KEY FEATURES",
+      "title": "Key features"
+    },
+    "tech": {
+      "index": "03",
+      "label": "TECH STACK",
+      "title": "Tech stack"
+    },
+    "next": "Next project",
+    "internal": "Internal client system",
+    "liveDemo": "Live demo",
+    "github": "GitHub",
+    "screenshotSlot": "screenshot slot"
+  },
+  "notFound": {
+    "eyebrow": "ERROR 404 · PAGE NOT FOUND",
+    "title": "This page doesn't exist\n(or hasn't been pushed yet)",
+    "body": "The link may be mistyped or the page moved. Pick a destination from the terminal or use the buttons.",
+    "backHome": "Back home",
+    "viewWork": "View work",
+    "terminalFile": "error.log",
+    "cmdOpen": "open /projcts",
+    "errorLine": "bash: /projcts: No such file or directory",
+    "cmdLs": "ls ~",
+    "rows": {
+      "home": "Home",
+      "work": "Work",
+      "experience": "Experience",
+      "contact": "Contact"
+    },
+    "cmdCd": "cd ~/projects"
+  }
+}
