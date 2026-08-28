@@ -33,6 +33,12 @@ export type MetadataOverrides = {
   description?: string;
   /** Pass false on the root layout so the template applies to children only. */
   useTemplate?: boolean;
+  /**
+   * Pass false on routes that have their own sibling `opengraph-image.tsx`
+   * (project details) so Next's file-convention image wins instead of the
+   * site-wide one.
+   */
+  siteImage?: boolean;
 };
 
 /**
@@ -44,13 +50,40 @@ export async function buildMetadata(
   overrides: MetadataOverrides = {},
 ): Promise<Metadata> {
   const t = await getTranslations({ locale, namespace: "common" });
-  const { path = "/", title, description, useTemplate = true } = overrides;
+  const {
+    path = "/",
+    title,
+    description,
+    useTemplate = true,
+    siteImage = true,
+  } = overrides;
 
   const siteName = t("siteName");
   const defaultTitle = `${siteName} — ${t("role")}`;
   const resolvedTitle = title ?? defaultTitle;
   const resolvedDescription = description ?? t("tagline");
   const url = absoluteUrl(locale, path);
+
+  // The root `opengraph-image.tsx` is only auto-attached to pages that are its
+  // route siblings, which `[locale]/page.tsx` is not — and declaring an
+  // explicit `openGraph` object suppresses that inference anyway. Point at it
+  // by URL so /, /th and any other locale page carry an og:image. Pages with
+  // their own sibling image (project details) override `images` themselves.
+  // Spread-in rather than set to undefined: an explicit `images: undefined`
+  // still counts as declared and suppresses the file-convention inference that
+  // the project pages rely on for their own sibling image.
+  const imageFields = siteImage
+    ? {
+        images: [
+          {
+            url: `${SITE_URL}/opengraph-image`,
+            width: 1200,
+            height: 630,
+            alt: defaultTitle,
+          },
+        ],
+      }
+    : {};
 
   return {
     metadataBase: new URL(SITE_URL),
@@ -69,11 +102,13 @@ export async function buildMetadata(
       description: resolvedDescription,
       url,
       locale: locale === "th" ? "th_TH" : "en_US",
+      ...imageFields,
     },
     twitter: {
       card: "summary_large_image",
       title: resolvedTitle,
       description: resolvedDescription,
+      ...imageFields,
     },
   };
 }

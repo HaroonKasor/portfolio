@@ -39,6 +39,8 @@ export async function generateMetadata({
     path: `/projects/${project.slug}`,
     title: project.title[typedLocale],
     description: project.summary[typedLocale],
+    // This route has its own opengraph-image.tsx; let that one win.
+    siteImage: false,
   });
 }
 
