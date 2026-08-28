@@ -1,0 +1,186 @@
+{
+  "nav": {
+    "about": "เกี่ยวกับ",
+    "experience": "ประสบการณ์",
+    "work": "ผลงาน",
+    "contact": "ติดต่อ",
+    "cv": "ดู CV",
+    "menu": "เปิดเมนู",
+    "close": "ปิดเมนู",
+    "github": "GitHub"
+  },
+  "hero": {
+    "tag": "JUNIOR DEVELOPER @ LEARN TECH · LMS & WEB APPS",
+    "headline": {
+      "line1": "ฮารูน กาซอร์",
+      "line2": "Full-stack",
+      "line3": "Developer"
+    },
+    "subtitle": "Junior Developer @ Learn Tech · Next.js, React, Spring Boot · Bangkok",
+    "ctaWork": "ดูผลงาน →",
+    "ctaGithub": "github.com/HaroonKasor",
+    "terminalFile": "haroon.ts"
+  },
+  "stats": {
+    "years": {
+      "value": "1",
+      "suffix": "+",
+      "label": "ปีทำงานจริงตำแหน่ง Developer"
+    },
+    "projects": {
+      "value": "10",
+      "suffix": "+",
+      "label": "โปรเจกต์ที่ส่งมอบให้ลูกค้าจริง"
+    },
+    "endpoints": {
+      "value": "129",
+      "suffix": "",
+      "label": "API endpoints ที่ออกแบบและเขียนเอกสาร"
+    }
+  },
+  "about": {
+    "index": "01",
+    "label": "เกี่ยวกับผม",
+    "title": "แปลงความต้องการให้เป็นฟีเจอร์ที่ใช้งานได้จริง",
+    "p1": "ผมเป็น Junior Developer ที่ Learn Tech ตั้งแต่สิงหาคม 2024 รับผิดชอบแพลตฟอร์ม LMS หลักของบริษัทแบบ full stack ตั้งแต่ระบบ audit log การจัดการข้อมูลผู้ใช้ตาม PDPA ฟีเจอร์ social learning ไปจนถึงรายงานสำหรับแอดมินและสื่อ SCORM/xAPI",
+    "p2": "ควบคู่กันกำลังศึกษาวิศวกรรมคอมพิวเตอร์และอิเล็กทรอนิกส์ที่มหาวิทยาลัยรามคำแหง โปรเจกต์จบคือ GoSkillUp LMS พัฒนาด้วย Next.js, Prisma และ Docker",
+    "groups": {
+      "frontend": {
+        "title": "FRONT-END",
+        "items": "React · Next.js · TypeScript · JavaScript · Tailwind CSS"
+      },
+      "backend": {
+        "title": "BACK-END / DATA",
+        "items": "Java · Spring Boot · MySQL · SQL Server · API Integration"
+      },
+      "tools": {
+        "title": "TOOLS & AI",
+        "items": "GitHub · GitLab · Docker · Figma · Playwright · Claude Code · Codex"
+      }
+    }
+  },
+  "experience": {
+    "index": "02",
+    "label": "ประสบการณ์",
+    "title": "เส้นทางที่ผ่านมา",
+    "items": {
+      "learntech": {
+        "date": "2024 — NOW",
+        "title": "Junior Developer",
+        "org": "Learn Tech · กรุงเทพฯ",
+        "body": "พัฒนาและดูแลแพลตฟอร์ม LMS หลักของบริษัทแบบ full stack รวมถึงระบบ LMS ของลูกค้า เว็บสมาชิก/จองคอร์ส ระบบ e-learning ภาครัฐ (เอกสาร API 129 endpoints) เกม VR 13 เกม สื่อ SCORM/xAPI และงานดูแลฐานข้อมูล production"
+      },
+      "goskillup": {
+        "date": "2026",
+        "title": "Final Year Project — GoSkillUp LMS",
+        "org": "มหาวิทยาลัยรามคำแหง",
+        "body": "ระบบ LMS ครบวงจร: จัดการคอร์ส ลงทะเบียน แบบทดสอบ ใบประกาศ รายงาน ด้วย Next.js, React, Tailwind, Prisma รองรับ SCORM/xAPI และ deploy ด้วย Docker"
+      },
+      "degree": {
+        "date": "2022 — 2026",
+        "title": "B.Eng. Computer & Electronics Engineering",
+        "org": "มหาวิทยาลัยรามคำแหง · กรุงเทพฯ",
+        "body": "วิศวกรรมศาสตรบัณฑิต สาขาวิศวกรรมคอมพิวเตอร์และอิเล็กทรอนิกส์"
+      }
+    }
+  },
+  "projects": {
+    "index": "03",
+    "label": "ผลงาน",
+    "title": "งานที่ผมลงมือทำจริง",
+    "viewAll": "ดูผลงานทั้งหมด →"
+  },
+  "github": {
+    "index": "04",
+    "label": "GITHUB",
+    "title": "โค้ดที่เปิดให้ดูได้",
+    "viewAll": "ดู repo ทั้งหมดที่ github.com/HaroonKasor →",
+    "stars": "ดาว"
+  },
+  "testimonial": {
+    "index": "05",
+    "label": "คำรับรอง",
+    "title": "จากคนที่เคยร่วมงาน",
+    "placeholder": "คำรับรองจากเพื่อนร่วมงานและลูกค้ากำลังจะตามมา"
+  },
+  "contact": {
+    "index": "06",
+    "label": "ติดต่อ",
+    "title": "เปิดรับงานตำแหน่ง\nFull-stack Developer",
+    "copy": "คัดลอก",
+    "copied": "คัดลอกแล้ว",
+    "github": "GITHUB",
+    "phone": "PHONE",
+    "location": "LOCATION",
+    "email": "EMAIL",
+    "githubValue": "github.com/HaroonKasor",
+    "phoneValue": "062-496-9217",
+    "locationValue": "กรุงเทพฯ ประเทศไทย"
+  },
+  "meta": {
+    "title": "ฮารูน กาซอร์ — Full-stack Developer",
+    "description": "Junior Developer ที่ Learn Tech พัฒนาแพลตฟอร์ม LMS และเว็บแอปด้วย Next.js, React และ Spring Boot ทำงานอยู่ที่กรุงเทพฯ"
+  },
+  "footer": {
+    "copyright": "© 2026 HAROON KASOR",
+    "location": "BANGKOK, THAILAND"
+  },
+  "notFound": {
+    "eyebrow": "ERROR 404 · PAGE NOT FOUND",
+    "title": "หน้านี้ไม่มีอยู่จริง\n(หรือยังไม่ได้ push ขึ้นมา)",
+    "body": "ลิงก์อาจพิมพ์ผิดหรือหน้าถูกย้ายไปแล้ว เลือกปลายทางจาก terminal หรือกดปุ่มด้านล่าง",
+    "backHome": "กลับหน้าแรก",
+    "viewWork": "ดูผลงาน",
+    "terminalFile": "error.log",
+    "cmdOpen": "open /projcts",
+    "errorLine": "bash: /projcts: No such file or directory",
+    "cmdLs": "ls ~",
+    "rows": {
+      "home": "หน้าแรก",
+      "work": "ผลงาน",
+      "experience": "ประสบการณ์",
+      "contact": "ติดต่อ"
+    },
+    "cmdCd": "cd ~/projects"
+  },
+  "cv": {
+    "title": "Resume — Haroon Kasor",
+    "thai": "ไทย",
+    "english": "English",
+    "openNewTab": "เปิดในแท็บใหม่",
+    "download": "ดาวน์โหลด PDF",
+    "page": "หน้า {current} / {total}"
+  },
+  "detail": {
+    "back": "กลับไปหน้าผลงาน",
+    "role": "บทบาท",
+    "period": "ระยะเวลา",
+    "stack": "เทคโนโลยี",
+    "type": "ประเภท",
+    "overview": {
+      "index": "01",
+      "label": "ภาพรวม",
+      "problem": "ปัญหา",
+      "solution": "สิ่งที่ทำ",
+      "result": "ผลลัพธ์"
+    },
+    "features": {
+      "index": "02",
+      "label": "ฟีเจอร์หลัก"
+    },
+    "tech": {
+      "index": "03",
+      "label": "เทคโนโลยีที่ใช้"
+    },
+    "next": "โปรเจกต์ถัดไป",
+    "internal": "ระบบภายในของลูกค้า",
+    "liveDemo": "ดูเว็บจริง",
+    "github": "GitHub"
+  },
+  "common": {
+    "themeToggle": "สลับธีม",
+    "langToggle": "เปลี่ยนภาษา",
+    "backToTop": "กลับขึ้นด้านบน",
+    "skipToContent": "ข้ามไปยังเนื้อหา"
+  }
+}
