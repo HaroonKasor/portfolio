@@ -2,6 +2,7 @@ import { ArrowLeft, ArrowUpRight, Lock } from "lucide-react";
 import { useTranslations } from "next-intl";
 import { Link } from "@/i18n/navigation";
 import { Button } from "@/components/ui/Button";
+import { ReportModalButton } from "@/components/detail/ReportModalButton";
 import { Container } from "@/components/ui/Container";
 import type { Locale } from "@/i18n/routing";
 import type { Project } from "@/content/types";
@@ -81,6 +82,16 @@ export function ProjectHeader({
                 >
                   {t("github")}
                 </Button>
+              ) : null}
+              {links?.report ? (
+                <ReportModalButton
+                  href={links.report}
+                  label={t("report")}
+                  title={`${t("reportTitle")} — ${project.title[locale]}`}
+                  openLabel={t("reportOpen")}
+                  loadingLabel={t("reportLoading")}
+                  closeLabel={t("close")}
+                />
               ) : null}
             </>
           )}

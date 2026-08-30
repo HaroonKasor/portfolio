@@ -1,4 +1,4 @@
-import Image from "next/image";
+import { SkeletonImage } from "@/components/ui/SkeletonImage";
 import { Container } from "@/components/ui/Container";
 
 export type ProjectCoverProps = {
@@ -28,9 +28,9 @@ export function ProjectCover({
           {/* Faux browser chrome */}
           <div className="flex items-center gap-3 border-b border-line px-4 py-3">
             <div aria-hidden="true" className="flex shrink-0 gap-1.5">
-              <span className="h-2.5 w-2.5 rounded-full bg-line" />
-              <span className="h-2.5 w-2.5 rounded-full bg-line" />
-              <span className="h-2.5 w-2.5 rounded-full bg-line" />
+              <span className="h-2.5 w-2.5 rounded-full bg-dot-close" />
+              <span className="h-2.5 w-2.5 rounded-full bg-dot-min" />
+              <span className="h-2.5 w-2.5 rounded-full bg-dot-max" />
             </div>
             <span className="truncate rounded-full bg-bg px-3 py-1 font-mono text-[11px] text-muted">
               {url}
@@ -39,10 +39,9 @@ export function ProjectCover({
 
           <div className="relative aspect-[1280/720] w-full">
             {image ? (
-              <Image
+              <SkeletonImage
                 src={image}
                 alt={alt}
-                fill
                 sizes="(min-width: 1024px) 1280px, 100vw"
                 className="object-cover"
               />

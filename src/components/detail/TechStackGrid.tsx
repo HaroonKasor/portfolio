@@ -4,8 +4,9 @@ import { Container } from "@/components/ui/Container";
 import { DetailLabel } from "@/components/detail/DetailLabel";
 import type { Locale } from "@/i18n/routing";
 import type { Project } from "@/content/types";
+import { brandFill } from "@/lib/brandColor";
 
-type SimpleIcon = { path: string; title: string };
+type SimpleIcon = { path: string; title: string; hex: string };
 
 function lookupIcon(slug?: string): SimpleIcon | null {
   if (!slug) return null;
@@ -25,10 +26,17 @@ function LogoBox({ name, slug }: { name: string; slug?: string }) {
   return (
     <span
       aria-hidden="true"
-      className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl border border-line bg-bg text-sm font-bold text-muted"
+      className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl border border-line bg-bg text-sm font-bold text-text"
     >
       {icon ? (
-        <svg viewBox="0 0 24 24" className="h-6 w-6 fill-current" role="presentation">
+        // Brand colour comes with the icon data; near-black marks fall back
+        // to currentColor so they stay visible on the dark theme.
+        <svg
+          viewBox="0 0 24 24"
+          className="h-6 w-6"
+          fill={brandFill(icon.hex)}
+          role="presentation"
+        >
           <path d={icon.path} />
         </svg>
       ) : (

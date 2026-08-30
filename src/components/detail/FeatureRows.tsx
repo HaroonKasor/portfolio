@@ -1,19 +1,37 @@
 import { useTranslations } from "next-intl";
 import { Container } from "@/components/ui/Container";
 import { DetailLabel } from "@/components/detail/DetailLabel";
+import { ShotLightbox } from "@/components/detail/ShotLightbox";
+import { Reveal } from "@/components/ui/Reveal";
 import type { Locale } from "@/i18n/routing";
 import type { Project } from "@/content/types";
 
-/** 720x440 screenshot slot rendered with the project's cover gradient. */
+/** 720x440 screenshot slot; shows the feature image when provided, else a soft placeholder. */
 function ShotSlot({
   from,
   to,
   label,
+  image,
+  openLabel,
+  closeLabel,
 }: {
   from: string;
   to: string;
   label: string;
+  image?: string;
+  openLabel: string;
+  closeLabel: string;
 }) {
+  if (image) {
+    return (
+      <ShotLightbox
+        src={image}
+        alt={label}
+        openLabel={openLabel}
+        closeLabel={closeLabel}
+      />
+    );
+  }
   return (
     <div
       role="img"
@@ -45,7 +63,8 @@ export function FeatureRows({
           {project.features.map((feature, i) => {
             const reversed = i % 2 === 1;
             return (
-              <article
+              <Reveal
+                as="article"
                 key={feature.title.en}
                 className="grid grid-cols-1 items-center gap-8 md:grid-cols-2 md:gap-14"
               >
@@ -65,9 +84,14 @@ export function FeatureRows({
                     from={project.cover.from}
                     to={project.cover.to}
                     label={feature.shot[locale]}
+                    image={feature.image}
+                    openLabel={t("features.openShot", {
+                      label: feature.shot[locale],
+                    })}
+                    closeLabel={t("features.closeShot")}
                   />
                 </div>
-              </article>
+              </Reveal>
             );
           })}
         </div>

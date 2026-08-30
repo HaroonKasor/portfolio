@@ -14,6 +14,7 @@ import { OverviewCards } from "@/components/detail/OverviewCards";
 import { FeatureRows } from "@/components/detail/FeatureRows";
 import { TechStackGrid } from "@/components/detail/TechStackGrid";
 import { NextProject } from "@/components/detail/NextProject";
+import { Reveal } from "@/components/ui/Reveal";
 
 type PageParams = { locale: string; slug: string };
 
@@ -71,11 +72,20 @@ export default async function ProjectDetailPage({
           to={project.cover.to}
           url={coverUrl}
           alt={project.title[typedLocale]}
+          image={project.cover.image}
         />
-        <OverviewCards project={project} locale={typedLocale} />
+        <Reveal>
+          <OverviewCards project={project} locale={typedLocale} />
+        </Reveal>
         <FeatureRows project={project} locale={typedLocale} />
-        <TechStackGrid project={project} locale={typedLocale} />
-        {next ? <NextProject project={next} locale={typedLocale} /> : null}
+        <Reveal>
+          <TechStackGrid project={project} locale={typedLocale} />
+        </Reveal>
+        {next ? (
+          <Reveal>
+            <NextProject project={next} locale={typedLocale} />
+          </Reveal>
+        ) : null}
       </main>
       <Footer />
     </>

@@ -1,4 +1,5 @@
 import { ArrowUpRight } from "lucide-react";
+import { SkeletonImage } from "@/components/ui/SkeletonImage";
 import { Link } from "@/i18n/navigation";
 import { Tag } from "@/components/ui/Tag";
 import type { Locale } from "@/i18n/routing";
@@ -40,13 +41,31 @@ export function ProjectCard({
           backgroundImage: `linear-gradient(135deg, ${project.cover.from}, ${project.cover.to})`,
         }}
       >
-        <span className="rounded-full bg-white/20 px-3 py-1 text-[10px] font-semibold tracking-[0.12em] text-white backdrop-blur-sm">
+        {project.cover.image ? (
+          <>
+            <SkeletonImage
+              src={project.cover.image}
+              alt=""
+              sizes={
+                featured
+                  ? "(min-width: 1024px) 860px, 100vw"
+                  : "(min-width: 1024px) 420px, 100vw"
+              }
+              className="object-cover object-[50%_62%] transition-transform duration-500 group-hover:scale-[1.03]"
+            />
+            <span
+              aria-hidden="true"
+              className="absolute inset-0 bg-gradient-to-t from-black/45 via-black/10 to-black/20"
+            />
+          </>
+        ) : null}
+        <span className="relative rounded-full bg-white/20 px-3 py-1 text-[10px] font-semibold tracking-[0.12em] text-white backdrop-blur-sm">
           {project.badge}
         </span>
         <span
           aria-hidden="true"
           className={[
-            "leading-none font-bold text-white/20",
+            "relative leading-none font-bold text-white/20",
             featured ? "text-[96px] lg:text-[120px]" : "text-[72px]",
           ].join(" ")}
         >
