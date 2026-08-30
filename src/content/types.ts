@@ -7,14 +7,16 @@ export type Project = {
   summary: Localized;
   badge: string;
   tags: string[];
-  cover: { from: string; to: string };
+  /** Gradient fallback; `image` (public path) replaces it when present. */
+  cover: { from: string; to: string; image?: string };
   role: Localized;
   period: Localized;
   kind: Localized;
   stack: { name: string; slug?: string; note: Localized }[];
-  links?: { demo?: string; repo?: string; internal?: boolean };
+  links?: { demo?: string; repo?: string; report?: string; internal?: boolean };
   overview: { problem: Localized; solution: Localized; result: Localized };
-  features: { title: Localized; body: Localized; shot: Localized }[];
+  /** `image` is a public path; when absent the slot renders the gradient placeholder. */
+  features: { title: Localized; body: Localized; shot: Localized; image?: string }[];
   /** slug of the next project */
   next?: string;
 };

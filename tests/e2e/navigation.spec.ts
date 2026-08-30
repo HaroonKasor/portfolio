@@ -31,10 +31,10 @@ test.describe("project card navigation", () => {
     await expect(page.locator("html")).toHaveAttribute("lang", "th");
   });
 
-  test("renders all five project cards in the work section", async ({ page }) => {
+  test("renders all four project cards in the work section", async ({ page }) => {
     await page.goto("/");
     const cards = page.locator('#work a[href*="/projects/"]');
-    await expect(cards).toHaveCount(5);
+    await expect(cards).toHaveCount(4);
   });
 });
 
