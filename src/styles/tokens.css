@@ -31,6 +31,9 @@
   --token-terminal: #ffffff;
   --token-terminal-line: #e3e0db;
   --token-danger: #d93a46;
+  --token-dot-close: #ff5f57;
+  --token-dot-min: #febc2e;
+  --token-dot-max: #28c840;
   --token-term-path: #1a7f4b;
   /* Glitch ghost copies are the same hues in both themes. */
   --token-glitch-a: #5994ff;
@@ -69,6 +72,9 @@ html[data-theme='dark'] {
   --token-terminal: #0f1420;
   --token-terminal-line: #29303f;
   --token-danger: #ff6b75;
+  --token-dot-close: #ff5f57;
+  --token-dot-min: #febc2e;
+  --token-dot-max: #28c840;
   --token-term-path: #73d9a0;
   --token-glitch-a: #5994ff;
   --token-glitch-b: #ff6b9e;
@@ -97,6 +103,9 @@ html[data-theme='dark'] {
   --color-terminal: var(--token-terminal);
   --color-terminal-line: var(--token-terminal-line);
   --color-danger: var(--token-danger);
+  --color-dot-close: var(--token-dot-close);
+  --color-dot-min: var(--token-dot-min);
+  --color-dot-max: var(--token-dot-max);
   --color-term-path: var(--token-term-path);
   --color-glitch-a: var(--token-glitch-a);
   --color-glitch-b: var(--token-glitch-b);

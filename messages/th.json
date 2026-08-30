@@ -68,7 +68,7 @@
         "date": "2024 — NOW",
         "title": "Junior Developer",
         "org": "Learn Tech · กรุงเทพฯ",
-        "body": "พัฒนาและดูแลแพลตฟอร์ม LMS หลักของบริษัทแบบ full stack รวมถึงระบบ LMS ของลูกค้า เว็บสมาชิก/จองคอร์ส ระบบ e-learning ภาครัฐ (เอกสาร API 129 endpoints) เกม VR 13 เกม สื่อ SCORM/xAPI และงานดูแลฐานข้อมูล production"
+        "body": "พัฒนาและดูแลแพลตฟอร์ม LMS หลักของบริษัทแบบ full stack รวมถึงระบบ LMS ของลูกค้า เว็บสมาชิก/จองคอร์ส ระบบ e-learning ภาครัฐ (เอกสาร API 129 endpoints) เกม VR 18 เกม สื่อ SCORM/xAPI และงานดูแลฐานข้อมูล production"
       },
       "goskillup": {
         "date": "2026",
@@ -115,7 +115,14 @@
     "githubValue": "github.com/HaroonKasor",
     "phoneValue": "062-496-9217",
     "locationValue": "กรุงเทพฯ ประเทศไทย",
-    "emailValue": "haroonkasor.dev@gmail.com"
+    "emailValue": "haroonkasor.dev@gmail.com",
+    "line": "LINE",
+    "lineValue": "harunfy",
+    "lineQrTitle": "เพิ่มเพื่อนใน LINE",
+    "lineQrHint": "สแกนด้วยแอป LINE หรือเปิดลิงก์บนมือถือ",
+    "lineOpen": "เปิดใน LINE",
+    "lineShowQr": "แสดง QR code LINE ของ harunfy",
+    "close": "ปิด"
   },
   "meta": {
     "title": "ฮารูน กาซอร์ — Full-stack Developer",
@@ -154,8 +161,8 @@
     "meta": "อัปเดตล่าสุด ส.ค. 2026 · PDF {size}",
     "loading": "กำลังโหลดเรซูเม่…",
     "sizes": {
-      "en": "83 KB",
-      "th": "215 KB"
+      "en": "85 KB",
+      "th": "224 KB"
     }
   },
   "detail": {
@@ -175,7 +182,9 @@
     "features": {
       "index": "02",
       "label": "ฟีเจอร์หลัก",
-      "title": "ฟีเจอร์หลัก"
+      "title": "ฟีเจอร์หลัก",
+      "openShot": "ดูภาพขนาดเต็ม: {label}",
+      "closeShot": "ปิด"
     },
     "tech": {
       "index": "03",
@@ -186,7 +195,14 @@
     "internal": "ระบบภายในของลูกค้า",
     "liveDemo": "ดูเว็บจริง",
     "github": "GitHub",
-    "screenshotSlot": "ภาพหน้าจอเร็วๆ นี้"
+    "screenshotSlot": "ภาพหน้าจอเร็วๆ นี้",
+    "report": "เล่มโครงงาน (PDF)",
+    "reportTitle": "เล่มโครงงาน",
+    "reportOpen": "เปิดในแท็บใหม่",
+    "reportLoading": "กำลังโหลดเอกสาร",
+    "close": "ปิด",
+    "reportMeta": "PDF {size} · {pages} หน้า",
+    "reportSize": "4.5 MB"
   },
   "common": {
     "themeToggle": "สลับธีม",

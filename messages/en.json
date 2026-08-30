@@ -68,7 +68,7 @@
         "date": "2024 — NOW",
         "title": "Junior Developer",
         "org": "Learn Tech · Bangkok",
-        "body": "Build and maintain the company's main LMS platform across the full stack, plus client LMS systems, a membership & course-booking site, a government e-learning platform (129 documented API endpoints), 13 VR games, SCORM/xAPI content and production database operations."
+        "body": "Build and maintain the company's main LMS platform across the full stack, plus client LMS systems, a membership & course-booking site, a government e-learning platform (129 documented API endpoints), 18 VR games, SCORM/xAPI content and production database operations."
       },
       "goskillup": {
         "date": "2026",
@@ -115,7 +115,14 @@
     "githubValue": "github.com/HaroonKasor",
     "phoneValue": "062-496-9217",
     "locationValue": "Bangkok, Thailand",
-    "emailValue": "haroonkasor.dev@gmail.com"
+    "emailValue": "haroonkasor.dev@gmail.com",
+    "line": "LINE",
+    "lineValue": "harunfy",
+    "lineQrTitle": "Add me on LINE",
+    "lineQrHint": "Scan with the LINE app, or open the link on your phone.",
+    "lineOpen": "Open in LINE",
+    "lineShowQr": "Show LINE QR code for harunfy",
+    "close": "Close"
   },
   "meta": {
     "title": "Haroon Kasor — Full-stack Developer",
@@ -154,8 +161,8 @@
     "meta": "Updated Aug 2026 · PDF {size}",
     "loading": "Loading resume…",
     "sizes": {
-      "en": "83 KB",
-      "th": "215 KB"
+      "en": "85 KB",
+      "th": "224 KB"
     }
   },
   "detail": {
@@ -175,7 +182,9 @@
     "features": {
       "index": "02",
       "label": "KEY FEATURES",
-      "title": "Key features"
+      "title": "Key features",
+      "openShot": "View full-size screenshot: {label}",
+      "closeShot": "Close"
     },
     "tech": {
       "index": "03",
@@ -186,7 +195,14 @@
     "internal": "Internal client system",
     "liveDemo": "Live demo",
     "github": "GitHub",
-    "screenshotSlot": "Screenshot coming soon"
+    "screenshotSlot": "Screenshot coming soon",
+    "report": "Project report (PDF)",
+    "reportTitle": "Project report",
+    "reportOpen": "Open in new tab",
+    "reportLoading": "Loading document",
+    "close": "Close",
+    "reportMeta": "PDF {size} · {pages} pages",
+    "reportSize": "4.5 MB"
   },
   "common": {
     "themeToggle": "Toggle theme",

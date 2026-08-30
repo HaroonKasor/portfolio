@@ -1,6 +1,7 @@
 import * as simpleIcons from 'simple-icons';
 
 import { cn } from '@/lib/utils';
+import { brandFill } from '@/lib/brandColor';
 
 export type TechChipProps = {
   name: string;
@@ -12,17 +13,6 @@ export type TechChipProps = {
 };
 
 type SimpleIcon = { title: string; slug: string; path: string; hex: string };
-
-/** Monochrome brand marks that would vanish against the opposite theme —
- * render these with `currentColor` so they invert in dark mode. */
-const ADAPTIVE = new Set([
-  'nextdotjs',
-  'github',
-  'prisma',
-  // Same problem as the three above: simple-icons gives openjdk #000000,
-  // which disappears against the dark background.
-  'openjdk',
-]);
 
 function toIconKey(slug: string): string {
   return `si${slug.charAt(0).toUpperCase()}${slug.slice(1)}`;
@@ -43,7 +33,6 @@ function lettermark(name: string): string {
 
 export function TechChip({ name, slug, mark, className }: TechChipProps) {
   const icon = getIcon(slug);
-  const adaptive = ADAPTIVE.has(slug);
 
   return (
     <span
@@ -56,7 +45,7 @@ export function TechChip({ name, slug, mark, className }: TechChipProps) {
         <svg
           viewBox="0 0 24 24"
           className="h-4 w-4 shrink-0"
-          fill={adaptive ? 'currentColor' : `#${icon.hex}`}
+          fill={brandFill(icon.hex)}
           aria-hidden
         >
           <path d={icon.path} />

@@ -28,6 +28,7 @@ export function PdfViewer({
 
   useEffect(() => {
     let cancelled = false;
+    let cleanupLazy = () => {};
     const host = pagesRef.current;
     if (!host) return;
     host.replaceChildren();
@@ -44,35 +45,72 @@ export function PdfViewer({
         const width = Math.min(host.clientWidth, 720);
         const dpr = Math.min(window.devicePixelRatio || 1, 2);
 
-        for (let i = 1; i <= doc.numPages; i++) {
-          const page = await doc.getPage(i);
-          if (cancelled) return;
-          const base = page.getViewport({ scale: 1 });
-          const scale = width / base.width;
-          const viewport = page.getViewport({ scale });
+        // Size every placeholder from page 1 so the scroll height is right
+        // immediately; pages are rasterised lazily as they near the viewport,
+        // which keeps a 90-page document from blocking on 90 renders.
+        const first = await doc.getPage(1);
+        if (cancelled) return;
+        const firstBase = first.getViewport({ scale: 1 });
+        const scale = width / firstBase.width;
+        const placeholder = first.getViewport({ scale });
 
+        const canvases: HTMLCanvasElement[] = [];
+        for (let i = 1; i <= doc.numPages; i++) {
           const canvas = document.createElement("canvas");
-          canvas.width = Math.floor(viewport.width * dpr);
-          canvas.height = Math.floor(viewport.height * dpr);
-          canvas.style.width = `${viewport.width}px`;
-          canvas.style.height = `${viewport.height}px`;
+          canvas.width = Math.floor(placeholder.width * dpr);
+          canvas.height = Math.floor(placeholder.height * dpr);
+          canvas.style.width = `${placeholder.width}px`;
+          canvas.style.height = `${placeholder.height}px`;
           canvas.dataset.page = String(i);
           canvas.className =
             "bg-white block rounded-[4px] shadow-[0_4px_16px_rgba(0,0,0,0.12)]";
           canvas.setAttribute("role", "img");
           canvas.setAttribute("aria-label", `${title} — ${i}/${doc.numPages}`);
           host.appendChild(canvas);
+          canvases.push(canvas);
+        }
 
+        const rendered = new Set<number>();
+        const renderPage = async (canvas: HTMLCanvasElement) => {
+          const n = Number(canvas.dataset.page);
+          if (rendered.has(n)) return;
+          rendered.add(n);
+          const page = n === 1 ? first : await doc.getPage(n);
+          if (cancelled) return;
+          const viewport = page.getViewport({
+            scale: width / page.getViewport({ scale: 1 }).width,
+          });
+          canvas.width = Math.floor(viewport.width * dpr);
+          canvas.height = Math.floor(viewport.height * dpr);
+          canvas.style.width = `${viewport.width}px`;
+          canvas.style.height = `${viewport.height}px`;
           const ctx = canvas.getContext("2d");
-          if (!ctx) continue;
+          if (!ctx) return;
           await page.render({
             canvas,
             canvasContext: ctx,
             viewport,
             transform: dpr === 1 ? undefined : [dpr, 0, 0, dpr, 0, 0],
           }).promise;
-        }
-        if (!cancelled) setStatus("ready");
+        };
+
+        // First page synchronously so "ready" means something is visible.
+        await renderPage(canvases[0]);
+        if (cancelled) return;
+        setStatus("ready");
+
+        const lazy = new IntersectionObserver(
+          (entries) => {
+            for (const entry of entries) {
+              if (!entry.isIntersecting) continue;
+              lazy.unobserve(entry.target);
+              void renderPage(entry.target as HTMLCanvasElement);
+            }
+          },
+          { root: scrollRef.current, rootMargin: "1200px 0px" },
+        );
+        canvases.slice(1).forEach((c) => lazy.observe(c));
+        cleanupLazy = () => lazy.disconnect();
       } catch {
         if (!cancelled) setStatus("error");
       }
@@ -80,6 +118,7 @@ export function PdfViewer({
 
     return () => {
       cancelled = true;
+      cleanupLazy();
     };
   }, [src, title, onPages]);
 
@@ -129,12 +168,12 @@ export function PdfViewer({
           aria-label={loadingLabel}
           className="mx-auto w-full max-w-[720px] rounded-[4px] bg-white p-10 shadow-[0_4px_16px_rgba(0,0,0,0.08)]"
         >
-          <div className="bg-line/70 mb-4 h-6 w-40 rounded" />
-          <div className="bg-line/50 mb-8 h-3 w-72 rounded" />
+          <div className="skeleton mb-4 h-6 w-40 rounded" />
+          <div className="skeleton mb-8 h-3 w-72 rounded" />
           {[95, 80, 88, 0, 30, 100, 0, 60, 92, 84, 96, 78, 90, 86, 70].map((w, i) => (
             <div
               key={i}
-              className="bg-line/50 mb-3 h-2 rounded"
+              className="skeleton mb-3 h-2 rounded"
               style={{ width: `${w}%`, opacity: w ? 1 : 0 }}
             />
           ))}
