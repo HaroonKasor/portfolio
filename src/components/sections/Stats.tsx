@@ -1,5 +1,6 @@
 import { getTranslations } from "next-intl/server";
 import { Container } from "@/components/ui/Container";
+import { CountUp } from "@/components/ui/CountUp";
 
 const KEYS = ["years", "projects", "endpoints"] as const;
 
@@ -19,7 +20,7 @@ export async function Stats() {
               ].join(" ")}
             >
               <p className="text-text text-[32px] leading-none font-bold tracking-tight lg:text-[52px]">
-                {t(`${key}.value`)}
+                <CountUp value={t(`${key}.value`)} className="tabular-nums" />
                 <span className="text-accent">{t(`${key}.suffix`)}</span>
               </p>
               <p className="text-muted max-w-[220px] text-[11px] leading-snug lg:text-sm">
