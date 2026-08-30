@@ -1,0 +1,126 @@
+/* Design tokens — single source of truth. Never hardcode hex in components.
+ * Raw values live on --token-*; @theme inline maps them onto Tailwind's
+ * --color-* / --radius-* namespaces so utilities like `bg-bg`, `text-muted`,
+ * `border-line` and `rounded-2xl` exist. Keeping the raw names distinct from
+ * the theme names avoids a self-referential var() cycle. */
+
+:root {
+  --token-bg: #faf9f6;
+  --token-surface: #ffffff;
+  --token-line: #e3e0db;
+  --token-text: #0f2a4a;
+  --token-muted: #6b6b73;
+  --token-accent: #1565d8;
+  --token-accent-soft: #e3f0ff;
+  --token-on-accent: #ffffff;
+  /* Small text on --accent-soft needs more punch than --accent alone. */
+  --token-accent-strong: #1257bd;
+  --token-inverse: #121214;
+  --token-on-inverse: #ffffff;
+  --token-footer: #121214;
+
+  /* Accent used on top of the gradient experience band. */
+  --token-band-accent: #ffd966;
+  /* "Open to work" status dot. */
+  --token-status: #21b866;
+  /* String literals inside the terminal cards. */
+  --token-term-string: #1a7f4b;
+  --token-term-keyword: #8b3fd9;
+
+  /* 404 error terminal. */
+  --token-terminal: #ffffff;
+  --token-terminal-line: #e3e0db;
+  --token-danger: #d93a46;
+  --token-dot-close: #ff5f57;
+  --token-dot-min: #febc2e;
+  --token-dot-max: #28c840;
+  --token-term-path: #1a7f4b;
+  /* Glitch ghost copies are the same hues in both themes. */
+  --token-glitch-a: #5994ff;
+  --token-glitch-b: #ff6b9e;
+
+  --gradient-hero: linear-gradient(100deg, #fde8f0 0%, #ebe8ff 50%, #e3f7f2 100%);
+  --gradient-band: linear-gradient(105deg, #1766e0, #2a9ef2);
+
+  --shadow-card: 0 2px 8px rgba(0, 0, 0, 0.04);
+  --shadow-float: 0 24px 56px -12px rgba(26, 38, 102, 0.1);
+  --shadow-accent: 0 8px 24px rgba(21, 101, 216, 0.3);
+
+  --container-max: 1440px;
+}
+
+html[data-theme='dark'] {
+  --token-bg: #0b0e17;
+  --token-surface: #131826;
+  --token-line: #29303f;
+  --token-text: #f2f3f7;
+  --token-muted: #9ea8bd;
+  --token-accent: #5994ff;
+  --token-accent-soft: #1f335c;
+  --token-on-accent: #0b0e17;
+  --token-accent-strong: #9cc3ff;
+  --token-inverse: #f2f3f7;
+  --token-on-inverse: #0b0e17;
+  --token-footer: #080a12;
+
+  /* Band accent is intentionally identical in both themes. */
+  --token-band-accent: #ffd966;
+  --token-status: #34d07a;
+  --token-term-string: #73d9a0;
+  --token-term-keyword: #c9a3ff;
+
+  --token-terminal: #0f1420;
+  --token-terminal-line: #29303f;
+  --token-danger: #ff6b75;
+  --token-dot-close: #ff5f57;
+  --token-dot-min: #febc2e;
+  --token-dot-max: #28c840;
+  --token-term-path: #73d9a0;
+  --token-glitch-a: #5994ff;
+  --token-glitch-b: #ff6b9e;
+
+  --gradient-hero: linear-gradient(100deg, #291433 0%, #0f1433 50%, #0a2429 100%);
+  --gradient-band: linear-gradient(105deg, #1247b3, #1f73d9);
+}
+
+@theme inline {
+  --color-bg: var(--token-bg);
+  --color-surface: var(--token-surface);
+  --color-line: var(--token-line);
+  --color-text: var(--token-text);
+  --color-muted: var(--token-muted);
+  --color-accent: var(--token-accent);
+  --color-accent-soft: var(--token-accent-soft);
+  --color-on-accent: var(--token-on-accent);
+  --color-accent-strong: var(--token-accent-strong);
+  --color-inverse: var(--token-inverse);
+  --color-on-inverse: var(--token-on-inverse);
+  --color-footer: var(--token-footer);
+  --color-band-accent: var(--token-band-accent);
+  --color-status: var(--token-status);
+  --color-term-string: var(--token-term-string);
+  --color-term-keyword: var(--token-term-keyword);
+  --color-terminal: var(--token-terminal);
+  --color-terminal-line: var(--token-terminal-line);
+  --color-danger: var(--token-danger);
+  --color-dot-close: var(--token-dot-close);
+  --color-dot-min: var(--token-dot-min);
+  --color-dot-max: var(--token-dot-max);
+  --color-term-path: var(--token-term-path);
+  --color-glitch-a: var(--token-glitch-a);
+  --color-glitch-b: var(--token-glitch-b);
+
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 16px;
+  --radius-xl: 20px;
+  --radius-2xl: 24px;
+  --radius-full: 999px;
+
+  --shadow-card: 0 2px 8px rgba(0, 0, 0, 0.04);
+  --shadow-float: 0 24px 56px -12px rgba(26, 38, 102, 0.1);
+  --shadow-accent: 0 8px 24px rgba(21, 101, 216, 0.3);
+
+  --font-sans: var(--font-outfit), var(--font-prompt), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+}

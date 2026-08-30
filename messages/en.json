@@ -1,0 +1,216 @@
+{
+  "nav": {
+    "about": "About",
+    "experience": "Experience",
+    "work": "Work",
+    "contact": "Contact",
+    "cv": "View CV",
+    "menu": "Open menu",
+    "close": "Close menu",
+    "github": "GitHub"
+  },
+  "hero": {
+    "tag": "JUNIOR DEVELOPER @ LEARN TECH · LMS & WEB APPS",
+    "headline": {
+      "line1": "Haroon Kasor",
+      "line2": "Full-stack",
+      "line3": "Developer"
+    },
+    "subtitle": "Junior Developer @ Learn Tech · Next.js, React, Spring Boot · Bangkok",
+    "ctaWork": "View work →",
+    "ctaGithub": "github.com/HaroonKasor",
+    "terminalFile": "haroon.ts"
+  },
+  "stats": {
+    "years": {
+      "value": "1",
+      "suffix": "+",
+      "label": "years as a working developer"
+    },
+    "projects": {
+      "value": "10",
+      "suffix": "+",
+      "label": "projects delivered to real clients"
+    },
+    "endpoints": {
+      "value": "129",
+      "suffix": "",
+      "label": "API endpoints designed & documented"
+    }
+  },
+  "about": {
+    "index": "01",
+    "label": "ABOUT",
+    "title": "Turning requirements into features that actually ship",
+    "p1": "I'm a Junior Developer at Learn Tech since August 2024, responsible for the company's main LMS platform across the full stack — from audit logging and PDPA-compliant user data management to social learning features, admin reporting and SCORM/xAPI content.",
+    "p2": "In parallel I'm finishing a B.Eng. in Computer and Electronics Engineering at Ramkhamhaeng University. My final-year project is GoSkillUp LMS, built with Next.js, Prisma and Docker.",
+    "groups": {
+      "frontend": {
+        "title": "FRONT-END",
+        "items": "React · Next.js · TypeScript · JavaScript · Tailwind CSS"
+      },
+      "backend": {
+        "title": "BACK-END / DATA",
+        "items": "Java · Spring Boot · MySQL · SQL Server · API Integration"
+      },
+      "tools": {
+        "title": "TOOLS & AI",
+        "items": "GitHub · GitLab · Docker · Figma · Playwright · Claude Code · Codex"
+      }
+    }
+  },
+  "experience": {
+    "index": "02",
+    "label": "EXPERIENCE",
+    "title": "The road so far",
+    "items": {
+      "learntech": {
+        "date": "2024 — NOW",
+        "title": "Junior Developer",
+        "org": "Learn Tech · Bangkok",
+        "body": "Build and maintain the company's main LMS platform across the full stack, plus client LMS systems, a membership & course-booking site, a government e-learning platform (129 documented API endpoints), 18 VR games, SCORM/xAPI content and production database operations."
+      },
+      "goskillup": {
+        "date": "2026",
+        "title": "Final Year Project — GoSkillUp LMS",
+        "org": "Ramkhamhaeng University",
+        "body": "An end-to-end LMS: course management, enrollment, quizzes, certificates and reporting with Next.js, React, Tailwind and Prisma; SCORM/xAPI support; deployed with Docker."
+      },
+      "degree": {
+        "date": "2022 — 2026",
+        "title": "B.Eng. Computer & Electronics Engineering",
+        "org": "Ramkhamhaeng University · Bangkok",
+        "body": "Bachelor of Engineering, Computer and Electronics Engineering."
+      }
+    }
+  },
+  "projects": {
+    "index": "03",
+    "label": "WORK",
+    "title": "Work I actually shipped"
+  },
+  "github": {
+    "index": "04",
+    "label": "GITHUB",
+    "title": "Code you can read",
+    "viewAll": "All repos on github.com/HaroonKasor",
+    "stars": "stars"
+  },
+  "testimonial": {
+    "index": "05",
+    "label": "TESTIMONIAL",
+    "title": "From people I've worked with",
+    "placeholder": "Recommendations from colleagues and clients are on the way."
+  },
+  "contact": {
+    "index": "06",
+    "label": "CONTACT",
+    "title": "Open for\nFull-stack Developer roles",
+    "copy": "Copy",
+    "copied": "Copied",
+    "github": "GITHUB",
+    "phone": "PHONE",
+    "location": "LOCATION",
+    "email": "EMAIL",
+    "githubValue": "github.com/HaroonKasor",
+    "phoneValue": "062-496-9217",
+    "locationValue": "Bangkok, Thailand",
+    "emailValue": "haroonkasor.dev@gmail.com",
+    "line": "LINE",
+    "lineValue": "harunfy",
+    "lineQrTitle": "Add me on LINE",
+    "lineQrHint": "Scan with the LINE app, or open the link on your phone.",
+    "lineOpen": "Open in LINE",
+    "lineShowQr": "Show LINE QR code for harunfy",
+    "close": "Close"
+  },
+  "meta": {
+    "title": "Haroon Kasor — Full-stack Developer",
+    "description": "Junior Developer at Learn Tech building LMS platforms and web apps with Next.js, React and Spring Boot. Based in Bangkok."
+  },
+  "footer": {
+    "copyright": "© 2026 HAROON KASOR",
+    "location": "BANGKOK, THAILAND"
+  },
+  "notFound": {
+    "eyebrow": "ERROR 404 · PAGE NOT FOUND",
+    "title": "This page doesn't exist\n(or hasn't been pushed yet)",
+    "body": "The link may be mistyped or the page moved. Pick a destination from the terminal or use the buttons.",
+    "backHome": "Back home",
+    "viewWork": "View work",
+    "terminalFile": "error.log",
+    "cmdOpen": "open /projcts",
+    "errorLine": "bash: /projcts: No such file or directory",
+    "cmdLs": "ls ~",
+    "rows": {
+      "home": "Home",
+      "work": "Work",
+      "experience": "Experience",
+      "contact": "Contact"
+    },
+    "cmdCd": "cd ~/projects"
+  },
+  "cv": {
+    "title": "Resume — Haroon Kasor",
+    "thai": "ไทย",
+    "english": "English",
+    "openNewTab": "Open in new tab",
+    "download": "Download PDF",
+    "page": "Page {current} / {total}",
+    "close": "Close",
+    "meta": "Updated Aug 2026 · PDF {size}",
+    "loading": "Loading resume…",
+    "sizes": {
+      "en": "85 KB",
+      "th": "224 KB"
+    }
+  },
+  "detail": {
+    "back": "Back to work",
+    "role": "ROLE",
+    "period": "PERIOD",
+    "stack": "STACK",
+    "type": "TYPE",
+    "overview": {
+      "index": "01",
+      "label": "OVERVIEW",
+      "problem": "Problem",
+      "solution": "What I did",
+      "result": "Result",
+      "title": "Overview"
+    },
+    "features": {
+      "index": "02",
+      "label": "KEY FEATURES",
+      "title": "Key features",
+      "openShot": "View full-size screenshot: {label}",
+      "closeShot": "Close"
+    },
+    "tech": {
+      "index": "03",
+      "label": "TECH STACK",
+      "title": "Tech stack"
+    },
+    "next": "Next project",
+    "internal": "Internal client system",
+    "liveDemo": "Live demo",
+    "github": "GitHub",
+    "screenshotSlot": "Screenshot coming soon",
+    "report": "Project report (PDF)",
+    "reportTitle": "Project report",
+    "reportOpen": "Open in new tab",
+    "reportLoading": "Loading document",
+    "close": "Close",
+    "reportMeta": "PDF {size} · {pages} pages",
+    "reportSize": "4.5 MB"
+  },
+  "common": {
+    "themeToggle": "Toggle theme",
+    "langToggle": "Switch language",
+    "backToTop": "Back to top",
+    "skipToContent": "Skip to content",
+    "siteName": "Haroon Kasor",
+    "role": "Full-stack Developer",
+    "tagline": "Junior Developer @ Learn Tech · Next.js, React, Spring Boot · Bangkok"
+  }
+}
