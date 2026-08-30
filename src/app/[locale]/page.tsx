@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { Reveal } from "@/components/ui/Reveal";
 import { hasLocale } from "next-intl";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import { routing } from "@/i18n/routing";
@@ -45,12 +46,24 @@ export default async function HomePage({ params }: PageProps) {
       <main id="content">
         <Hero />
         <Stats />
-        <About />
-        <Experience />
-        <Projects />
-        <GitHub />
-        <Testimonial />
-        <Contact />
+        <Reveal>
+          <About />
+        </Reveal>
+        <Reveal>
+          <Experience />
+        </Reveal>
+        <Reveal>
+          <Projects />
+        </Reveal>
+        <Reveal>
+          <GitHub />
+        </Reveal>
+        <Reveal>
+          <Testimonial />
+        </Reveal>
+        <Reveal>
+          <Contact />
+        </Reveal>
       </main>
 
       <Footer />
