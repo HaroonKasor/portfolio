@@ -1,6 +1,7 @@
 "use client";
 
 import { useCallback, useEffect, useRef, useState } from "react";
+import { createPortal } from "react-dom";
 import { useLocale, useTranslations } from "next-intl";
 import { Download, ExternalLink, X } from "lucide-react";
 import { PdfViewer } from "./PdfViewer";
@@ -39,8 +40,14 @@ export function CvPreviewModal({
   const locale = useLocale();
   if (!open) return null;
   // Keyed on locale so the dialog remounts (and re-picks its default document)
-  // if the site language changes while it is open.
-  return <CvDialog key={locale} onClose={onClose} />;
+  // if the site language changes while it is open. Portaled to <body>: the
+  // navbar that owns this component is sticky with backdrop-filter, which
+  // makes it the containing block for `position: fixed` descendants, so the
+  // overlay would otherwise scroll away with the page.
+  return createPortal(
+    <CvDialog key={locale} onClose={onClose} />,
+    document.body,
+  );
 }
 
 function CvDialog({ onClose }: { onClose: () => void }) {
@@ -144,7 +151,7 @@ function CvDialog({ onClose }: { onClose: () => void }) {
         role="dialog"
         aria-modal="true"
         aria-label={t("title")}
-        className="bg-surface flex h-[92vh] w-full max-w-[900px] flex-col overflow-hidden rounded-t-[24px] shadow-[var(--shadow-float)] sm:h-[88vh] sm:rounded-[20px]"
+        className="overlay-in bg-surface flex h-[92vh] w-full max-w-[900px] flex-col overflow-hidden rounded-t-[24px] shadow-[var(--shadow-float)] sm:h-[88vh] sm:rounded-[20px]"
       >
         {/* Grab handle — bottom-sheet affordance on mobile only. */}
         <div className="flex justify-center pt-3 sm:hidden" aria-hidden="true">

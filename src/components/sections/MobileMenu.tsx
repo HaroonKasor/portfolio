@@ -1,9 +1,11 @@
 "use client";
 
 import { useEffect, useRef } from "react";
+import { createPortal } from "react-dom";
 import { useTranslations } from "next-intl";
 import { ArrowUpRight, X } from "lucide-react";
 import { LangToggle } from "@/components/ui/LangToggle";
+import { Link } from "@/i18n/navigation";
 import { GITHUB_URL } from "@/lib/github";
 
 const FOCUSABLE = 'a[href], button:not([disabled]), [tabindex]:not([tabindex="-1"])';
@@ -16,10 +18,10 @@ type MenuItem = {
 };
 
 const ITEMS: MenuItem[] = [
-  { index: "01", key: "about", href: "#about" },
-  { index: "02", key: "experience", href: "#experience" },
-  { index: "03", key: "work", href: "#work" },
-  { index: "04", key: "contact", href: "#contact" },
+  { index: "01", key: "about", href: "/#about" },
+  { index: "02", key: "experience", href: "/#experience" },
+  { index: "03", key: "work", href: "/#work" },
+  { index: "04", key: "contact", href: "/#contact" },
   { index: "05", key: "github", href: GITHUB_URL, external: true },
 ];
 
@@ -79,13 +81,13 @@ export function MobileMenu({
 
   if (!open) return null;
 
-  return (
+  return createPortal(
     <div
       ref={panelRef}
       role="dialog"
       aria-modal="true"
       aria-label={t("menu")}
-      className="bg-bg fixed inset-0 z-[55] flex flex-col overflow-y-auto lg:hidden"
+      className="overlay-in bg-bg fixed inset-0 z-[55] flex flex-col overflow-y-auto lg:hidden"
     >
       <div className="flex items-center justify-between px-5 py-5">
         <span className="text-text text-[15px] font-semibold">Haroon Kasor</span>
@@ -127,9 +129,9 @@ export function MobileMenu({
               {inner}
             </a>
           ) : (
-            <a key={item.key} href={item.href} onClick={onClose} className={cls}>
+            <Link key={item.key} href={item.href} onClick={onClose} className={cls}>
               {inner}
-            </a>
+            </Link>
           );
         })}
 
@@ -155,7 +157,8 @@ export function MobileMenu({
         <span>{tc("phoneValue")}</span>
         <span>{tc("locationValue")}</span>
       </div>
-    </div>
+    </div>,
+    document.body,
   );
 }
 
