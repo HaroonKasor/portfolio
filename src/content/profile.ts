@@ -5,6 +5,9 @@ export const profile = {
   github: 'https://github.com/HaroonKasor',
   githubUser: 'HaroonKasor',
   githubLabel: 'github.com/HaroonKasor',
+  lineId: 'harunfy',
+  lineUrl: 'https://line.me/ti/p/g2zxCyDgt1',
+  lineQr: '/images/line-qr.png',
   location: 'Bangkok, Thailand',
   cvFiles: {
     en: '/cv/haroon-kasor-en.pdf',

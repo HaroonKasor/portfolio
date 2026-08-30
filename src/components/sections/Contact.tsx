@@ -2,6 +2,7 @@ import { getTranslations } from "next-intl/server";
 import { Container } from "@/components/ui/Container";
 import { GITHUB_URL } from "@/lib/github";
 import { CopyEmailButton } from "./CopyEmailButton";
+import { LineQrButton } from "./LineQrButton";
 
 export async function Contact() {
   const t = await getTranslations("contact");
@@ -29,7 +30,7 @@ export async function Contact() {
           <CopyEmailButton email={email} />
         </div>
 
-        <dl className="border-line mt-16 grid gap-8 border-t pt-10 sm:grid-cols-3">
+        <dl className="border-line mt-16 grid gap-8 border-t pt-10 sm:grid-cols-2 lg:grid-cols-4">
           <div>
             <dt className="text-muted text-[11px] font-semibold tracking-[0.14em]">
               {t("github")}
@@ -56,6 +57,14 @@ export async function Contact() {
               >
                 {t("phoneValue")}
               </a>
+            </dd>
+          </div>
+          <div>
+            <dt className="text-muted text-[11px] font-semibold tracking-[0.14em]">
+              {t("line")}
+            </dt>
+            <dd className="mt-2">
+              <LineQrButton />
             </dd>
           </div>
           <div>
