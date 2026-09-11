@@ -526,7 +526,7 @@ export const projects: Project[] = [
     index: '05',
     badge: 'IN DEVELOPMENT',
     tags: ['Spring Boot', 'React', 'MySQL', 'LINE'],
-    cover: { from: '#0FA3A3', to: '#065F5F' },
+    cover: { from: '#0FA3A3', to: '#065F5F', image: '/images/workcatch.webp' },
     title: {
       en: 'WorkCatch',
       th: 'WorkCatch',
@@ -597,7 +597,8 @@ export const projects: Project[] = [
           en: 'A roughly 500-line Thai date and time parser reads phrases like "พรุ่งนี้ 10 โมง" and builds the task draft. It never guesses: an ambiguous "ห้าโมง" produces a draft without a due time plus a reply offering the possible readings.',
           th: 'ตัวแยกวิเคราะห์วันเวลาภาษาไทยราว 500 บรรทัด อ่านวลีอย่าง "พรุ่งนี้ 10 โมง" แล้วสร้างงานฉบับร่าง โดยไม่เดาเลย ถ้าเจอคำกำกวมอย่าง "ห้าโมง" จะสร้างร่างที่ยังไม่ใส่กำหนด พร้อมตอบกลับให้เลือกความหมายที่เป็นไปได้',
         },
-        shot: { en: 'LINE chat to task', th: 'จากแชต LINE เป็นงาน' },
+        shot: { en: 'Inbox triage', th: 'กล่องรับงานจากบอท' },
+        image: '/images/workcatch/inbox.webp',
       },
       {
         title: { en: 'Reminders through LINE', th: 'เตือนผ่าน LINE' },
@@ -605,7 +606,8 @@ export const projects: Project[] = [
           en: 'A scheduler plans reminders ahead of each due date, claims them so a delivery happens at most once, sends through the LINE Messaging API and records every attempt. When no channel token is configured the sender swaps to a logging stub, so nothing half-configured ever reaches a user.',
           th: 'ตัวจัดตารางวางแผนการเตือนล่วงหน้าก่อนกำหนดส่ง จองรายการเพื่อให้ส่งได้ไม่เกินหนึ่งครั้ง ส่งผ่าน LINE Messaging API และบันทึกทุกความพยายาม ถ้ายังไม่ตั้งค่า token ของ channel ตัวส่งจะสลับเป็น stub ที่เขียน log แทน จึงไม่มีข้อความจากระบบที่ตั้งค่าไม่ครบหลุดถึงผู้ใช้',
         },
-        shot: { en: 'Reminder pipeline', th: 'ระบบแจ้งเตือน' },
+        shot: { en: 'Reminder history', th: 'ประวัติการแจ้งเตือน' },
+        image: '/images/workcatch/reminders.webp',
       },
       {
         title: { en: 'Tasks, projects and follow-ups', th: 'งาน โปรเจกต์ และการติดตาม' },
@@ -614,6 +616,7 @@ export const projects: Project[] = [
           th: 'งานแต่ละรายการมีสถานะ ความสำคัญ กำหนดส่ง วันติดตามผล เช็กลิสต์ และบันทึกประวัติครบ จัดกลุ่มเป็นโปรเจกต์แยกสี และมีหน้า inbox ไว้คัดกรองร่างที่บอทสร้างก่อนรับเป็นงานจริง',
         },
         shot: { en: 'Task board', th: 'บอร์ดงาน' },
+        image: '/images/workcatch/board.webp',
       },
       {
         title: { en: 'Knowledge attached to the work', th: 'ความรู้ติดอยู่กับงาน' },
@@ -622,6 +625,7 @@ export const projects: Project[] = [
           th: 'งานทุกชิ้นแนบโน้ต "งานนี้ทำยังไง" ได้: เนื้อหาแบบบล็อก มีเวอร์ชันย้อนกลับได้ ติดแท็ก ปักหมุด ถังขยะพร้อมกู้คืน และค้นหาเต็มรูปแบบ โดยผูกกับงานหรือโปรเจกต์ที่เกี่ยวข้อง',
         },
         shot: { en: 'Knowledge note', th: 'โน้ตความรู้' },
+        image: '/images/workcatch/note.webp',
       },
       {
         title: { en: 'Encrypted secrets with audited reveal', th: 'ข้อมูลลับเข้ารหัสพร้อมบันทึกการเปิดดู' },
@@ -629,7 +633,8 @@ export const projects: Project[] = [
           en: 'Credentials that belong to a task live in encrypted secret blocks, behind a deployment switch that ships off. Revealing one requires step-up authentication with an unlock code, and every reveal is written to an audit trail.',
           th: 'รหัสผ่านหรือข้อมูลลับของงานเก็บในบล็อกที่เข้ารหัส อยู่หลังสวิตช์ที่ปิดไว้เป็นค่าเริ่มต้น การเปิดดูต้องยืนยันตัวตนเพิ่มด้วย unlock code และทุกการเปิดดูถูกบันทึกลง audit trail',
         },
-        shot: { en: 'Secret block', th: 'บล็อกข้อมูลลับ' },
+        shot: { en: 'Secret block states', th: 'สถานะบล็อกข้อมูลลับ' },
+        image: '/images/workcatch/secrets.webp',
       },
       {
         title: { en: 'Security built in from day one', th: 'ความปลอดภัยตั้งแต่วันแรก' },
@@ -637,7 +642,8 @@ export const projects: Project[] = [
           en: 'Every user-owned resource is addressed by a public UUID and guarded by owner checks; a cross-user isolation test enumerates every owner-scoped endpoint from the request mappings and asserts 404 outside the owner. LINE Login verifies signatures against LINE’s JWKS with the algorithm pinned, and the webhook checks its HMAC on the raw bytes so Thai text verifies correctly.',
           th: 'ทุก resource ของผู้ใช้ถูกอ้างด้วย UUID สาธารณะและมีการตรวจสิทธิ์เจ้าของ มีเทสต์กันข้ามผู้ใช้ที่ไล่ทุก endpoint ที่ผูกกับเจ้าของจาก request mapping และยืนยันว่าได้ 404 เมื่อไม่ใช่เจ้าของ LINE Login ตรวจลายเซ็นกับ JWKS ของ LINE โดยล็อกอัลกอริทึมไว้ และ webhook ตรวจ HMAC บนไบต์ดิบเพื่อให้ข้อความไทยตรวจผ่านถูกต้อง',
         },
-        shot: { en: 'Isolation test', th: 'เทสต์แยกสิทธิ์ผู้ใช้' },
+        shot: { en: 'LINE Login', th: 'หน้าเข้าสู่ระบบด้วย LINE' },
+        image: '/images/workcatch/login.webp',
       },
     ],
     next: 'goskillup-lms',
