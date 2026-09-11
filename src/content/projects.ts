@@ -519,6 +519,127 @@ export const projects: Project[] = [
         shot: { en: 'Teacher report', th: 'รายงานสำหรับครู' },
       },
     ],
+    next: 'workcatch',
+  },
+  {
+    slug: 'workcatch',
+    index: '05',
+    badge: 'IN DEVELOPMENT',
+    tags: ['Spring Boot', 'React', 'MySQL', 'LINE'],
+    cover: { from: '#0FA3A3', to: '#065F5F' },
+    title: {
+      en: 'WorkCatch',
+      th: 'WorkCatch',
+    },
+    summary: {
+      en: 'A personal task tracker I am building: work that arrives by LINE, email or a word in a meeting ends up in one place, and WorkCatch reminds you through LINE before the deadline — capture from LINE is built first. In development, launching soon.',
+      th: 'แอปติดตามงานส่วนตัวที่กำลังสร้าง: งานที่เข้ามาทั้งทางไลน์ อีเมล หรือคำพูดในห้องประชุม มารวมอยู่ที่เดียว แล้ว WorkCatch เตือนผ่าน LINE ก่อนถึงกำหนด โดยเริ่มจากการรับงานผ่าน LINE ก่อน กำลังพัฒนา เปิดให้ใช้เร็ว ๆ นี้',
+    },
+    role: {
+      en: 'Designer and developer — API, web app and LINE integration',
+      th: 'ออกแบบและพัฒนา — API, เว็บแอป และการเชื่อมต่อ LINE',
+    },
+    period: { en: '2026 — now', th: '2026 — ปัจจุบัน' },
+    kind: { en: 'Personal product (in development)', th: 'โปรดักส์ส่วนตัว (กำลังพัฒนา)' },
+    stack: [
+      {
+        name: 'Spring Boot',
+        slug: 'springboot',
+        note: {
+          en: 'Spring Boot 3.5 on Java 17: 22 JPA entities, 59 REST endpoints across 14 API controllers, and 10 Flyway migrations on MySQL 8.',
+          th: 'Spring Boot 3.5 บน Java 17: JPA entity 22 ตัว, REST endpoint 59 เส้นใน API controller 14 ตัว และ Flyway migration 10 ชุดบน MySQL 8',
+        },
+      },
+      {
+        name: 'React',
+        slug: 'react',
+        note: {
+          en: 'React 19 with Vite, TanStack Query and React Router: 26 screens across 30 routes, including the admin console, all in Thai.',
+          th: 'React 19 กับ Vite, TanStack Query และ React Router มีหน้าจอ 26 หน้าใน 30 route รวมคอนโซลแอดมิน ทั้งหมดเป็นภาษาไทย',
+        },
+      },
+      {
+        name: 'LINE',
+        slug: 'line',
+        note: {
+          en: 'LINE Login (OIDC with PKCE and JWKS signature checks) and an HMAC-verified inbound webhook, implemented and tested against a stub; not yet connected to a live LINE channel.',
+          th: 'LINE Login (OIDC พร้อม PKCE และตรวจลายเซ็นผ่าน JWKS) และ webhook ขาเข้าที่ตรวจ HMAC เขียนและทดสอบกับ stub แล้ว ยังไม่ได้ต่อกับ channel จริงของ LINE',
+        },
+      },
+      {
+        name: 'MySQL',
+        slug: 'mysql',
+        note: {
+          en: 'Flyway owns the schema with a separate DDL principal, so the runtime user has CRUD only; migrations are tested with Testcontainers.',
+          th: 'Flyway ดูแล schema ด้วยบัญชีแยกสำหรับ DDL ผู้ใช้ตอนรันมีสิทธิ์แค่ CRUD และทดสอบ migration ด้วย Testcontainers',
+        },
+      },
+    ],
+    links: { comingSoon: true },
+    overview: {
+      problem: {
+        en: 'Work reaches one person through many channels: a LINE message, an email, a word in a meeting. Each promise lives only in memory until someone chases it, and generic to-do apps do not meet Thai users where the work actually arrives.',
+        th: 'งานมาถึงคนคนหนึ่งหลายทาง ทั้งข้อความไลน์ อีเมล และคำพูดในห้องประชุม แต่ละคำรับปากอยู่แค่ในความจำจนกว่าจะมีคนทวง และแอป to-do ทั่วไปก็ไม่ได้อยู่ในช่องทางที่งานเข้ามาจริงของคนไทย',
+      },
+      solution: {
+        en: 'I am building WorkCatch end to end: a Spring Boot API with owner-scoped access on every resource, a Thai natural-language parser that turns a message like "เตือนส่งรายงานพรุ่งนี้ 10 โมง" into a draft task and asks instead of guessing when the phrasing is ambiguous, a reminder pipeline that plans, claims and records every delivery, knowledge notes with versions and encrypted secret blocks, and a React web app in Thai with an admin console.',
+        th: 'ผมกำลังพัฒนา WorkCatch ครบทุกชั้น: Spring Boot API ที่จำกัดสิทธิ์ตามเจ้าของในทุก resource, ตัวแยกวิเคราะห์ภาษาไทยที่แปลงข้อความอย่าง "เตือนส่งรายงานพรุ่งนี้ 10 โมง" เป็นงานฉบับร่าง และถามกลับแทนการเดาเมื่อข้อความกำกวม, ระบบแจ้งเตือนที่วางแผน จอง และบันทึกการส่งทุกครั้ง, โน้ตความรู้พร้อมเวอร์ชันและบล็อกข้อมูลลับที่เข้ารหัส และเว็บแอป React ภาษาไทยพร้อมคอนโซลแอดมิน',
+      },
+      result: {
+        en: 'The codebase stands at 22 entities, 59 endpoints and 26 screens with 25 backend test classes, including a cross-user isolation test that enumerates every owner-scoped endpoint and asserts each one returns 404 outside its owner. The LINE integration runs against a stub in tests; the live channel is not connected yet. Launching soon.',
+        th: 'โค้ดตอนนี้มี entity 22 ตัว endpoint 59 เส้น หน้าจอ 26 หน้า และ test class ฝั่ง backend 25 ชุด รวมเทสต์กันข้ามผู้ใช้ที่ไล่ทุก endpoint ที่ผูกกับเจ้าของ และยืนยันว่าตอบ 404 เมื่อไม่ใช่เจ้าของ ส่วนการเชื่อม LINE รันกับ stub ในเทสต์ ยังไม่ได้ต่อกับ channel จริง เตรียมเปิดให้ใช้เร็ว ๆ นี้',
+      },
+    },
+    features: [
+      {
+        title: { en: 'Thai natural-language capture', th: 'จดงานด้วยภาษาไทยธรรมชาติ' },
+        body: {
+          en: 'A roughly 500-line Thai date and time parser reads phrases like "พรุ่งนี้ 10 โมง" and builds the task draft. It never guesses: an ambiguous "ห้าโมง" produces a draft without a due time plus a reply offering the possible readings.',
+          th: 'ตัวแยกวิเคราะห์วันเวลาภาษาไทยราว 500 บรรทัด อ่านวลีอย่าง "พรุ่งนี้ 10 โมง" แล้วสร้างงานฉบับร่าง โดยไม่เดาเลย ถ้าเจอคำกำกวมอย่าง "ห้าโมง" จะสร้างร่างที่ยังไม่ใส่กำหนด พร้อมตอบกลับให้เลือกความหมายที่เป็นไปได้',
+        },
+        shot: { en: 'LINE chat to task', th: 'จากแชต LINE เป็นงาน' },
+      },
+      {
+        title: { en: 'Reminders through LINE', th: 'เตือนผ่าน LINE' },
+        body: {
+          en: 'A scheduler plans reminders ahead of each due date, claims them so a delivery happens at most once, sends through the LINE Messaging API and records every attempt. When no channel token is configured the sender swaps to a logging stub, so nothing half-configured ever reaches a user.',
+          th: 'ตัวจัดตารางวางแผนการเตือนล่วงหน้าก่อนกำหนดส่ง จองรายการเพื่อให้ส่งได้ไม่เกินหนึ่งครั้ง ส่งผ่าน LINE Messaging API และบันทึกทุกความพยายาม ถ้ายังไม่ตั้งค่า token ของ channel ตัวส่งจะสลับเป็น stub ที่เขียน log แทน จึงไม่มีข้อความจากระบบที่ตั้งค่าไม่ครบหลุดถึงผู้ใช้',
+        },
+        shot: { en: 'Reminder pipeline', th: 'ระบบแจ้งเตือน' },
+      },
+      {
+        title: { en: 'Tasks, projects and follow-ups', th: 'งาน โปรเจกต์ และการติดตาม' },
+        body: {
+          en: 'Tasks carry status, priority, due and follow-up dates, checklists and a full history ledger, grouped into colour-coded projects. An inbox screen triages drafts the bot created before they become real tasks.',
+          th: 'งานแต่ละรายการมีสถานะ ความสำคัญ กำหนดส่ง วันติดตามผล เช็กลิสต์ และบันทึกประวัติครบ จัดกลุ่มเป็นโปรเจกต์แยกสี และมีหน้า inbox ไว้คัดกรองร่างที่บอทสร้างก่อนรับเป็นงานจริง',
+        },
+        shot: { en: 'Task board', th: 'บอร์ดงาน' },
+      },
+      {
+        title: { en: 'Knowledge attached to the work', th: 'ความรู้ติดอยู่กับงาน' },
+        body: {
+          en: 'Every task can carry "how to do this" notes: block-based content with versions and revert, tags, pinning, trash with restore, and full-text search, linked to the task or project they belong to.',
+          th: 'งานทุกชิ้นแนบโน้ต "งานนี้ทำยังไง" ได้: เนื้อหาแบบบล็อก มีเวอร์ชันย้อนกลับได้ ติดแท็ก ปักหมุด ถังขยะพร้อมกู้คืน และค้นหาเต็มรูปแบบ โดยผูกกับงานหรือโปรเจกต์ที่เกี่ยวข้อง',
+        },
+        shot: { en: 'Knowledge note', th: 'โน้ตความรู้' },
+      },
+      {
+        title: { en: 'Encrypted secrets with audited reveal', th: 'ข้อมูลลับเข้ารหัสพร้อมบันทึกการเปิดดู' },
+        body: {
+          en: 'Credentials that belong to a task live in encrypted secret blocks, behind a deployment switch that ships off. Revealing one requires step-up authentication with an unlock code, and every reveal is written to an audit trail.',
+          th: 'รหัสผ่านหรือข้อมูลลับของงานเก็บในบล็อกที่เข้ารหัส อยู่หลังสวิตช์ที่ปิดไว้เป็นค่าเริ่มต้น การเปิดดูต้องยืนยันตัวตนเพิ่มด้วย unlock code และทุกการเปิดดูถูกบันทึกลง audit trail',
+        },
+        shot: { en: 'Secret block', th: 'บล็อกข้อมูลลับ' },
+      },
+      {
+        title: { en: 'Security built in from day one', th: 'ความปลอดภัยตั้งแต่วันแรก' },
+        body: {
+          en: 'Every user-owned resource is addressed by a public UUID and guarded by owner checks; a cross-user isolation test enumerates every owner-scoped endpoint from the request mappings and asserts 404 outside the owner. LINE Login verifies signatures against LINE’s JWKS with the algorithm pinned, and the webhook checks its HMAC on the raw bytes so Thai text verifies correctly.',
+          th: 'ทุก resource ของผู้ใช้ถูกอ้างด้วย UUID สาธารณะและมีการตรวจสิทธิ์เจ้าของ มีเทสต์กันข้ามผู้ใช้ที่ไล่ทุก endpoint ที่ผูกกับเจ้าของจาก request mapping และยืนยันว่าได้ 404 เมื่อไม่ใช่เจ้าของ LINE Login ตรวจลายเซ็นกับ JWKS ของ LINE โดยล็อกอัลกอริทึมไว้ และ webhook ตรวจ HMAC บนไบต์ดิบเพื่อให้ข้อความไทยตรวจผ่านถูกต้อง',
+        },
+        shot: { en: 'Isolation test', th: 'เทสต์แยกสิทธิ์ผู้ใช้' },
+      },
+    ],
     next: 'goskillup-lms',
   },
 ];

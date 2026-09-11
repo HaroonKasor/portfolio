@@ -1,4 +1,4 @@
-import { ArrowLeft, ArrowUpRight, Lock } from "lucide-react";
+import { ArrowLeft, ArrowUpRight, Lock, Rocket } from "lucide-react";
 import { useTranslations } from "next-intl";
 import { Link } from "@/i18n/navigation";
 import { Button } from "@/components/ui/Button";
@@ -17,7 +17,9 @@ export function ProjectHeader({
   const t = useTranslations("detail");
   const meta = [project.kind[locale], project.period[locale], project.role[locale]];
   const links = project.links;
-  const isInternal = links?.internal || (!links?.demo && !links?.repo);
+  const isComingSoon = links?.comingSoon === true;
+  const isInternal =
+    !isComingSoon && (links?.internal || (!links?.demo && !links?.repo));
 
   return (
     <Container className="pt-6 pb-12 md:pt-10 md:pb-16">
@@ -54,7 +56,12 @@ export function ProjectHeader({
         </div>
 
         <div className="flex shrink-0 flex-wrap items-center gap-3">
-          {isInternal ? (
+          {isComingSoon ? (
+            <span className="inline-flex min-h-11 items-center gap-2 rounded-full border border-line bg-surface px-5 text-sm text-muted">
+              <Rocket aria-hidden="true" className="h-4 w-4" />
+              {t("comingSoon")}
+            </span>
+          ) : isInternal ? (
             <span className="inline-flex min-h-11 items-center gap-2 rounded-full border border-line bg-surface px-5 text-sm text-muted">
               <Lock aria-hidden="true" className="h-4 w-4" />
               {t("internal")}

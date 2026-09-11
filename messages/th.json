@@ -202,7 +202,8 @@
     "reportLoading": "กำลังโหลดเอกสาร",
     "close": "ปิด",
     "reportMeta": "PDF {size} · {pages} หน้า",
-    "reportSize": "4.5 MB"
+    "reportSize": "4.5 MB",
+    "comingSoon": "เปิดให้ใช้เร็ว ๆ นี้"
   },
   "common": {
     "themeToggle": "สลับธีม",
