@@ -51,3 +51,8 @@ next-env.d.ts
 
 # omc artifacts
 /.omc
+
+# internal working docs (kept local for Claude Code, not published)
+CLAUDE.md
+AGENTS.md
+/docs/
