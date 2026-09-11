@@ -13,7 +13,7 @@ export type Project = {
   period: Localized;
   kind: Localized;
   stack: { name: string; slug?: string; note: Localized }[];
-  links?: { demo?: string; repo?: string; report?: string; internal?: boolean };
+  links?: { demo?: string; repo?: string; report?: string; internal?: boolean; comingSoon?: boolean };
   overview: { problem: Localized; solution: Localized; result: Localized };
   /** `image` is a public path; when absent the slot renders the gradient placeholder. */
   features: { title: Localized; body: Localized; shot: Localized; image?: string }[];

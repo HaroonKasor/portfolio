@@ -14,12 +14,13 @@ function localizedFilled(value: Localized | undefined): boolean {
 }
 
 describe("projects collection", () => {
-  it("contains the four projects from the brief in order", () => {
+  it("contains the five projects from the brief in order", () => {
     expect(SLUGS).toEqual([
       "goskillup-lms",
       "learntech-lms",
       "membership-booking",
       "obec-vr-learning",
+      "workcatch",
     ]);
   });
 
@@ -32,12 +33,13 @@ describe("projects collection", () => {
     expect(new Set(indexes).size).toBe(indexes.length);
   });
 
-  it("numbers the indexes 01..04 in order", () => {
+  it("numbers the indexes 01..05 in order", () => {
     expect(projects.map((p) => p.index)).toEqual([
       "01",
       "02",
       "03",
       "04",
+      "05",
     ]);
   });
 });

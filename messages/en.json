@@ -202,7 +202,8 @@
     "reportLoading": "Loading document",
     "close": "Close",
     "reportMeta": "PDF {size} · {pages} pages",
-    "reportSize": "4.5 MB"
+    "reportSize": "4.5 MB",
+    "comingSoon": "Launching soon"
   },
   "common": {
     "themeToggle": "Toggle theme",
