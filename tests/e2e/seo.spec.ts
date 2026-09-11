@@ -5,6 +5,7 @@ const PROJECT_SLUGS = [
   "learntech-lms",
   "membership-booking",
   "obec-vr-learning",
+  "workcatch",
 ];
 
 test.describe("sitemap.xml", () => {
@@ -14,14 +15,14 @@ test.describe("sitemap.xml", () => {
     expect(response.headers()["content-type"]).toContain("xml");
   });
 
-  test("lists home plus the four projects for both locales", async ({
+  test("lists home plus the five projects for both locales", async ({
     request,
   }) => {
     const body = await (await request.get("/sitemap.xml")).text();
     const urls = [...body.matchAll(/<loc>([^<]+)<\/loc>/g)].map((m) => m[1]);
 
-    // 1 home + 4 projects, per locale.
-    expect(urls.length, `sitemap urls:\n${urls.join("\n")}`).toBe(10);
+    // 1 home + 5 projects, per locale.
+    expect(urls.length, `sitemap urls:\n${urls.join("\n")}`).toBe(12);
   });
 
   test("includes every project slug for both locales", async ({ request }) => {

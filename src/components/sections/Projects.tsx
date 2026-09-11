@@ -33,8 +33,8 @@ export async function Projects() {
               )}
             </div>
 
-            {/* Row 2: two equal cards. */}
-            <div className="grid gap-6 lg:grid-cols-2">
+            {/* Row 2: three equal cards. */}
+            <div className="grid gap-6 lg:grid-cols-3">
               {rest.map((project, i) => (
                 <Reveal key={project.slug} delay={i * 100}>
                   <ProjectCard project={project} locale={locale} />
