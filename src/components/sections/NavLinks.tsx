@@ -17,10 +17,7 @@ export function NavLinks({ items }: { items: NavItem[] }) {
   const [active, setActive] = useState<string | null>(null);
 
   useEffect(() => {
-    if (!isHome) {
-      setActive(null);
-      return;
-    }
+    if (!isHome) return;
     const ids = items.map((i) => i.href.replace(/^\/?#/, ""));
     const sections = ids
       .map((id) => document.getElementById(id))
