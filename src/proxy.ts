@@ -12,11 +12,12 @@ export const config = {
   // matching almost every route. Next also rejects `String.raw` here.
   //
   // `icon`, `opengraph-image` and `twitter-image` are extensionless
-  // file-based metadata routes living at the app root, outside `[locale]`.
+  // file-based metadata routes: the root ones live outside `[locale]`, the
+  // case-study ones already carry the locale in their own path.
   // Without excluding them the proxy rewrites /icon -> /en/icon, which does
   // not exist, so the favicon and OG image 404 at runtime and no og:image
   // meta tag is emitted.
   matcher: [
-    '/((?!api|_next|cv|icon|opengraph-image|twitter-image|manifest\\.webmanifest|.*\\..*).*)',
+    '/((?!api|_next|cv|icon|apple-icon|manifest\\.webmanifest|.*opengraph-image|.*twitter-image|.*\\..*).*)',
   ],
 };

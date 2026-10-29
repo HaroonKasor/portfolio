@@ -1,15 +1,37 @@
-import { ImageResponse } from "next/og";
-import { hasLocale } from "next-intl";
-import { routing, type Locale } from "@/i18n/routing";
-import { projects, getProject } from "@/content/projects";
-import { OG_COLORS, OG_SIZE, OG_CONTENT_TYPE, ogFonts } from "@/lib/og";
+import { ImageResponse } from 'next/og';
+import { hasLocale } from 'next-intl';
+import { getTranslations } from 'next-intl/server';
 
-export const alt = "Haroon Kasor — project";
+import { getProject, projects } from '@/content/projects';
+import { routing, type Locale } from '@/i18n/routing';
+import { OG_COLORS, OG_CONTENT_TYPE, OG_SIZE, ogFonts, ogImage } from '@/lib/og';
+
 export const size = OG_SIZE;
 export const contentType = OG_CONTENT_TYPE;
 
 export function generateStaticParams() {
   return projects.map((project) => ({ slug: project.slug }));
+}
+
+/** Declared here (rather than `export const alt`) so the alt text follows the
+ * page locale. */
+export async function generateImageMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string; slug: string }>;
+}) {
+  const { locale, slug } = await params;
+  const typedLocale: Locale = hasLocale(routing.locales, locale) ? locale : routing.defaultLocale;
+  const t = await getTranslations({ locale: typedLocale, namespace: 'case' });
+  const project = getProject(slug);
+  return [
+    {
+      id: 'default',
+      alt: t('ogAlt', { name: project?.title ?? slug }),
+      size,
+      contentType,
+    },
+  ];
 }
 
 export default async function ProjectOpengraphImage({
@@ -18,94 +40,53 @@ export default async function ProjectOpengraphImage({
   params: Promise<{ locale: string; slug: string }>;
 }) {
   const { locale, slug } = await params;
-  const typedLocale: Locale = hasLocale(routing.locales, locale)
-    ? (locale as Locale)
-    : routing.defaultLocale;
-
+  const typedLocale: Locale = hasLocale(routing.locales, locale) ? locale : routing.defaultLocale;
   const project = getProject(slug);
-  const title = project?.title[typedLocale] ?? "Haroon Kasor";
-  const summary = project?.summary[typedLocale] ?? "";
-  const tags = project?.tags.join(" · ") ?? "";
+  const [fonts, avatar] = await Promise.all([ogFonts(), ogImage('avatar.jpg')]);
 
   return new ImageResponse(
     (
       <div
         style={{
-          width: "100%",
-          height: "100%",
-          display: "flex",
-          flexDirection: "column",
-          justifyContent: "space-between",
-          padding: "72px 80px",
-          background: OG_COLORS.gradient,
-          fontFamily: "Outfit",
+          width: '100%',
+          height: '100%',
+          display: 'flex',
+          flexDirection: 'column',
+          justifyContent: 'space-between',
+          padding: '72px',
+          background: OG_COLORS.bg,
+          fontFamily: 'Outfit',
         }}
       >
-        <div style={{ display: "flex", alignItems: "center", gap: 18 }}>
-          <div
-            style={{
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-              width: 56,
-              height: 56,
-              borderRadius: 16,
-              background: OG_COLORS.text,
-              color: OG_COLORS.surface,
-              fontSize: 24,
-              fontWeight: 700,
-            }}
-          >
-            HK
-          </div>
-          <div style={{ display: "flex", fontSize: 26, color: OG_COLORS.muted }}>
-            haroonkasor.dev
-          </div>
+        <div style={{ display: 'flex', alignItems: 'center', gap: 16 }}>
+          {/* eslint-disable-next-line @next/next/no-img-element -- satori renders plain <img> */}
+          <img src={avatar} alt="" width={56} height={56} style={{ borderRadius: 999 }} />
+          <div style={{ fontSize: 26, fontWeight: 600, color: OG_COLORS.text }}>Haroon Kasor</div>
         </div>
-
-        <div style={{ display: "flex", flexDirection: "column", gap: 20 }}>
-          {tags ? (
-            <div
-              style={{
-                display: "flex",
-                fontSize: 24,
-                fontWeight: 600,
-                letterSpacing: 3,
-                textTransform: "uppercase",
-                color: OG_COLORS.accent,
-              }}
-            >
-              {tags}
+        <div style={{ display: 'flex', flexDirection: 'column', gap: 20 }}>
+          {project ? (
+            <div style={{ fontFamily: 'Prompt', fontSize: 24, color: OG_COLORS.muted }}>
+              {project.meta[typedLocale]}
             </div>
           ) : null}
-          <div
-            style={{
-              display: "flex",
-              fontFamily: "Prompt",
-              fontSize: 76,
-              fontWeight: 700,
-              color: OG_COLORS.text,
-              lineHeight: 1.12,
-            }}
-          >
-            {title}
+          <div style={{ fontSize: 88, fontWeight: 600, lineHeight: 1.1, color: OG_COLORS.text }}>
+            {project?.title ?? 'Haroon Kasor'}
           </div>
-        </div>
-
-        <div
-          style={{
-            display: "flex",
-            fontFamily: "Prompt",
-            fontSize: 28,
-            fontWeight: 400,
-            color: OG_COLORS.muted,
-            lineHeight: 1.4,
-          }}
-        >
-          {summary.length > 150 ? `${summary.slice(0, 150)}…` : summary}
+          {project ? (
+            <div
+              style={{
+                fontFamily: 'Prompt',
+                fontSize: 28,
+                lineHeight: 1.5,
+                color: OG_COLORS.muted,
+              }}
+            >
+              {project.lede[typedLocale]}
+            </div>
+          ) : null}
         </div>
       </div>
     ),
-    { ...size, fonts: await ogFonts() },
+    { ...size, fonts },
   );
 }

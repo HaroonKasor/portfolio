@@ -1,42 +1,82 @@
 export type Localized = { en: string; th: string };
 
-export type Project = {
-  slug: string;
-  index: string;
+export type ProjectSlug = 'hatch-dev' | 'goskillup-lms' | 'workcatch';
+
+export type ProjectFeature = {
   title: Localized;
+  body: Localized;
+  /** Public path of the screenshot. */
+  image: string;
+};
+
+export type DesignPair = {
+  title: Localized;
+  body: Localized;
+  /** Public paths of the first-draft and as-shipped screenshots. */
+  draft: string;
+  final: string;
+};
+
+export type Project = {
+  slug: ProjectSlug;
+  /** Product names are brand names, identical in both languages. */
+  title: string;
+  /** Shorter name used inside "Read the … case study". */
+  shortTitle: string;
+  /** Meta line above the case-page title, e.g. "Personal project · 2026". */
+  meta: Localized;
+  /** Meta line on the home card; the Thai card copy is shorter than the page. */
+  cardMeta: Localized;
+  /** Small outlined pill next to the meta line. */
+  badge?: Localized;
+  /** One-line descriptor used by the 404 work list. */
+  tagline: Localized;
+  /** Home card paragraph. */
   summary: Localized;
-  badge: string;
+  /** Home card "Role" line. */
+  cardRole: Localized;
+  /** Home card tags. */
   tags: string[];
-  /** Gradient fallback; `image` (public path) replaces it when present. */
-  cover: { from: string; to: string; image?: string };
-  role: Localized;
-  period: Localized;
-  kind: Localized;
-  stack: { name: string; slug?: string; note: Localized }[];
-  links?: { demo?: string; repo?: string; report?: string; internal?: boolean; comingSoon?: boolean };
+  /** Public path; also the home card screenshot. */
+  cover: string;
+  lede: Localized;
+  facts: {
+    role: Localized;
+    timeline: Localized;
+    stack: Localized;
+    status: Localized;
+  };
   overview: { problem: Localized; solution: Localized; result: Localized };
-  /** `image` is a public path; when absent the slot renders the gradient placeholder. */
-  features: { title: Localized; body: Localized; shot: Localized; image?: string }[];
-  /** slug of the next project */
-  next?: string;
+  features: ProjectFeature[];
+  engineering: { title: Localized; body: Localized }[];
+  stack: { name: string; note: Localized }[];
+  /** Public demo shown under the case-page lede, with an optional sign-in hint. */
+  demo?: { url: string; login?: string; kind?: 'demo' | 'site' };
+  /** Only hatch.dev documents its Figma-to-code iterations. */
+  designProcess?: { intro: Localized; pairs: DesignPair[] };
+  next: ProjectSlug;
+};
+
+export type ExperienceEntry = {
+  id: 'learntech' | 'goskillup' | 'degree';
+  period: Localized;
+  title: Localized;
+  body: Localized;
+  tags: string[];
+  /** The current job is shown as a raised card. */
+  highlight?: boolean;
+};
+
+export type InHouseWork = {
+  title: Localized;
+  body: Localized;
+  stack: string;
+  period: string;
 };
 
 export type Repo = {
   name: string;
   description: string | null;
   language: string | null;
-  stars: number;
   url: string;
-};
-
-export type SkillChip = {
-  name: string;
-  slug: string;
-  /** Explicit lettermark for brands simple-icons has no entry for. */
-  mark?: string;
-};
-
-export type ExperienceItem = {
-  /** message key under `experience.items` */
-  key: 'learntech' | 'goskillup' | 'degree';
 };

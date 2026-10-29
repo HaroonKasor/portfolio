@@ -1,28 +1,23 @@
-"use client";
+'use client';
 
-import { useCallback, useEffect, useRef, useState } from "react";
-import { createPortal } from "react-dom";
-import { useLocale, useTranslations } from "next-intl";
-import { Download, ExternalLink, X } from "lucide-react";
-import { PdfViewer } from "./PdfViewer";
+import { useEffect, useRef, useState } from 'react';
+import { createPortal } from 'react-dom';
+import { useLocale, useTranslations } from 'next-intl';
+import { Download, X } from 'lucide-react';
 
-const FILES = {
-  th: "/cv/haroon-kasor-th.pdf",
-  en: "/cv/haroon-kasor-en.pdf",
-} as const;
+import { profile } from '@/content/profile';
+import { lockScroll, pushOverlay } from '@/lib/overlays';
+import { cn } from '@/lib/utils';
 
-type CvLocale = keyof typeof FILES;
+import { PdfViewer } from './PdfViewer';
 
-const FOCUSABLE =
-  'a[href], button:not([disabled]), [tabindex]:not([tabindex="-1"])';
+type CvLocale = keyof typeof profile.cvFiles;
 
-/**
- * Only nodes that are actually rendered can hold focus. The header's
- * "Open in new tab"/"Download" actions are `hidden sm:inline-flex` and their
- * footer twins are `sm:hidden`, so half the matches are invisible at any
- * viewport; trapping against those makes Tab wrap to a dead element and the
- * focus escape the dialog.
- */
+const FOCUSABLE = 'a[href], button:not([disabled]), [tabindex]:not([tabindex="-1"])';
+
+/** The desktop header and the mobile footer each carry their own download
+ * link, one of which is display:none; trapping focus against a hidden node
+ * would let Tab escape the dialog. */
 function visibleFocusable(root: HTMLElement | null): HTMLElement[] {
   if (!root) return [];
   return [...root.querySelectorAll<HTMLElement>(FOCUSABLE)].filter(
@@ -30,212 +25,159 @@ function visibleFocusable(root: HTMLElement | null): HTMLElement[] {
   );
 }
 
-export function CvPreviewModal({
-  open,
-  onClose,
-}: {
-  open: boolean;
-  onClose: () => void;
-}) {
+export function CvPreviewModal({ open, onClose }: { open: boolean; onClose: () => void }) {
   const locale = useLocale();
   if (!open) return null;
-  // Keyed on locale so the dialog remounts (and re-picks its default document)
-  // if the site language changes while it is open. Portaled to <body>: the
-  // navbar that owns this component is sticky with backdrop-filter, which
-  // makes it the containing block for `position: fixed` descendants, so the
-  // overlay would otherwise scroll away with the page.
-  return createPortal(
-    <CvDialog key={locale} onClose={onClose} />,
-    document.body,
-  );
+  // Keyed on locale so the dialog re-picks its default document if the site
+  // language changes while it is open. Portaled to <body> so no transformed
+  // ancestor can become the containing block of the fixed overlay.
+  return createPortal(<CvDialog key={locale} onClose={onClose} />, document.body);
 }
 
 function CvDialog({ onClose }: { onClose: () => void }) {
-  const t = useTranslations("cv");
+  const t = useTranslations('cv');
   const locale = useLocale();
-  const [doc, setDoc] = useState<CvLocale>(locale === "th" ? "th" : "en");
-  const [pages, setPages] = useState(0);
-  const [page, setPage] = useState(1);
-  const handlePages = useCallback((n: number) => {
-    setPages(n);
-    setPage(1);
-  }, []);
+  const [doc, setDoc] = useState<CvLocale>(locale === 'th' ? 'th' : 'en');
   const panelRef = useRef<HTMLDivElement>(null);
-  const openerRef = useRef<HTMLElement | null>(null);
-
-  const handleClose = useCallback(() => onClose(), [onClose]);
+  const onCloseRef = useRef(onClose);
+  useEffect(() => {
+    onCloseRef.current = onClose;
+  });
 
   // Remember the trigger so focus can be returned when the dialog closes.
   useEffect(() => {
-    openerRef.current = document.activeElement as HTMLElement | null;
+    const opener = document.activeElement as HTMLElement | null;
     visibleFocusable(panelRef.current)[0]?.focus();
-    return () => openerRef.current?.focus?.();
+    return () => opener?.focus?.();
   }, []);
 
-  // Escape to close + a basic focus trap across Tab / Shift+Tab.
+  // Escape to close + a focus trap across Tab / Shift+Tab.
   useEffect(() => {
+    const overlay = pushOverlay();
     const onKeyDown = (e: KeyboardEvent) => {
-      if (e.key === "Escape") {
+      if (!overlay.isTop()) return;
+      if (e.key === 'Escape') {
         e.stopPropagation();
-        handleClose();
+        onCloseRef.current();
         return;
       }
-      if (e.key !== "Tab") return;
+      if (e.key !== 'Tab') return;
       const nodes = visibleFocusable(panelRef.current);
       if (nodes.length === 0) return;
-
-      const first = nodes[0];
-      const last = nodes[nodes.length - 1];
-      const active = document.activeElement as HTMLElement | null;
-      const index = active ? nodes.indexOf(active) : -1;
-
-      // Focus can sit *inside* the PDF iframe, where activeElement is the
-      // <iframe> itself but comparing against `last` is not enough: once the
-      // embedded document takes over, Tab walks the PDF's own controls and
-      // then leaves the dialog entirely. Driving the wrap from the index (and
-      // treating "not in the list" as outside) keeps the cycle closed.
-      if (e.shiftKey) {
-        if (index <= 0) {
-          e.preventDefault();
-          last.focus();
-        }
-        return;
-      }
-
-      if (index === -1 || index >= nodes.length - 1) {
+      const index = nodes.indexOf(document.activeElement as HTMLElement);
+      if (e.shiftKey && index <= 0) {
         e.preventDefault();
-        first.focus();
+        nodes[nodes.length - 1].focus();
+      } else if (!e.shiftKey && (index === -1 || index >= nodes.length - 1)) {
+        e.preventDefault();
+        nodes[0].focus();
       }
     };
-    document.addEventListener("keydown", onKeyDown);
-    return () => document.removeEventListener("keydown", onKeyDown);
-  }, [handleClose]);
-
-  // Body scroll lock while the dialog is open.
-  useEffect(() => {
-    const previous = document.body.style.overflow;
-    document.body.style.overflow = "hidden";
+    document.addEventListener('keydown', onKeyDown);
     return () => {
-      document.body.style.overflow = previous;
+      document.removeEventListener('keydown', onKeyDown);
+      overlay.pop();
     };
   }, []);
 
-  const src = FILES[doc];
+  useEffect(() => lockScroll(), []);
 
-  const segment = (value: CvLocale, label: string) => (
-    <button
-      key={value}
-      type="button"
-      aria-pressed={doc === value}
-      onClick={() => setDoc(value)}
-      className={[
-        "min-h-11 rounded-full px-4 text-sm font-medium transition-colors",
-        doc === value
-          ? "bg-inverse text-on-inverse"
-          : "text-muted hover:text-text",
-      ].join(" ")}
+  const src = profile.cvFiles[doc];
+
+  const segments = (
+    <div
+      role="group"
+      aria-label={t('language')}
+      className="border-line flex gap-0.5 rounded-full border p-[3px] max-sm:w-full"
     >
-      {label}
+      {(['th', 'en'] as const).map((value) => (
+        <button
+          key={value}
+          type="button"
+          lang={value}
+          aria-pressed={doc === value}
+          onClick={() => setDoc(value)}
+          className={cn(
+            'hit-area rounded-full px-3 py-1 text-[13px] leading-[1.3] transition-colors max-sm:flex-1 max-sm:py-1.5 max-sm:text-sm max-sm:leading-normal',
+            doc === value ? 'bg-inverse text-on-inverse font-medium' : 'text-muted hover:text-text',
+          )}
+        >
+          {value === 'th' ? t('thai') : t('english')}
+        </button>
+      ))}
+    </div>
+  );
+
+  const closeButton = (
+    <button
+      type="button"
+      aria-label={t('close')}
+      onClick={onClose}
+      className="hit-area border-line text-text hover:bg-bg inline-flex items-center justify-center rounded-full border p-2 transition-colors sm:p-2.5"
+    >
+      <X className="size-4 sm:size-[18px]" aria-hidden />
     </button>
   );
 
   return (
     <div
-      className="fixed inset-0 z-[60] flex items-end justify-center bg-black/50 backdrop-blur-sm sm:items-center sm:p-6"
+      className="bg-scrim fixed inset-0 z-[60] flex items-end justify-center sm:items-center sm:p-6"
       onMouseDown={(e) => {
-        if (e.target === e.currentTarget) handleClose();
+        if (e.target === e.currentTarget) onClose();
       }}
     >
       <div
         ref={panelRef}
         role="dialog"
         aria-modal="true"
-        aria-label={t("title")}
-        className="overlay-in bg-surface flex h-[92vh] w-full max-w-[900px] flex-col overflow-hidden rounded-t-[24px] shadow-[var(--shadow-float)] sm:h-[88vh] sm:rounded-[20px]"
+        aria-labelledby="cv-dialog-title"
+        className="overlay-in bg-surface flex h-[min(712px,calc(100dvh-40px))] w-full flex-col overflow-hidden rounded-t-[20px] px-5 pt-2.5 pb-5 shadow-[var(--shadow-modal)] sm:h-[min(716px,calc(100dvh-48px))] sm:max-w-[880px] sm:rounded-[20px] sm:p-0"
       >
-        {/* Grab handle — bottom-sheet affordance on mobile only. */}
-        <div className="flex justify-center pt-3 sm:hidden" aria-hidden="true">
-          <span className="bg-line h-1 w-10 rounded-full" />
-        </div>
+        {/* Grab handle: bottom-sheet affordance on phones only. */}
+        <span
+          aria-hidden
+          className="bg-line mx-auto block h-1 w-10 shrink-0 rounded-[2px] sm:hidden"
+        />
 
-        <div className="border-line flex flex-wrap items-center gap-3 border-b px-5 py-4 sm:px-6">
-          <h2 className="text-text mr-auto text-base font-semibold sm:text-lg">
-            {t("title")}
-          </h2>
-
-          <div className="border-line inline-flex items-center rounded-full border p-1">
-            {segment("th", t("thai"))}
-            {segment("en", t("english"))}
+        <div className="sm:border-line flex shrink-0 items-center justify-between py-3.5 sm:border-b sm:py-[18px] sm:pr-[18px] sm:pl-6">
+          <div className="flex items-center gap-4">
+            <h2 id="cv-dialog-title" className="text-text text-base leading-[1.4] font-semibold">
+              {t('title')}
+            </h2>
+            <div className="max-sm:hidden">{segments}</div>
           </div>
-
-          <button
-            type="button"
-            aria-label={t("openNewTab")}
-            onClick={() => window.open(src, "_blank", "noopener,noreferrer")}
-            className="border-line text-text hover:text-accent hover:border-accent hidden min-h-11 items-center gap-2 rounded-full border px-4 text-sm transition-colors sm:inline-flex"
-          >
-            <ExternalLink className="h-4 w-4" aria-hidden="true" />
-            {t("openNewTab")}
-          </button>
-
-          <a
-            href={src}
-            download
-            className="bg-accent hidden min-h-11 items-center gap-2 rounded-full px-4 text-sm font-medium text-on-accent transition-opacity hover:opacity-90 sm:inline-flex"
-          >
-            <Download className="h-4 w-4" aria-hidden="true" />
-            {t("download")}
-          </a>
-
-          <button
-            type="button"
-            aria-label={t("close")}
-            onClick={handleClose}
-            className="border-line text-text hover:text-accent hover:border-accent inline-flex h-11 w-11 items-center justify-center rounded-full border transition-colors"
-          >
-            <X className="h-4 w-4" aria-hidden="true" />
-          </button>
+          <div className="flex items-center gap-2">
+            <a
+              href={src}
+              download
+              className="bg-inverse text-on-inverse inline-flex h-10 items-center gap-2 rounded-full pr-4 pl-3.5 text-sm leading-[1.2] font-medium transition-opacity hover:opacity-85 max-sm:hidden"
+            >
+              <Download className="size-4" aria-hidden />
+              {t('download')}
+            </a>
+            {closeButton}
+          </div>
         </div>
+
+        <div className="shrink-0 sm:hidden">{segments}</div>
 
         <PdfViewer
           key={src}
           src={src}
-          title={t("title")}
-          loadingLabel={t("loading")}
-          onPages={handlePages}
-          onPageChange={setPage}
+          title={t('title')}
+          loadingLabel={t('loading')}
+          className="sm:bg-bg py-4 sm:px-6 sm:pt-6 sm:pb-6"
         />
 
-        <div className="border-line flex flex-col gap-3 border-t px-5 py-4 sm:flex-row sm:items-center sm:px-6">
-          <span className="text-text text-sm font-medium">
-            {t("page", { current: page, total: pages || 1 })}
-          </span>
-          <span className="text-muted text-xs sm:ml-auto">
-            {t("meta", { size: t(`sizes.${doc}`) })}
-          </span>
-          {/* Mobile: the two actions become full-width buttons in the footer. */}
-          <div className="flex flex-col gap-2 sm:hidden">
-            <button
-              type="button"
-              onClick={() => window.open(src, "_blank", "noopener,noreferrer")}
-              className="border-line text-text inline-flex min-h-11 w-full items-center justify-center gap-2 rounded-full border text-sm"
-            >
-              <ExternalLink className="h-4 w-4" aria-hidden="true" />
-              {t("openNewTab")}
-            </button>
-            <a
-              href={src}
-              download
-              className="bg-accent inline-flex min-h-11 w-full items-center justify-center gap-2 rounded-full text-sm font-medium text-on-accent"
-            >
-              <Download className="h-4 w-4" aria-hidden="true" />
-              {t("download")}
-            </a>
-          </div>
-        </div>
+        <a
+          href={src}
+          download
+          className="bg-inverse text-on-inverse inline-flex h-12 w-full shrink-0 items-center justify-center gap-2 rounded-full text-[15px] leading-[1.2] font-medium sm:hidden"
+        >
+          <Download className="size-4" aria-hidden />
+          {t('download')}
+        </a>
       </div>
     </div>
   );
 }
-
-export default CvPreviewModal;

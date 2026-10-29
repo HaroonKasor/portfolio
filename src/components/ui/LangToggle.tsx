@@ -5,10 +5,13 @@ import { useParams } from 'next/navigation';
 import { useTransition } from 'react';
 
 import { usePathname, useRouter } from '@/i18n/navigation';
-import { locales, type AppLocale } from '@/i18n/routing';
+import type { AppLocale } from '@/i18n/routing';
 import { cn } from '@/lib/utils';
 
 export type LangToggleProps = { className?: string };
+
+// Figma lists TH before EN in every frame.
+const ORDER: readonly AppLocale[] = ['th', 'en'];
 
 export function LangToggle({ className }: LangToggleProps) {
   const t = useTranslations('common');
@@ -25,7 +28,7 @@ export function LangToggle({ className }: LangToggleProps) {
       router.replace(
         // `pathname` is locale-agnostic; dynamic segments come from `params`.
         { pathname, params } as never,
-        { locale },
+        { locale, scroll: false },
       );
     });
   }
@@ -35,22 +38,21 @@ export function LangToggle({ className }: LangToggleProps) {
       role="group"
       aria-label={t('langToggle')}
       className={cn(
-        'border-line inline-flex h-11 items-center rounded-full border p-1',
+        'border-line bg-surface inline-flex items-center gap-0.5 rounded-full border p-[3px]',
         isPending && 'opacity-70',
         className,
       )}
     >
-      {locales.map((locale) => (
+      {ORDER.map((locale) => (
         <button
           key={locale}
           type="button"
+          aria-label={t(`langName.${locale}`)}
           onClick={() => switchTo(locale)}
           aria-pressed={locale === active}
           className={cn(
-            'inline-flex h-9 min-w-11 items-center justify-center rounded-full px-3 text-xs font-semibold uppercase transition-colors',
-            locale === active
-              ? 'bg-accent text-on-accent'
-              : 'text-muted hover:text-accent',
+            'hit-area rounded-full px-2.5 py-[5px] text-xs leading-[1.2] font-semibold uppercase transition-colors',
+            locale === active ? 'bg-inverse text-on-inverse' : 'text-muted hover:text-text',
           )}
         >
           {locale}
