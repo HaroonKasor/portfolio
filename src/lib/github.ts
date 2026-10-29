@@ -5,49 +5,55 @@ type GitHubRepo = {
   name: string;
   description: string | null;
   language: string | null;
-  stargazers_count: number;
   html_url: string;
   fork: boolean;
 };
 
 const EXCLUDED = new Set([`${profile.githubUser}.github.io`.toLowerCase()]);
 
+/** Repos whose GitHub description is empty get the project name instead, so
+ * the row says what the code belongs to. */
+const DESCRIPTIONS: Record<string, string> = {
+  lms: 'GoSkillUp LMS',
+  'workcatch-frontend': 'WorkCatch',
+};
+
+/** The design shows three rows. */
+const LIMIT = 3;
+
+/** Featured repos come first, in this order; anything else follows by recency. */
+const ORDER = ['lms', 'workcatch-frontend', 'portfolio'];
+const rank = (name: string) => {
+  const index = ORDER.indexOf(name.toLowerCase());
+  return index === -1 ? ORDER.length : index;
+};
+
 /** Shown when the GitHub API is unreachable or rate-limited. */
-export const fallbackRepos: Repo[] = [
+const fallbackRepos: Repo[] = [
+  {
+    name: 'lms',
+    description: 'GoSkillUp LMS',
+    language: 'TypeScript',
+    url: `${profile.github}/lms`,
+  },
+  {
+    name: 'workcatch-frontend',
+    description: 'WorkCatch',
+    language: 'TypeScript',
+    url: `${profile.github}/workcatch-frontend`,
+  },
   {
     name: 'portfolio',
-    description: null,
-    language: 'TypeScript',
-    stars: 2,
+    description: 'My personal portfolio website',
+    language: 'JavaScript',
     url: `${profile.github}/portfolio`,
-  },
-  {
-    name: 'ru-elearning',
-    description: null,
-    language: 'HTML',
-    stars: 0,
-    url: `${profile.github}/ru-elearning`,
-  },
-  {
-    name: 'expense-notify',
-    description: null,
-    language: 'YAML',
-    stars: 0,
-    url: `${profile.github}/expense-notify`,
-  },
-  {
-    name: 'quake-alert',
-    description: null,
-    language: 'Python',
-    stars: 0,
-    url: `${profile.github}/quake-alert`,
   },
 ];
 
 export async function getRepos(): Promise<Repo[]> {
   try {
     const response = await fetch(
-      `https://api.github.com/users/${profile.githubUser}/repos?sort=updated&per_page=6`,
+      `https://api.github.com/users/${profile.githubUser}/repos?sort=updated&per_page=100`,
       {
         headers: { Accept: 'application/vnd.github+json' },
         next: { revalidate: 3600 },
@@ -61,12 +67,13 @@ export async function getRepos(): Promise<Repo[]> {
 
     const repos = (data as GitHubRepo[])
       .filter((repo) => !repo.fork && !EXCLUDED.has(repo.name.toLowerCase()))
-      .slice(0, 4)
+      // Array.prototype.sort is stable, so equal ranks keep GitHub's recency order.
+      .sort((a, b) => rank(a.name) - rank(b.name))
+      .slice(0, LIMIT)
       .map<Repo>((repo) => ({
         name: repo.name,
-        description: repo.description,
+        description: repo.description || DESCRIPTIONS[repo.name] || null,
         language: repo.language,
-        stars: repo.stargazers_count,
         url: repo.html_url,
       }));
 
@@ -75,5 +82,3 @@ export async function getRepos(): Promise<Repo[]> {
     return fallbackRepos;
   }
 }
-
-export const GITHUB_URL = "https://github.com/HaroonKasor";

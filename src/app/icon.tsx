@@ -1,31 +1,21 @@
 import { ImageResponse } from "next/og";
-import { OG_COLORS } from "@/lib/og";
 
-export const size = { width: 32, height: 32 };
+import { BrandMark, brandMarkFont } from "@/lib/brandMark";
+
 export const contentType = "image/png";
 
-/** HK favicon mark. */
-export default function Icon() {
-  return new ImageResponse(
-    (
-      <div
-        style={{
-          width: "100%",
-          height: "100%",
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-          background: OG_COLORS.text,
-          color: OG_COLORS.surface,
-          fontSize: 15,
-          fontWeight: 700,
-          letterSpacing: -0.5,
-          borderRadius: 7,
-        }}
-      >
-        HK
-      </div>
-    ),
-    size,
-  );
+// 32 is the tab icon; 192 and 512 are the manifest sizes Android needs for "Add to home screen".
+const SIZES = [32, 192, 512] as const;
+
+export function generateImageMetadata() {
+  return SIZES.map((s) => ({ id: String(s), size: { width: s, height: s }, contentType }));
+}
+
+export default async function Icon({ id }: { id: Promise<string> }) {
+  const s = Number(await id) || 32;
+  return new ImageResponse(<BrandMark size={s} />, {
+    width: s,
+    height: s,
+    fonts: [{ name: "Outfit", data: await brandMarkFont(), weight: 600, style: "normal" }],
+  });
 }

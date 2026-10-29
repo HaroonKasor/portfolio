@@ -11,13 +11,10 @@ import { useLayoutEffect, useRef, type ReactNode } from "react";
  */
 export function Reveal({
   children,
-  delay = 0,
   className,
   as: Tag = "div",
 }: {
   children: ReactNode;
-  /** Stagger offset in ms. */
-  delay?: number;
   className?: string;
   as?: "div" | "section" | "article" | "li";
 }) {
@@ -48,14 +45,8 @@ export function Reveal({
   }, []);
 
   return (
-    <Tag
-      ref={ref as never}
-      className={className}
-      style={delay ? { transitionDelay: `${delay}ms` } : undefined}
-    >
+    <Tag ref={ref as never} className={className}>
       {children}
     </Tag>
   );
 }
-
-export default Reveal;

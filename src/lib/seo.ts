@@ -3,9 +3,7 @@ import { getTranslations } from "next-intl/server";
 import { routing, type Locale } from "@/i18n/routing";
 
 export const SITE_URL =
-  process.env.NEXT_PUBLIC_SITE_URL ?? "https://haroonkasor.dev";
-
-export const TITLE_TEMPLATE = "%s — Haroon Kasor";
+  process.env.NEXT_PUBLIC_SITE_URL ?? "https://haroonkasor.vercel.app";
 
 /** Path of a route for a given locale, honouring `localePrefix: "as-needed"`. */
 export function localizedPath(locale: Locale, path = "/"): string {
@@ -31,7 +29,7 @@ export type MetadataOverrides = {
   path?: string;
   title?: string;
   description?: string;
-  /** Pass false on the root layout so the template applies to children only. */
+  /** Pass false when `title` is already complete; otherwise it becomes "<title> — <site name>". */
   useTemplate?: boolean;
   /**
    * Pass false on routes that have their own sibling `opengraph-image.tsx`
@@ -60,7 +58,13 @@ export async function buildMetadata(
 
   const siteName = t("siteName");
   const defaultTitle = `${siteName} — ${t("role")}`;
-  const resolvedTitle = title ?? defaultTitle;
+  // A page `title` string next to a template never gets the template applied
+  // (templates only reach child segments), so the suffix is added here.
+  const resolvedTitle = title
+    ? useTemplate
+      ? `${title} — ${siteName}`
+      : title
+    : defaultTitle;
   const resolvedDescription = description ?? t("tagline");
   const url = absoluteUrl(locale, path);
 
@@ -87,9 +91,7 @@ export async function buildMetadata(
 
   return {
     metadataBase: new URL(SITE_URL),
-    title: useTemplate
-      ? { default: resolvedTitle, template: TITLE_TEMPLATE }
-      : resolvedTitle,
+    title: resolvedTitle,
     description: resolvedDescription,
     alternates: {
       canonical: url,

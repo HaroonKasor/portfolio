@@ -1,82 +1,87 @@
-import { getTranslations } from "next-intl/server";
-import { Container } from "@/components/ui/Container";
-import { GITHUB_URL } from "@/lib/github";
-import { CopyEmailButton } from "./CopyEmailButton";
-import { LineQrButton } from "./LineQrButton";
+import { getLocale, getTranslations } from 'next-intl/server';
+import { FileText } from 'lucide-react';
+
+import { profile } from '@/content/profile';
+import type { Locale } from '@/i18n/routing';
+import { pillButton } from '@/components/ui/pillButton';
+import { SectionLabel } from '@/components/ui/SectionLabel';
+
+import { CopyEmailButton } from './CopyEmailButton';
 
 export async function Contact() {
-  const t = await getTranslations("contact");
-  const email = t("emailValue");
+  const t = await getTranslations('contact');
+  const locale = (await getLocale()) as Locale;
+  // The CV in the page language is the primary download; the other is offered beside it.
+  const other: Locale = locale === 'th' ? 'en' : 'th';
+
+  const channels = [
+    { label: t('line'), value: profile.lineId, href: profile.lineUrl },
+    { label: t('github'), value: profile.githubUser, href: profile.github },
+    {
+      label: t('linkedin'),
+      value: profile.linkedinHandle,
+      href: profile.linkedin,
+    },
+    { label: t('location'), value: t('locationValue') },
+  ];
 
   return (
-    <section id="contact" className="scroll-mt-24 py-16 lg:py-24">
-      <Container>
-        <span className="text-muted text-xs font-semibold tracking-[0.18em]">
-          {t("index")} — {t("label")}
-        </span>
-
-        {/* Copy carries an explicit newline for the two-line headline. */}
-        <h2 className="text-text mt-6 max-w-4xl text-[40px] leading-[1.05] font-bold tracking-tight whitespace-pre-line lg:text-[72px]">
-          {t("title")}
-        </h2>
-
-        <div className="mt-10 flex flex-wrap items-center gap-4">
-          <a
-            href={`mailto:${email}`}
-            className="text-accent decoration-accent focus-visible:outline-accent text-xl font-medium underline decoration-2 underline-offset-8 focus-visible:outline-2 focus-visible:outline-offset-2 lg:text-3xl"
-          >
-            {email}
-          </a>
-          <CopyEmailButton email={email} />
-        </div>
-
-        <dl className="border-line mt-16 grid gap-8 border-t pt-10 sm:grid-cols-2 lg:grid-cols-4">
-          <div>
-            <dt className="text-muted text-[11px] font-semibold tracking-[0.14em]">
-              {t("github")}
-            </dt>
-            <dd className="mt-2">
-              <a
-                href={GITHUB_URL}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-text hover:text-accent text-sm transition-colors"
-              >
-                {t("githubValue")}
-              </a>
+    <section
+      id="contact"
+      tabIndex={-1}
+      aria-labelledby="contact-title"
+      className="flex scroll-mt-20 flex-col gap-7 outline-none lg:scroll-mt-8"
+    >
+      <SectionLabel heading={false}>{t('label')}</SectionLabel>
+      <h2
+        id="contact-title"
+        className="text-text text-[28px] leading-[1.35] font-semibold whitespace-pre-line lg:text-4xl"
+      >
+        {t('title')}
+      </h2>
+      <p className="text-muted max-w-[560px] text-base leading-[1.75] lg:text-[17px]">
+        {t('lede')}
+      </p>
+      <div className="flex flex-wrap items-center gap-x-3 gap-y-2">
+        <a
+          href={`mailto:${profile.email}`}
+          className="text-text hover:text-accent hit-area text-xl leading-[1.3] font-medium break-all underline decoration-from-font underline-offset-[3px] transition-colors lg:text-2xl"
+        >
+          {profile.email}
+        </a>
+        <CopyEmailButton email={profile.email} />
+      </div>
+      <div className="flex flex-wrap gap-3">
+        <a href={profile.cvFiles[locale]} download className={pillButton('solid')}>
+          <FileText className="size-4" aria-hidden />
+          {t('cvPrimary')}
+        </a>
+        <a href={profile.cvFiles[other]} download className={pillButton('outline')}>
+          <FileText className="size-4" aria-hidden />
+          {t('cvSecondary')}
+        </a>
+      </div>
+      <dl className="flex flex-wrap gap-x-8 gap-y-2 leading-normal">
+        {channels.map(({ label, value, href }) => (
+          <div key={label} className="flex flex-col gap-0.5">
+            <dt className="text-muted text-xs">{label}</dt>
+            <dd className="text-text text-[15px] font-medium">
+              {href ? (
+                <a
+                  href={href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="hit-area hover:text-accent transition-colors"
+                >
+                  {value}
+                </a>
+              ) : (
+                value
+              )}
             </dd>
           </div>
-          <div>
-            <dt className="text-muted text-[11px] font-semibold tracking-[0.14em]">
-              {t("phone")}
-            </dt>
-            <dd className="text-text mt-2 text-sm">
-              <a
-                href={`tel:${t("phoneValue").replace(/[^\d+]/g, "")}`}
-                className="hover:text-accent transition-colors"
-              >
-                {t("phoneValue")}
-              </a>
-            </dd>
-          </div>
-          <div>
-            <dt className="text-muted text-[11px] font-semibold tracking-[0.14em]">
-              {t("line")}
-            </dt>
-            <dd className="mt-2">
-              <LineQrButton />
-            </dd>
-          </div>
-          <div>
-            <dt className="text-muted text-[11px] font-semibold tracking-[0.14em]">
-              {t("location")}
-            </dt>
-            <dd className="text-text mt-2 text-sm">{t("locationValue")}</dd>
-          </div>
-        </dl>
-      </Container>
+        ))}
+      </dl>
     </section>
   );
 }
-
-export default Contact;

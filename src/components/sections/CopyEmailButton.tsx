@@ -1,11 +1,11 @@
-"use client";
+'use client';
 
-import { useEffect, useState } from "react";
-import { useTranslations } from "next-intl";
-import { Check, Copy } from "lucide-react";
+import { useEffect, useState } from 'react';
+import { useTranslations } from 'next-intl';
+import { Check, Copy } from 'lucide-react';
 
 export function CopyEmailButton({ email }: { email: string }) {
-  const t = useTranslations("contact");
+  const t = useTranslations('contact');
   const [copied, setCopied] = useState(false);
 
   useEffect(() => {
@@ -27,16 +27,15 @@ export function CopyEmailButton({ email }: { email: string }) {
     <button
       type="button"
       onClick={onCopy}
-      className="border-line text-muted hover:text-accent hover:border-accent inline-flex min-h-11 items-center gap-2 rounded-full border px-4 text-sm transition-colors"
+      aria-label={t('copyLabel')}
+      className="hit-area border-line text-muted hover:text-text hover:border-muted inline-flex items-center gap-1.5 rounded-full border py-1.5 pr-3 pl-2.5 text-[13px] leading-[1.3] transition-colors"
     >
       {copied ? (
-        <Check className="h-4 w-4" aria-hidden="true" />
+        <Check className="size-3.5" aria-hidden />
       ) : (
-        <Copy className="h-4 w-4" aria-hidden="true" />
+        <Copy className="size-3.5" aria-hidden />
       )}
-      <span aria-live="polite">{copied ? t("copied") : t("copy")}</span>
+      <span aria-live="polite">{copied ? t('copied') : t('copy')}</span>
     </button>
   );
 }
-
-export default CopyEmailButton;

@@ -1,85 +1,121 @@
-import { ImageResponse } from "next/og";
-import { OG_COLORS, OG_SIZE, OG_CONTENT_TYPE, ogFonts } from "@/lib/og";
+import { ImageResponse } from 'next/og';
 
-export const alt = "Haroon Kasor — Full-stack Developer";
+import { OG_COLORS, OG_CONTENT_TYPE, OG_SIZE, ogFonts, ogImage } from '@/lib/og';
+import { SITE_URL } from '@/lib/seo';
+
+export const alt = 'Haroon Kasor — Developer';
 export const size = OG_SIZE;
 export const contentType = OG_CONTENT_TYPE;
 
+/** Social card per Figma 187:481: identity on the left, the hatch.dev client
+ * portal bleeding off the right edge. */
 export default async function OpengraphImage() {
+  const [fonts, avatar, shot] = await Promise.all([
+    ogFonts(),
+    ogImage('avatar.jpg'),
+    ogImage('hatch-portal.jpg'),
+  ]);
+  const domain = new URL(SITE_URL).host;
+
   return new ImageResponse(
     (
       <div
         style={{
-          width: "100%",
-          height: "100%",
-          display: "flex",
-          flexDirection: "column",
-          justifyContent: "space-between",
-          padding: "72px 80px",
-          background: OG_COLORS.gradient,
-          fontFamily: "Outfit",
+          position: 'relative',
+          width: '100%',
+          height: '100%',
+          display: 'flex',
+          background: OG_COLORS.bg,
+          fontFamily: 'Outfit',
         }}
       >
-        <div style={{ display: "flex", alignItems: "center", gap: 18 }}>
+        {/* eslint-disable-next-line @next/next/no-img-element -- satori renders plain <img> */}
+        <img
+          src={shot}
+          alt=""
+          width={760}
+          height={465}
+          style={{
+            position: 'absolute',
+            left: 600,
+            top: 110,
+            width: 760,
+            height: 465,
+            objectFit: 'cover',
+            objectPosition: 'top',
+            borderRadius: 16,
+            border: `1px solid ${OG_COLORS.line}`,
+            boxShadow: OG_COLORS.shadow,
+          }}
+        />
+
+        <div
+          style={{
+            position: 'absolute',
+            left: 72,
+            top: 96,
+            width: 500,
+            display: 'flex',
+            flexDirection: 'column',
+          }}
+        >
+          {/* eslint-disable-next-line @next/next/no-img-element -- satori renders plain <img> */}
+          <img src={avatar} alt="" width={96} height={96} style={{ borderRadius: 999 }} />
           <div
             style={{
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-              width: 56,
-              height: 56,
-              borderRadius: 16,
-              background: OG_COLORS.text,
-              color: OG_COLORS.surface,
-              fontSize: 24,
-              fontWeight: 700,
+              marginTop: 32,
+              fontSize: 64,
+              fontWeight: 600,
+              lineHeight: 1.1,
+              color: OG_COLORS.text,
             }}
           >
-            HK
+            Haroon Kasor
           </div>
-          <div style={{ display: "flex", fontSize: 26, color: OG_COLORS.muted }}>
-            haroonkasor.dev
-          </div>
-        </div>
-
-        <div style={{ display: "flex", flexDirection: "column" }}>
           <div
             style={{
-              display: "flex",
-              fontFamily: "Prompt",
-              fontSize: 88,
-              fontWeight: 700,
-              color: OG_COLORS.text,
-              lineHeight: 1.1,
+              marginTop: 10,
+              fontFamily: 'Prompt',
+              fontSize: 26,
+              lineHeight: 1.4,
+              color: OG_COLORS.muted,
             }}
           >
             ฮารูน กาซอร์
           </div>
           <div
             style={{
-              display: "flex",
-              fontSize: 88,
-              fontWeight: 700,
+              marginTop: 28,
+              fontSize: 30,
+              fontWeight: 600,
+              lineHeight: 1.3,
               color: OG_COLORS.text,
-              lineHeight: 1.1,
             }}
           >
-            Full-stack Developer
+            Developer
+          </div>
+          <div style={{ fontSize: 20, lineHeight: 1.6, color: OG_COLORS.muted }}>
+            Next.js · React · Java Spring Boot · MySQL
           </div>
         </div>
 
         <div
           style={{
-            display: "flex",
-            fontSize: 30,
-            fontWeight: 400,
-            color: OG_COLORS.muted,
+            position: 'absolute',
+            left: 72,
+            top: 540,
+            display: 'flex',
+            alignItems: 'center',
+            gap: 10,
           }}
         >
-          Junior Developer @ Learn Tech · Next.js, React, Spring Boot · Bangkok
+          <div style={{ width: 10, height: 10, borderRadius: 999, background: OG_COLORS.status }} />
+          <div style={{ fontSize: 20, fontWeight: 600, lineHeight: 1.4, color: OG_COLORS.text }}>
+            {domain}
+          </div>
         </div>
       </div>
     ),
-    { ...size, fonts: await ogFonts() },
+    { ...size, fonts },
   );
 }

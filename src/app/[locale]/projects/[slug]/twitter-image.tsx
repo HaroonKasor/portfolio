@@ -1,6 +1,6 @@
 export {
   default,
-  alt,
+  generateImageMetadata,
   size,
   contentType,
   generateStaticParams,

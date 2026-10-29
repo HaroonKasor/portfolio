@@ -1,19 +1,17 @@
 export const profile = {
   name: 'Haroon Kasor',
   email: 'haroonkasor.dev@gmail.com',
-  phone: '062-496-9217',
+  avatar: '/images/profile/haroon.webp',
   github: 'https://github.com/HaroonKasor',
   githubUser: 'HaroonKasor',
-  githubLabel: 'github.com/HaroonKasor',
+  linkedin: 'https://www.linkedin.com/in/haroon-kasor-098885342/',
+  linkedinHandle: 'haroon-kasor',
   lineId: 'harunfy',
   lineUrl: 'https://line.me/ti/p/g2zxCyDgt1',
-  lineQr: '/images/line-qr.png',
-  location: 'Bangkok, Thailand',
+  /** IANA zone for the live clock in the footer. */
+  timeZone: 'Asia/Bangkok',
   cvFiles: {
     en: '/cv/haroon-kasor-en.pdf',
     th: '/cv/haroon-kasor-th.pdf',
   },
 } as const;
-
-/** Testimonials live in ./testimonials.ts — the section shows itself once that list is non-empty. */
-export { SHOW_TESTIMONIAL } from "./testimonials";
