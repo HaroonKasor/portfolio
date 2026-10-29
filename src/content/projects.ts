@@ -231,8 +231,8 @@ export const projects: Project[] = [
         th: 'พัฒนาบน Next.js 16, Prisma และ MySQL มีตัวสร้างคอร์สที่ใส่บทเรียนเป็นวิดีโอ เอกสาร แบบทดสอบ หรือแพ็กเกจ xAPI ลงทะเบียนได้ทั้งสมัครเอง นำเข้าเป็นชุด หรือสแกน QR ออกใบประกาศอัตโนมัติเมื่อเรียนจบ และมีผู้ช่วย AI ที่ตอบจากฐานความรู้ร่วมกับบริบทบทเรียน',
       },
       result: {
-        en: 'Admins get 11 reports covering quiz results, learner status, certificates, xAPI statements, chat statistics and the audit log. The whole stack runs from a single docker compose file, and a public demo is online. Development continues after graduation, with a redesign that adds a video library and transcripts.',
-        th: 'แอดมินมีรายงาน 11 แบบ ครอบคลุมผลสอบ สถานะผู้เรียน ใบประกาศ xAPI statement สถิติการแชต และ audit log ทั้งระบบรันจาก docker compose ไฟล์เดียว และมีเดโมเปิดให้ลองใช้ หลังเรียนจบยังพัฒนาต่อ กำลังรีดีไซน์และเพิ่มคลังวิดีโอกับระบบถอดข้อความ',
+        en: 'Admins get 11 reports covering quiz results, learner status, certificates, xAPI statements, chat statistics and the audit log. The whole stack runs from a single docker compose file, and a public demo is online. Development continues, with a redesign that adds a video library and transcripts.',
+        th: 'แอดมินมีรายงาน 11 แบบ ครอบคลุมผลสอบ สถานะผู้เรียน ใบประกาศ xAPI statement สถิติการแชต และ audit log ทั้งระบบรันจาก docker compose ไฟล์เดียว และมีเดโมเปิดให้ลองใช้ ตอนนี้ยังพัฒนาต่อ กำลังรีดีไซน์และเพิ่มคลังวิดีโอกับระบบถอดข้อความ',
       },
     },
     features: [

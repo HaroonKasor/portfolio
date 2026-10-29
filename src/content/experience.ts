@@ -27,7 +27,7 @@ export const experience: ExperienceEntry[] = [
   },
   {
     id: 'degree',
-    period: { en: '2022 — 2026', th: '2022 — 2026' },
+    period: { en: '2022 — 2027 (expected)', th: '2022 — 2027 (คาดว่าจบ)' },
     title: {
       en: 'B.Eng. Computer & Electronics Engineering',
       th: 'วศ.บ. วิศวกรรมคอมพิวเตอร์และอิเล็กทรอนิกส์',

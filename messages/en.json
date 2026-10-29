@@ -39,8 +39,8 @@
   },
   "about": {
     "label": "About",
-    "p1": "I've been a Junior Developer at Learn Tech since August 2024, working across the Java and Next.js sides of the company's main LMS, from audit logging and PDPA-compliant user data handling to admin reports and xAPI content.",
-    "p2": "Alongside work I'm finishing a B.Eng. in Computer and Electronics Engineering at Ramkhamhaeng University (graduating 2026). My final-year project, GoSkillUp LMS, is a learning platform I designed and built from the database to deployment.",
+    "p1": "I've been a Junior Developer at Learn Tech since August 2024, working across the Java and Next.js sides of the company's main LMS.",
+    "p2": "Alongside work I'm finishing a B.Eng. in Computer and Electronics Engineering at Ramkhamhaeng University (graduating mid-2027). My final-year project, GoSkillUp LMS, is a learning platform I designed and built from the database to deployment, and I'm still developing it. I also built hatch.dev, a web studio management system now live in production, and WorkCatch, a Thai task-capture app with an AI assistant.",
     "dailyStack": "Daily stack"
   },
   "experience": {
