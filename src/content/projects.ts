@@ -20,7 +20,7 @@ export const projects: Project[] = [
       th: 'กำหนดทิศทาง UX/UI ใน Figma วางสเปกและสถาปัตยกรรม แล้วพัฒนาร่วมกับ AI coding agents (Claude Code, Codex)',
     },
     tags: ['Next.js 16', 'MySQL', 'Drizzle', 'Better Auth', 'Gotenberg'],
-    cover: '/images/hatch/portal-hatchweb.webp',
+    cover: '/images/hatch/hatchweb-home.webp',
     demo: { url: 'https://hatchweb.dev', kind: 'site' },
     figmaUrl: 'https://www.figma.com/design/64LmjZp2Zn3kz0Fg2DwCWH/hatchweb',
     lede: {
