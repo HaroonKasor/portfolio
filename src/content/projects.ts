@@ -204,7 +204,7 @@ export const projects: Project[] = [
       th: 'ออกแบบและพัฒนาตั้งแต่ front-end, back-end จนถึง deploy ด้วย Docker',
     },
     tags: ['Next.js', 'Prisma', 'MySQL', 'xAPI', 'Docker'],
-    cover: '/images/goskillup/skillbot.webp',
+    cover: '/images/goskillup/dashboard.webp',
     demo: { url: 'https://lms.hatchweb.dev', login: 'demo_learner · demo1234' },
     redesign: {
       note: {
