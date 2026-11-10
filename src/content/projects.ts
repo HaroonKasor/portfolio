@@ -193,6 +193,7 @@ export const projects: Project[] = [
       th: 'โปรเจกต์จบการศึกษา · 2025 — ปัจจุบัน',
     },
     cardMeta: { en: 'Final-year project · 2025 — Present', th: 'โปรเจกต์จบ · 2025 — ปัจจุบัน' },
+    badge: { en: 'Redesign in progress', th: 'กำลังพัฒนาเวอร์ชันใหม่' },
     tagline: { en: 'Learning platform', th: 'ระบบเรียนออนไลน์' },
     summary: {
       en: 'A complete learning platform. Learners watch lessons and ask an AI assistant on the same page; admins build courses and quizzes and issue certificates automatically.',
@@ -205,6 +206,13 @@ export const projects: Project[] = [
     tags: ['Next.js', 'Prisma', 'MySQL', 'xAPI', 'Docker'],
     cover: '/images/goskillup/skillbot.webp',
     demo: { url: 'https://lms.hatchweb.dev', login: 'demo_learner · demo1234' },
+    redesign: {
+      note: {
+        en: 'Started as my graduation project — now being developed further. The full new UI for learners and admins is designed in Figma; the code is being rebuilt to match.',
+        th: 'ต่อยอดจากโปรเจกต์จบ กำลังพัฒนาต่อ ออกแบบ UI ใหม่ทั้งระบบทั้งฝั่งผู้เรียนและผู้ดูแลเสร็จแล้วใน Figma และกำลังเขียนโค้ดใหม่ตามแบบ',
+      },
+      figmaUrl: 'https://www.figma.com/design/h3vNvEekJ0IjQSkm6JDAhb/GoSkillUp',
+    },
     lede: {
       en: 'A complete learning platform: build courses, enroll learners, run quizzes, issue certificates, play xAPI content, and get answers from an AI assistant while learning.',
       th: 'ระบบเรียนออนไลน์ครบวงจร สร้างคอร์ส ลงทะเบียน ทำแบบทดสอบ ออกใบประกาศ เล่นเนื้อหา xAPI และมีผู้ช่วย AI ตอบคำถามระหว่างเรียน',

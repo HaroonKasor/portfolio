@@ -9,6 +9,7 @@ export function CaseHeader({
   badge,
   title,
   lede,
+  redesign,
   facts,
   demo,
 }: {
@@ -16,6 +17,7 @@ export function CaseHeader({
   badge?: string;
   title: string;
   lede: string;
+  redesign?: { note: string; figmaUrl: string; figmaLabel: string };
   facts: CaseFact[];
   demo?: { label: string; url: string; loginLabel?: string; login?: string };
 }) {
@@ -31,8 +33,13 @@ export function CaseHeader({
       <p className="text-muted mt-5 max-w-[780px] text-lg leading-[1.7] lg:text-xl">
         {lede}
       </p>
+      {redesign ? (
+        <p className="text-muted mt-4 max-w-[780px] text-base leading-[1.7]">
+          {redesign.note}
+        </p>
+      ) : null}
       {demo ? (
-        <div className="mt-6 flex flex-wrap items-center gap-x-5 gap-y-2">
+        <div className="mt-6 flex flex-wrap items-center gap-x-5 gap-y-3">
           <a
             href={demo.url}
             target="_blank"
@@ -49,6 +56,20 @@ export function CaseHeader({
             <p className="text-muted text-sm leading-[1.4]">
               {demo.loginLabel} <span className="font-mono">{demo.login}</span>
             </p>
+          ) : null}
+          {redesign ? (
+            <a
+              href={redesign.figmaUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="border-line bg-surface text-text hover:bg-bg hit-area group inline-flex items-center gap-2 rounded-full border px-4 py-2 text-[15px] leading-[1.4] font-semibold transition-colors"
+            >
+              {redesign.figmaLabel}
+              <ArrowUpRight
+                className="size-3.5 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5 motion-reduce:transition-none"
+                aria-hidden
+              />
+            </a>
           ) : null}
         </div>
       ) : null}

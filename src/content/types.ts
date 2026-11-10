@@ -52,6 +52,8 @@ export type Project = {
   stack: { name: string; note: Localized }[];
   /** Public demo shown under the case-page lede, with an optional sign-in hint. */
   demo?: { url: string; login?: string; kind?: 'demo' | 'site' };
+  /** New design finished in Figma (view-only) and being coded; shown under the lede. */
+  redesign?: { note: Localized; figmaUrl: string };
   /** Only hatch.dev documents its Figma-to-code iterations. */
   designProcess?: { intro: Localized; pairs: DesignPair[] };
   next: ProjectSlug;

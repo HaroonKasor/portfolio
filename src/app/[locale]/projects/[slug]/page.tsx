@@ -81,10 +81,25 @@ export default async function ProjectPage({
           badge={project.badge?.[locale]}
           title={project.title}
           lede={project.lede[locale]}
+          redesign={
+            project.redesign
+              ? {
+                  note: project.redesign.note[locale],
+                  figmaUrl: project.redesign.figmaUrl,
+                  figmaLabel: t("figma"),
+                }
+              : undefined
+          }
           demo={
             project.demo
               ? {
-                  label: t(project.demo.kind === "site" ? "visitSite" : "demo"),
+                  label: t(
+                    project.demo.kind === "site"
+                      ? "visitSite"
+                      : project.redesign
+                        ? "demoCurrent"
+                        : "demo",
+                  ),
                   url: project.demo.url,
                   loginLabel: t("demoLogin"),
                   login: project.demo.login,
