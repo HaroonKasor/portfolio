@@ -54,6 +54,8 @@ export type Project = {
   demo?: { url: string; login?: string; kind?: 'demo' | 'site' };
   /** New design finished in Figma (view-only) and being coded; shown under the lede. */
   redesign?: { note: Localized; figmaUrl: string };
+  /** Plain link to the project's design in Figma (view-only), separate from `redesign`. */
+  figmaUrl?: string;
   /** Only hatch.dev documents its Figma-to-code iterations. */
   designProcess?: { intro: Localized; pairs: DesignPair[] };
   next: ProjectSlug;

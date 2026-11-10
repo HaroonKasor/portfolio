@@ -20,8 +20,9 @@ export const projects: Project[] = [
       th: 'กำหนดทิศทาง UX/UI ใน Figma วางสเปกและสถาปัตยกรรม แล้วพัฒนาร่วมกับ AI coding agents (Claude Code, Codex)',
     },
     tags: ['Next.js 16', 'MySQL', 'Drizzle', 'Better Auth', 'Gotenberg'],
-    cover: '/images/hatch/portal.webp',
+    cover: '/images/hatch/portal-hatchweb.webp',
     demo: { url: 'https://hatchweb.dev', kind: 'site' },
+    figmaUrl: 'https://www.figma.com/design/64LmjZp2Zn3kz0Fg2DwCWH/hatchweb',
     lede: {
       en: "An all-in-one system for a web studio: from a client's first request to the quote, project tracking, payment and receipt, in a single Next.js app.",
       th: 'ระบบครบวงจรสำหรับสตูดิโอรับทำเว็บ ตั้งแต่ลูกค้าส่งคำขอ รับใบเสนอราคา ติดตามงาน จนจ่ายเงินและได้ใบเสร็จ อยู่ในแอป Next.js ตัวเดียว',
