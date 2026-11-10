@@ -10,6 +10,7 @@ export function CaseHeader({
   title,
   lede,
   redesign,
+  figma,
   facts,
   demo,
 }: {
@@ -17,7 +18,8 @@ export function CaseHeader({
   badge?: string;
   title: string;
   lede: string;
-  redesign?: { note: string; figmaUrl: string; figmaLabel: string };
+  redesign?: { note: string };
+  figma?: { url: string; label: string };
   facts: CaseFact[];
   demo?: { label: string; url: string; loginLabel?: string; login?: string };
 }) {
@@ -57,14 +59,14 @@ export function CaseHeader({
               {demo.loginLabel} <span className="font-mono">{demo.login}</span>
             </p>
           ) : null}
-          {redesign ? (
+          {figma ? (
             <a
-              href={redesign.figmaUrl}
+              href={figma.url}
               target="_blank"
               rel="noopener noreferrer"
               className="border-line bg-surface text-text hover:bg-bg hit-area group inline-flex items-center gap-2 rounded-full border px-4 py-2 text-[15px] leading-[1.4] font-semibold transition-colors"
             >
-              {redesign.figmaLabel}
+              {figma.label}
               <ArrowUpRight
                 className="size-3.5 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5 motion-reduce:transition-none"
                 aria-hidden

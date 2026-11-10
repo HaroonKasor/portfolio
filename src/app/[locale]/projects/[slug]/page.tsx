@@ -83,12 +83,15 @@ export default async function ProjectPage({
           lede={project.lede[locale]}
           redesign={
             project.redesign
-              ? {
-                  note: project.redesign.note[locale],
-                  figmaUrl: project.redesign.figmaUrl,
-                  figmaLabel: t("figma"),
-                }
+              ? { note: project.redesign.note[locale] }
               : undefined
+          }
+          figma={
+            project.redesign
+              ? { url: project.redesign.figmaUrl, label: t("figma") }
+              : project.figmaUrl
+                ? { url: project.figmaUrl, label: t("figmaDesign") }
+                : undefined
           }
           demo={
             project.demo
