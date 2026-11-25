@@ -62,7 +62,7 @@ export type Project = {
 };
 
 export type ExperienceEntry = {
-  id: 'learntech' | 'goskillup' | 'degree';
+  id: 'learntech' | 'learntech-it-support' | 'goskillup' | 'degree';
   period: Localized;
   title: Localized;
   body: Localized;
