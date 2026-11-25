@@ -4,13 +4,23 @@ export const experience: ExperienceEntry[] = [
   {
     id: 'learntech',
     highlight: true,
-    period: { en: 'Aug 2024 — Present', th: 'ส.ค. 2024 — ปัจจุบัน' },
+    period: { en: 'Sep 2025 — Present', th: 'ก.ย. 2025 — ปัจจุบัน' },
     title: { en: 'Junior Developer · Learn Tech', th: 'Junior Developer · Learn Tech' },
     body: {
       en: 'Build and maintain the company LMS and client systems across Next.js and Java: an xAPI learning record store, an AI chat that answers from lesson videos, an exam bank, and a member website for a client organization.',
       th: 'พัฒนาและดูแล LMS ของบริษัทและระบบของลูกค้า ทั้งฝั่ง Next.js และ Java: ระบบเก็บข้อมูลการเรียน (xAPI) แชต AI ที่ตอบจากวิดีโอบทเรียน ระบบคลังข้อสอบ และเว็บสมาชิกขององค์กรลูกค้า',
     },
     tags: ['Java', 'Spring Boot', 'Next.js', 'MySQL', 'xAPI'],
+  },
+  {
+    id: 'learntech-it-support',
+    period: { en: 'Aug 2024 — Aug 2025', th: 'ส.ค. 2024 — ส.ค. 2025' },
+    title: { en: 'IT Support · Learn Tech', th: 'IT Support · Learn Tech' },
+    body: {
+      en: 'Monitored the company LMS and client systems, packaged and tested xAPI and SCORM content, reproduced client-reported bugs for the development team and fixed simple bugs myself, then moved to the development team in September 2025.',
+      th: 'ดูแลและเฝ้าระวังระบบ LMS ของบริษัทและลูกค้า จัดแพ็กเกจและทดสอบสื่อ xAPI และ SCORM ทำซ้ำปัญหาที่ลูกค้าแจ้งให้ทีมพัฒนา และแก้บั๊กง่ายๆ เอง ก่อนย้ายมาทีมพัฒนาในเดือนกันยายน 2025',
+    },
+    tags: ['xAPI', 'SCORM'],
   },
   {
     id: 'goskillup',
@@ -53,7 +63,7 @@ export const inHouseWork: InHouseWork[] = [
       th: 'หน้าเว็บ LMS ของบริษัทด้วย Next.js และระบบเก็บข้อมูลการเรียน (xAPI) ด้วย Java: audit log, ถังขยะและ anonymize ตาม PDPA',
     },
     stack: 'Next.js · Java',
-    period: '2024 —',
+    period: '2025 —',
   },
   {
     title: { en: 'AI Q&A from lesson videos', th: 'AI ถามตอบจากวิดีโอบทเรียน' },
@@ -67,8 +77,8 @@ export const inHouseWork: InHouseWork[] = [
   {
     title: { en: 'Exam bank', th: 'ระบบคลังข้อสอบ' },
     body: {
-      en: 'Answer autosave, review and submit flows, and retry-safe result delivery to the LMS, with unit tests',
-      th: 'บันทึกคำตอบอัตโนมัติ ทบทวนและส่งข้อสอบ และส่งผลสอบเข้า LMS ซ้ำได้อย่างปลอดภัยเมื่อล้มเหลว พร้อม unit test',
+      en: 'Retry-safe delivery of exam results to the LMS, a session-timeout race fix, and unit and integration tests',
+      th: 'ส่งผลสอบเข้า LMS ซ้ำได้อย่างปลอดภัยเมื่อล้มเหลว แก้ race condition ตอนหมดเวลา พร้อม unit/integration test',
     },
     stack: 'Java · Next.js',
     period: '2026',
